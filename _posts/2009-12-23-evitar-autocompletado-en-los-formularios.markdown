@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2009-12-23 18:42:53+00:00
 layout: post
@@ -26,12 +25,16 @@ Click en "leer más" o "ver artículo completo" o como sea que esté traducido p
 
 Dije que podríamos haberlo hecho con `autocomplete="off"`. Veamos cómo funciona: 
 
-[xhtml]<input type="text" autocomplete="off" id="asdf" name="asdf" value="" />[/xhtml]
+{% highlight html %}
+<input type="text" autocomplete="off" id="asdf" name="asdf" value="" />
+{% endhighlight %}
 
 Con esa sola línea se supone que debería quedar desactivado el autocompletado, pero tiene un solo gran problema: no es compatible con la W3C. 
 Sin embargo, no hay que olvidarse que la W3C no revisa JavaScript, por lo que poniendo en el evento onload del body lo siguiente, sí se retorna un documento válido que cumplirá el mismo propósito: 
 
-[javascript]document.getElementById("asdf").setAttibute("autocomplete","off");[/javascript]
+{% highlight javascript %}
+document.getElementById("asdf").setAttibute("autocomplete","off");
+{% endhighlight %}
 
 Peeeero... aquí ocurre el otro problema: no todos los navegadores aceptan este tipo de instrucción, por lo que por ejemplo Firefox va a seguir llenando el input. Mal que mal, es una característica que tiene que funcionar a toda prueba para el navegador cierto? 
 
@@ -48,7 +51,8 @@ Bueno, para eso lo que se puede hacer es lo siguiente: tenemos que ver de qué m
 
 El truco en sí es bastante fácil: basta poner un elemento de tipo hidden y darle de valor el nombre del elemento y punto. Así de corta. 
 
-[php]<?php
+{% highlight php %}
+<?php
 // Rescatando o revisando que el formulario enviado no sea vacío
   if (isset($_POST['qwerty']) AND !empty($_POST[$_POST['qwerty']])) {
 // No es vacío, por lo que procedemos a imprimir o cualquier cosa
@@ -70,7 +74,8 @@ El truco en sí es bastante fácil: basta poner un elemento de tipo hidden y dar
   unset($nombre);
 ?>
 <br /><input type="submit" value="Aceptar" />
-</form>[/php]
+</form>
+{% endhighlight %}
 
 Por si lo quieren probar, [aquí está la prueba de concepto](http://unreal4u.com/test/form-llenado/index.php). 
 

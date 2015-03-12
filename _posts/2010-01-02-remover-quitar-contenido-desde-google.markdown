@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-01-02 06:41:17+00:00
 layout: post
@@ -43,16 +42,16 @@ Si bien es cierto nunca he hablado del robots.txt supongo que los que visitan es
 Sin embargo, no hay que olvidar que puede llegar a ser un arma de doble filo: este archivo es público, por lo tanto, es mejor no colocar rutas confidenciales, ya que como investigación previa a cómo hackear una página, este es sin duda uno de los primeros archivos que visitaré, justamente para ver si acaso existe alguna ruta confidencial. Facebook de hecho, tiene cosas bien interesantes en su robots.txt. Además, aunque la gran mayoría de los buscadores respetan este archivo, no todos lo hacen (Aunque son los menos). 
 En primera instancia, elegí este método ya que es el más rápido para bloquear sólo una sección. Se hace de la siguiente manera: 
 
-`User-agent: *
-Disallow: /`
+<pre>User-agent: *
+Disallow: /</pre>
 Esto le dice a todos los buscadores (un asterisco en User-agent indica todos los buscadores) que no indexen nada que se encuentre desde el home en adelante. Es decir, si pusiera esto en mi blog, estaría denegando expresamente a Google, Bing, Yahoo y otros que me indexen el sitio completo, subcarpetas y archivos incluidos. 
 
 Sin embargo, por esas cosas de la vida, uno quizás no querría denegar el acceso a todo el sitio, sino que sólo a una subcarpeta en específico a sólo Google. 
-`User-agent: GoogleBot
+<pre>User-agent: GoogleBot
 Disallow: /carpeta/
 Disallow: /login.php
 Disallow: /otra-carpeta/archivo.jpg
-Disallow: /*.gif$`
+Disallow: /*.gif$</pre>
 
 Con esa orden, estamos denegando el acceso al GoogleBot a la carpeta llamada "carpeta" y mediante la segunda línea, al archivo llamado login.php que se encuentra en la raíz. Con la tercera línea, estamos denegando el acceso a archivo.jpg dentro de la carpeta "otra-carpeta" y finalmente, mediante la cuarta línea, estamos denegando el acceso a todos los archivos cuyo nombre termina en .gif. 
 Más información acerca de las expresiones regulares permitidos en robots.txt se puede encontrar [en este enlace](http://www.google.com/support/webmasters/bin/answer.py?hl=es&answer=156449). (Hacer click en "Crear de forma manual un archivo robots.txt" para ver esa información). 
@@ -64,9 +63,9 @@ Más información acerca de las expresiones regulares permitidos en robots.txt s
 
 Este método es bastante bueno, pero tiene algunas desventajas bastante grandes también. Básicamente, se trata de incluir un metatag en cada HTML que le indica a los buscadores que no se indexe tal página, las combinaciones útiles son: 
 
-[xhtml]<meta name="robots" content="noindex, follow">
+{% highlight html %}<meta name="robots" content="noindex, follow">
 <meta name="robots" content="index, nofollow">
-<meta name="robots" content="noindex, nofollow">[/xhtml]
+<meta name="robots" content="noindex, nofollow">{% endhighlight %}
 
 Esto es bastante fácil de entender: el name es siempre "robots" si se quiere tomar en cuenta todos los buscadores. ("googlebot" en minúsculas si se quiere especificar solamente Google). 
 Content se refiere básicamente qué tipo de acciones son los que están prohibidos. Los posibles valores son siempre "index", "noindex", "follow" y "nofollow", pero obviamente no todas las combinaciones son posibles. 

@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2009-12-22 03:01:41+00:00
 layout: post
@@ -20,7 +19,7 @@ Esta función en específico hace una sola cosa: uno le pasa una imagen (guardad
 
 Lo prometido es deuda: 
 
-[php]/*
+{% highlight php %}/*
   string c_img(string,[string],[string],[int,int]); // Retorna el código HTML de la imagen.
   in:  $ruta   = string      = Ruta de la imagen.
        $alt    = [OP] string = Texto alternativo
@@ -41,10 +40,10 @@ function c_img($ruta='',$alt='',$class='',$width=0,$height=0) {
   if ($class != '') $salida .= ' class="'.$class.'"';
   return $salida.' alt= "'.$alt.' " title="'.$alt.'" />';
 }
-[/php]
+{% endhighlight %}
 
 ¿Y cómo cresta ocupo esta cosa? Fácil mi estimado: 
-[php]
+{% highlight php %}
 // Forma 1: Indicando sólo una ruta
 echo c_img('i/imagen_top.jpg');
 // <img src="i/imagen_top.jpg" width="985" height="120" alt= " " title=" " />
@@ -60,7 +59,7 @@ echo c_img('i/imagen_top.jpg','Cabecera','asdf');
 // Forma 4: Indicando ruta, texto alternativo, class y dimensiones
 echo c_img('i/imagen_top.jpg','Cabecera','asdf',900,800);
 // <img src="i/imagen_top.jpg" width="900" height="800" class="asdf" alt= "Cabecera" title="Cabecera" />
-[/php]
+{% endhighlight %}
 
 Sólo tres consideraciones: 
 

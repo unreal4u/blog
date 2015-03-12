@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2009-12-29 18:00:35+00:00
 layout: post
@@ -19,7 +18,7 @@ Sin embargo, el tema me pareció muy interesante, tanto, que me comprometí a al
 La primera regla de los errores es que es el usuario (final) **jamás** debe ver un error en pantalla. No es una buena idea que vea una pantalla en blanco que dice algo así como:
 
 
-<blockquote>**Fatal error N° 1002**: Couldn't connect to MySQL, server responded: MySQL error 44: to busy
+<pre>**Fatal error N° 1002**: Couldn't connect to MySQL, server responded: MySQL error 44: to busy
 
 on line **3412** in file **/home/asdf/public_html/includes/mysql.class.php**
 
@@ -28,7 +27,7 @@ on line **3412** in file **/home/asdf/public_html/includes/mysql.class.php**
 > * * *
 > 
 > 
-Apache v2.0.54 / PHP v5.2.12 on unreal4u.com</blockquote>
+Apache v2.0.54 / PHP v5.2.12 on unreal4u.com</pre>
 
 
 Principalmente por 3 razones:
@@ -63,22 +62,22 @@ Lo primero que habrá que definir es dónde se mostrará el o los errores presen
 
 El estilo que se manejará para los errores es el siguiente:
 
-[css]
+{% highlight css %}
 p.error{
-background:#AF4C4C;
-color:#FFF;
-text-align:center;
-width:99%;
-font-size:1.3em;
-padding-bottom:4px;
-line-height:30px
+    background:#AF4C4C;
+    color:#FFF;
+    text-align:center;
+    width:99%;
+    font-size:1.3em;
+    padding-bottom:4px;
+    line-height:30px
 }
 p.error img{
-display:table-cell;
-vertical-align:middle;
-padding:0 10px 0 0
+    display:table-cell;
+    vertical-align:middle;
+    padding:0 10px 0 0
 }
-[/css]
+{% endhighlight %}
 
 que producirá una salida muy parecida a esta:
 
@@ -92,17 +91,17 @@ En las dos siguientes páginas, se analizará en mayor profundidad este esquema.
 
 Ahora bien, el cómo se guardan los errores es bastante fácil: basta con crear un arreglo bastante simple que después se recorre. Este arreglo no será nada más que un simple
 
-[php]
+{% highlight php %}
 error (
     1 => 4,
     2 => 5,
     3 => 34
 );
-[/php]
+{% endhighlight %}
 
 donde 4, 5 y 34 serán los códigos de error. Este arreglo se genera cuando se detecta algún error, y no será nada más que:
 
-[php]$err[] = 66;[/php]
+{% highlight php %}$err[] = 66;{% endhighlight %}
 
 Para que de esta manera, se sume a los demás errores que puedan existir previamente.
 
@@ -115,7 +114,7 @@ Para que de esta manera, se sume a los demás errores que puedan existir previam
 A continuación cada uno de los contenidos de los archivos, de forma muy simplificada:
 El contenido de `/index.php`:
 
-[php]<?php
+{% highlight php %}<?php
   include('includes/sesiones.php');
   if (isset($_POST['(formulario)'])) {
     // Ejecutar todas las acciones de verificación y otros.
@@ -131,12 +130,12 @@ El contenido de `/index.php`:
 <?php
   include('includes/footer.php');
 ?>
-[/php]
+{% endhighlight %}
 
 
 Contenido de `/includes/header.php`:
 
-[php]<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% highlight php %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -146,11 +145,11 @@ Contenido de `/includes/header.php`:
 <?php
   include('includes/errores.php');
 ?>
-[/php]
+{% endhighlight %}
 
 Ahora bien, la gracia de todo el sistema para mostrar errores está justamente en `/includes/errores.php`, que contiene el siguiente código:
 
-[php]
+{% highlight php %}
 <?php
 if (isset($_GET['err'])) $err[] = $_GET['err']; // Reviso si existe error en GET y agrego al arreglo
 
@@ -174,7 +173,7 @@ if (isset($err)) { // Si existen errores...
   if ($pantalla != '') echo $pantalla.'</p>'; // Imprimo
   unset($a,$err,$pantalla); // Limpiamos
 }
-[/php]
+{% endhighlight %}
 
 Por último, la función que retorna el código HTML de la imagen (c_img) [ya la habíamos visto en un post anterior](http://blog.unreal4u.com/2009/12/una-funcion-que-siempre-ocupo/). 
 
@@ -189,7 +188,7 @@ Por último, la función que retorna el código HTML de la imagen (c_img) [ya la
 Hasta el momento hemos visto cómo mostrar correctamente un error de forma bonita, pero lo que no hemos hecho es saber cómo capturarlo. 
 En PHP existen diversas formas para hacer esto, dependiendo siempre de la manera que se haga. Si, por ejemplo, quisiéramos abrir un archivo, tenemos dos posibilidades: la primera es simplemente abrirlo y preguntar si se trata de un puntero a archivo válido o la otra es primero saber si existe, y después abrirlo. 
 
-[php]
+{% highlight php %}<?php
 // Forma NO recomendada. 
 if (!$fp = @fopen('archivo.txt','r')) $err[] = 34; 
 else {
@@ -202,7 +201,7 @@ if(file_exists('archivo.txt')) {
   // Otras acciones
 }
 else $err[] = 34;
-[/php]
+{% endhighlight %}
 
 Sin embargo, este es un solo caso de apertura de archivo y nada más. Aunque ojo: ¡También es posible que este archivo tenga problemas de permisos, por lo cual `$fp` seguirá siendo un puntero inválido!
 
@@ -211,7 +210,7 @@ Lo primero tiene una fácil solución que se llama _php.ini_.
 
 Este archivo contiene todas las directivas de configuración del ambiente completo. ¿Qué les puedo aconsejar? Cuando trabajen en un servidor de desarrollo, activen cualquier tipo de error que pudiera surgir, mediante las siguientes directivas: 
 
-`expose_php = On
+<pre>expose_php = On
 error_reporting = E_ALL
 display_errors = On
 display_startup_errors = On
@@ -219,7 +218,7 @@ ignore_repeated_errors = Off
 ignore_repeated_source = Off
 report_memleaks = On
 track_errors = On
-html_errors = On`
+html_errors = On</pre>
 
 De esa forma, se puede evitar en gran medida cualquier tipo de error que pudiera ocurrir en forma de compilación. 
 
@@ -234,11 +233,11 @@ Donde:
 `$tipo` es el tipo de error que se elevará, que puede ser del tipo: E_USER_ERROR, E_USER_WARNING o (predeterminadamente) E_USER_NOTICE. 
 
 Supongamos el siguiente código: 
-[php]
+{% highlight php %}
 <?php
 trigger_error('este es un error!',E_USER_ERROR);
 ?>
-[/php]
+{% endhighlight %}
 
 Ahora bien, si ejecutamos ese archivo, nos dará un error feo muy al estilo de PHP, lo cual es justamente todo lo contrario de lo que queremos, ya que muestra demasiada información que no queremos mostrar. 
 
@@ -247,7 +246,8 @@ Para solucionar esto, podemos hacer uso de `set_error_handler()`.
 Esta función, acepta dos parámetros, aunque siempre la he ocupado con uno solo (El segundo argumento limita el tipo de error a solo algunos, predeterminadamente, toma todos los errores). Ese único parámetro es el nombre de la función a ejecutarse cuando ocurre un error. ¿Para qué sirve esto? Básicamente, sirve para no pasar por el generador de errores de PHP, sino que tener uno hecho por nosotros. De esta manera, podemos hacer lo que queramos con el error sin que salgan errores feos de parte de PHP. 
 
 Supongamos el siguiente código:
-[php]// Esto será lo primero que debemos invocar en nuestros archivos
+{% highlight php %}<?php
+// Esto será lo primero que debemos invocar en nuestros archivos
 function dramas($errno, $errstr, $errfile, $errline, $errctx) {
     mail('su-email@ejemplo.com',
          'Error en la página',
@@ -260,7 +260,7 @@ set_error_handler("dramas");
 
 // Finalmente, en nuestra aplicación, generamos un error (archivo no encontrado)
 include('archivo-que-no-existe.php');
-[/php]
+{% endhighlight %}
 
 Con el código de arriba, ocurren hartas cosas interesantes: 
 
@@ -288,7 +288,8 @@ Por último, se pueden hacer muchísimas cosas más, ya que en vez de enviar un 
 
 Ahora bien, combinando nuestro pequeño código con la función `trigger_error()` y también aplicando todo lo aprendido hasta el momento podemos armar errores mucho más completos y fáciles de entender. Un pequeño ejemplo: 
 
-[php]function error_handler($errno, $errstr, $errfile, $errline, $errctx) {
+{% highlight php %}<?php
+function error_handler($errno, $errstr, $errfile, $errline, $errctx) {
     switch($errno) {
       CASE 256: // alias de E_USER_ERROR
                 die('Error fatal producido por el usuario!');
@@ -302,7 +303,7 @@ Ahora bien, combinando nuestro pequeño código con la función `trigger_error()
       DEFAULT: // cualquier otro tipo de error
               mail('su-email@ejemplo.com',
                    'Error en la página',
-                   'Ocurrió un error N° '.$errno.'
+                   'Ocurrió un error N° '.$errno
               );
               die('Ocurrió un error!');
               break;
@@ -320,7 +321,7 @@ if ($edad < 18) trigger_error('asdf',E_USER_NOTICE);
 
 // Por último, ya al mostrar la página, incluimos los errores: 
 include('includes/errores.php');
-[/php]
+{% endhighlight %}
 
 Con todo lo que se ha aprendido, ya podremos implementar una buena forma de capturar errores sin que les salga mensajes feos al usuario. 
 

@@ -22,24 +22,24 @@ A través de mi vida en Internet, he publicado una serie de scripts, manuales, n
 #### PFCongres 2013
 
 
-Locación: Utrecht, Holanda
-Idioma: Holandés
-Fecha: 12 Septiembre 2013
-Tema: Moving (slowly) from SVN to Git
-Diapositivas: [http://unreal4u.com/talks/?get=nl20130914-pfcongres.pdf](http://unreal4u.com/talks/?get=nl20130914-pfcongres.pdf)
-joind.in: [https://joind.in/talk/view/8954](https://joind.in/talk/view/8954)
+* Locación: Utrecht, Holanda
+* Idioma: Holandés
+* Fecha: 12 Septiembre 2013
+* Tema: Moving (slowly) from SVN to Git
+* Diapositivas: [http://unreal4u.com/talks/?get=nl20130914-pfcongres.pdf](http://unreal4u.com/talks/?get=nl20130914-pfcongres.pdf)
+* joind.in: [https://joind.in/talk/view/8954](https://joind.in/talk/view/8954)
 
 
 
 #### CodeConnexx 2013
 
 
-Locación: Maastricht, Holanda
-Idioma: Inglés
-Fecha: 8 Noviembre 2013
-Tema: i18n, things to take into account
-Diapositivas: [http://unreal4u.com/talks/?get=EN-internationalization.pdf](http://unreal4u.com/talks/?get=EN-internationalization.pdf)
-joind.in: [https://joind.in/talk/view/9612](https://joind.in/talk/view/9612)
+* Locación: Maastricht, Holanda
+* Idioma: Inglés
+* Fecha: 8 Noviembre 2013
+* Tema: i18n, things to take into account
+* Diapositivas: [http://unreal4u.com/talks/?get=EN-internationalization.pdf](http://unreal4u.com/talks/?get=EN-internationalization.pdf)
+* joind.in: [https://joind.in/talk/view/9612](https://joind.in/talk/view/9612)
 
 
 
@@ -47,7 +47,7 @@ joind.in: [https://joind.in/talk/view/9612](https://joind.in/talk/view/9612)
 
 
 Mi repositorio personal en Github está abierto al público general y en ella pueden encontrar las últimas versiones de las classes escritas por mi. Adicionalmente, pueden mejorarlos y de esa forma aportarán su propio grano de arena.
-Pueden visitarlo haciendo click [en este enlace](https://github.com/unreal4u/u4u-classes).
+Pueden visitarlo haciendo click [en este enlace](https://github.com/unreal4u/).
 
 
 
@@ -75,8 +75,7 @@ Este es un class hecho en PHP que es capaz de tomar varios CSS y optimizarlos pa
 #### [HTML Utilities](http://www.phpclasses.org/package/6313-PHP-Create-HTML-documents-programmatically.html)
 
 
-Un conjunto de funciones que permiten construir HTML válido por la W3C, desde las cabeceras, scripts hasta objetos flash, visibles en todos los navegadores y perfectamente válido en la W3C. Esta class fue ganador de un premio, que hasta el día de hoy no entiendo de qué se trata.
-[![Famous Software Download](http://download.famouswhy.com/awards/Famous_Software_Award_FamousWhy_logo_3.png)](http://download.famouswhy.com/html_utilities/)
+Un conjunto de funciones que permiten construir HTML válido por la W3C, desde las cabeceras, scripts hasta objetos flash, visibles en todos los navegadores y perfectamente válido en la W3C. 
 
 
 

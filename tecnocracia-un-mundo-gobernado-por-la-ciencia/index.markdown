@@ -4,9 +4,10 @@ comments: true
 date: 2012-11-29 23:07:00+00:00
 layout: page
 slug: tecnocracia-un-mundo-gobernado-por-la-ciencia
-title: 'Tecnocracia: un mundo gobernado por la ciencia'
 wordpress_id: 732
 ---
+
+# Tecnocracia: un mundo gobernado por la ciencia
 
 ### El original de este artículo [lo pueden encontrar en Neoteo](http://www.neoteo.com/tecnocracia-un-mundo-gobernado-por-la-14227), sin embargo lo copio acá porque es un artículo demasiado bueno así que más vale tener una copia de respaldo. Todos los derechos son de Neoteo.
 

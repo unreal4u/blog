@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2009-11-25 13:18:11+00:00
 layout: post
@@ -16,7 +15,7 @@ Encontré en Internet una forma bastante sencilla de crear barras de progreso s�
 
 El truco en sí es bastante fácil:
 <!-- more -->
-[xhtml]
+{% highlight html %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
@@ -41,7 +40,9 @@ div.bar{height:14px;line-height:11px;color:#FFF;text-align:right;padding:3px 0 0
   <div class="box"><div class="bar bg-ima" style="width:3%">3%</div></div>
   <div class="box"><div class="bar bg-ima" style="width:50%">50%</div></div>
 </body>
-</html>[/xhtml]
+</html>
+{% endhighlight %}
+
 Lo cual produce esta salida:
 
 

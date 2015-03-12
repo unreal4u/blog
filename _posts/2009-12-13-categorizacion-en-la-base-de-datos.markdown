@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2009-12-13 03:01:17+00:00
 layout: post
@@ -94,12 +93,12 @@ Este esquema nos presenta al menos a primera vista, algo bastante más simple qu
 
 	
   2. _Mejores índices (Estandarizados)_. Aunque en gran parte esta parte ya es cosa de cada uno, personalmente prefiero ocupar tres índices:
+  
+        * La primera para "_acceso_directo_", que guarda la cadena de 3 dígitos alfanuméricos cuya combinación es única.
 
-    * La primera para "_acceso_directo_", que guarda la cadena de 3 dígitos alfanuméricos cuya combinación es única.
+        * La segunda para la tabla categorias, que es la clave primaria de esa tabla. Esta clave primaria es la que se referenciará en las demás tablas, así que es como importante.
 
-    * La segunda para la tabla categorias, que es la clave primaria de esa tabla. Esta clave primaria es la que se referenciará en las demás tablas, así que es como importante.
-
-    * La tercera, para la tabla categorías. Es una clave única compuesta por "_acceso_directo_" y "_descripción_" que opcionalmente se puede dejar como índice. (Sí: un índice **NO ES** lo mismo que una clave única, la clave única sólo asegura que el o los registros a los cuales se les hace el control no se vaya a repetir, pero no es implícitamente indexada a diferencia de una clave primaria, ese trabajo nos queda a nosotros). De esa forma, nos aseguramos de que las descripciones no estén repetidas, pero sí se puedan repetir en el caso que estén en distinta categoría.
+        * La tercera, para la tabla categorías. Es una clave única compuesta por "_acceso_directo_" y "_descripción_" que opcionalmente se puede dejar como índice. (Sí: un índice **NO ES** lo mismo que una clave única, la clave única sólo asegura que el o los registros a los cuales se les hace el control no se vaya a repetir, pero no es implícitamente indexada a diferencia de una clave primaria, ese trabajo nos queda a nosotros). De esa forma, nos aseguramos de que las descripciones no estén repetidas, pero sí se puedan repetir en el caso que estén en distinta categoría.
 
 En cuanto a este índice opcional, hay que verlo caso a caso porque motores más potentes como PostGreSQL, que cumple 100% con ACID, saca el índice desde la tabla a la cual es referenciada, por lo que esta clave sería redundante, innecesaria e incluso puede perjudicar el rendimiento de la base de datos en vez de acelerarla. De todas formas se puede dejar sólo como una clave única, sin indexarla.
 
