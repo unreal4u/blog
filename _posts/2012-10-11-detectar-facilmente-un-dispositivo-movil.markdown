@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2012-10-11 21:46:00+00:00
 layout: post
@@ -55,7 +54,9 @@ Sin embargo, la gran sorpresa llegó en este punto, cuando detectMobileBrowsers 
 
 Así que proclamo aquí como ganador absoluto, tanto en rendimiento como en precisión, a detectMobileBrowsers. El código adaptado es el siguiente: 
 
-[php]
+{% highlight php %}
+<?php
+
 function isMobileUA($useragent) {
 	$return = false;
 	if (preg_match('/android|andro id|i\-mobile|nintendo|ericsson|ipad|itouch|MSIE (5|6)\.0; (KDDI|nitro|epoc).+Opera (6|7|8)\.|tablet browser/i', $useragent) || 
@@ -66,7 +67,7 @@ function isMobileUA($useragent) {
 	
 	return $return;
 }
-[/php]
+{% endhighlight %}
 
 La tercera línea es lo que yo agregué para aumentar la precisión, hasta el momento no me ha dado problemas, pero de todas formas sugiero que testeen antes de ponerlo en producción para evitar falsos positivos.
 
@@ -80,7 +81,9 @@ Esto nos deja sin embargo con la gran duda de qué hacemos para detectar disposi
 De esta forma, lo único que queda por hacer si desean detección de dispositivos de forma barata es suscribirse por una módica suma mensual a WURFL Cloud. Si es un sitio sin fines de lucro con pocas visitas, puede que hasta puedan alcanzar para el plan más básico, pero no se los recomiendo ya que sólo podrán rescatar dos características, lo cual es bastante poco. 
 Lo bueno de todo el asunto es que con unas pocas líneas de código podrán tener detección de dispositivos de forma fiable, después de suscribirse a su sitio, basta hacer lo siguiente: 
 
-[php]
+{% highlight php %}
+<?php
+
 class wurflCommunicator {
 	public function doWurflCloudRequest() {
 		$capabilities = array();
@@ -116,7 +119,7 @@ $wurflDetection->doWurflCloudRequest();
 if ($wurflDetection->wurfl_is_wireless_device) {
 	echo 'You are using a '.$wurflDetection->wurfl_brand_name.' '.$wurflDetection->wurfl_model_name;
 }
-[/php]
+{% endhighlight %}
 
 Nótese que en el pequeño echo de arriba ya estoy usando 3 capacidades: `is_wireless_device` (para detectar si se trata de un dispositivo móvil, esto incluye tablets), `brand_name` que tiene la marca del dispositivo y `model_name` que contiene el nombre del modelo. Para un listado completo de capacidades, sírvanse visitar [esta página que las lista todas](http://www.scientiamobile.com/wurflCapability/tree) y además explica para qué sirve cada uno. 
 El programa gratuito sólo les dejará elegir 2 capacidades.

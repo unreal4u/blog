@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2012-09-11 21:17:51+00:00
 layout: post
@@ -19,14 +18,15 @@ Hasta el momento no había tenido la oportunidad de actualizar mi blog con las n
 ## Instalando lo básico
 
 
-Lo primero que necesitamos es la última versión estable de:
-xDebug (más rato explicaré cómo bajarlo)
-[PHP](http://www.php.net/get/php-5.3.13.tar.gz/from/a/mirror) (Ya que Mountain Lion viene con PHP 5.3.13, recomiendo bajar esa misma versión)
-[Freetds](ftp://mirrors.ibiblio.org/freetds/stable/)
+Lo primero que necesitamos es la última versión estable de:  
+xDebug (más rato explicaré cómo bajarlo)  
+[PHP](http://www.php.net/get/php-5.3.13.tar.gz/from/a/mirror) (Ya que Mountain Lion viene con PHP 5.3.13, recomiendo bajar esa misma versión)  
+[Freetds](ftp://mirrors.ibiblio.org/freetds/stable/)  
 [pcre](ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre)
 
 Ya con todo eso listo y descomprimido en una carpeta, procedemos a la instalación como tal. Para simplificarlo, ejecuten todos los comandos como root. Si quieren leer de qué se trata todo esto y por qué son necesarias las dependencias, siéntanse libres de consultar [este post](http://blog.unreal4u.com/2011/07/instalacion-de-php-mssql-y-xdebug-en-mac-os-lion/) y por supuesto también [este otro](http://blog.unreal4u.com/2011/04/instalar-apc-para-php-en-snow-leopard/) donde explico para qué sirve cada dependencia.
-[bash]
+
+{% highlight bash %}
 git clone git://github.com/derickr/xdebug.git
 
 cd freetds-0.91/
@@ -65,11 +65,11 @@ phpize
 MACOSX_DEPLOYMENT_TARGET=10.6 CFLAGS="-arch x86_64 -g -Os -pipe -no-cpp-precomp" CCFLAGS="-arch x86_64 -g -Os -pipe" CXXFLAGS="-arch x86_64 -g -Os -pipe" LDFLAGS="-arch x86_64 -bind_at_load" ./configure
 make
 make install
-[/bash]
+{% endhighlight %}
 
 De ahí, revisamos nuestro php.ini y agregamos las siguientes líneas: 
 
-[bash]
+{% highlight bash %}
 [xdebug]
 zend_extension="/usr/lib/php/extensions/no-debug-non-zts-20090626/xdebug.so"
 xdebug.idekey="macgdbp"
@@ -103,7 +103,7 @@ apc.enable_cli = 1
 
 [intl]
 extension = intl.so
-[/bash]
+{% endhighlight %}
 
 Luego simplemente invocamos un "`apachectl restart`" (con root) y si todo está bien nuestro pc no debería explotar y ahora deberíamos tener disponibles todas las extensiones que nos hacen la vida más fácil. Agregué intl al listado debido a que las funciones multibyte que tiene son básicamente las mismas a las que ya estamos acostumbrados a las de PHP "normal" pero sin la problemática de que "سجل الخروج" lo considere más largo o corto que "Deslogearse". Si no saben de qué les estoy hablando pueden consultar [esta página](http://php.net/manual/en/book.mbstring.php) que habla de forma bastante extendida sobre funciones multibyte-safe. Adicionalmente, también pueden darse una pequeña vuelta por [este post](http://blog.unreal4u.com/2012/08/sobre-collation-y-charset-en-mysql/) y cómo no, también [este otro post](http://blog.unreal4u.com/2010/09/problemas-en-los-tildes-o-acentos/). 
 

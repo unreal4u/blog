@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-03-29 04:08:59+00:00
 layout: post
@@ -28,7 +27,7 @@ A continuación, el algoritmo del RUT chileno en Javascript y en PHP.
 ## Javascript
 
 
-[javascript]
+{% highlight javascript %}
 function ff(a){b=a;setTimeout("b.focus();",0);setTimeout("b.select();",0);return true;};
 /* BORRAR COMENTARIO:: Lo de arriba es un arreglo para Firefox */
 function revisa_RUT(c,e){
@@ -58,14 +57,16 @@ TODO:::
 llamar a una función separada que dé el formato indicado.
 Optimizar.
 */
-[/javascript]
+{% endhighlight %}
 
 
 
 ## PHP
 
 
-[php]function verifica_RUT($rut='') {
+{% highlight php %}
+<?php
+function verifica_RUT($rut='') {
   $tmpRUT = '';
   $sep = array();
   $multi = 2;
@@ -122,7 +123,7 @@ if (isset($_POST['rut'])) {
 ?><html><head><title>Probando...</title></head><body onload="document.getElementById('rut').focus();">
 <form  action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post">
 <input type="text" id="rut" name="rut" value="<?php echo $rut; ?>" /><input type="submit" value="aceptar" /></form></body></html>
-[/php]
+{% endhighlight %}
 
 
 

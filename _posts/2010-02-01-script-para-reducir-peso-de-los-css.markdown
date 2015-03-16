@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-02-01 13:45:27+00:00
 layout: post
@@ -24,7 +23,8 @@ Sin embargo, a continuación les presento el pequeño script. Vamos... haz click
 
 CSS es un invento genial. Mediante el mismo, y combinándolo inteligentemente con HTML, podemos controlar cualquier aspecto de nuestra página. Es, como casi todo en la Web, fácilmente interpretable y también pesa poco: aplicando sólo una hoja de estilos, podemos controlar todo el aspecto gráfico de la página. Sin embargo, y casi de forma tan variable como lo sea el gusto del programador, es también posible llenar un CSS demasiado con comentarios, espacios demás y hasta caracteres demás. De muestra, un botón:
 
-[css]html {
+{% highlight css %}
+html {
   background-color:#113355;
 }
 /* Algunos estilos */
@@ -38,13 +38,16 @@ p.hola, a:link {
 #wrapper {
   padding: 0px 0px 0px 0px;
   color: #5533AA;
-}[/css]
+}
+{% endhighlight %}
 
 Esto puede reducirse bastante, para que no quede tan críptico, dejé cada estilo en una línea:
 
-[css]html{background:#135}
+{% highlight css %}
+html{background:#135}
 p.hola,a:link{margin:43px 2px}
-#wrapper{padding:0;color:#53A}[/css]
+#wrapper{padding:0;color:#53A}
+{% endhighlight %}
 
 Explicaré algunas reglas básicas:
 
@@ -70,7 +73,8 @@ Ahora bien, en el pequeño ejemplo de arriba, que son exactamente iguales, el pe
 
 Sin embargo, el tema que nos convoca hoy no hace algo tan avanzado, sino que simplemente elimina los puntos 1, 3 y la gran mayoría del punto 5. Aunque todavía está lejos de ser perfecto aunque hasta el momento he detectado que hace bien su pega.
 
-[php]<?php
+{% highlight php %}
+<?php
   function compress($buffer) {
     $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
     $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
@@ -81,14 +85,14 @@ Sin embargo, el tema que nos convoca hoy no hace algo tan avanzado, sino que sim
 header('Content-type: text/css');
 echo compress(file_get_contents('highslide.css'));
 ?>
-[/php]
+{% endhighlight %}
 
 En el ejemplo de arriba tomé el CSS de highslide, un script hecho en JavaScript que realiza el típico efecto zoom de una foto. El CSS de este script pesa 21.274 bytes, un poco más de 21KiB. Aunque el CSS en sí está bastante bien hecho, no está optimizado para la transferencia Web, tiene muchos espacios vacíos inútiles y también algunos comentarios, todo separado por un enter que parece que se le hubiera quedado pegado al programador.
 Después de aplicar el script, quedó pesando 15.695 bytes, lo cual significa una reducción de 6KiB. Puede no sonar tanto, pero en cuanto a porcentaje estamos hablando de una **reducción de peso de un poco más de un 26%**, ¡sólo eliminando espacios innecesarios! Además, hay que tener en cuenta que se está agregando un enter después de cada declaración: al eliminar estos enter que en estricto rigor también están demás, obtenemos un archivo de 15.511 bytes, lo cual en porcentaje significa un poco más del 27%.
 
 Ahora bien, la desventaja de este esquema es que cada vez que queramos modificar el CSS, tendremos que realizar el paso de conversión y luego escribir el archivo, algo bastante impráctico sobretodo si se está desarrollando continuamente. Para solucionar esto, se puede ampliar un poco la función de arriba, combinando CSS y PHP en un solo archivo.
 
-[php]
+{% highlight php %}
 <?php
   header('Content-type: text/css');
   ob_start("comprimir");
@@ -107,13 +111,13 @@ ul{text-align:left}
 <?php
   ob_end_flush();
 ?>
-[/php]
+{% endhighlight %}
 
 Pero, esto tiene un pequeño detalle: hay que guardarlo como un archivo .php, debido a que por lo general la configuración no permite establecer un .css como un script ejecutable de PHP. Lo que en el fondo se hace es generar un archivo PHP que genera CSS gracias a `ob_start()` que, con una explicación muy a la lijera, toma la salida y le aplica la función que definimos antes de enviarlo al explorador. Finalmente, debemos indicarle expresamente dónde termina el archivo.
 
 De esta forma, se consigue comprimir todo el contenido. El único cambio que habría que hacer en HTML sería el siguiente:
 
-[xhtml]
+{% highlight html %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
   <head>
@@ -126,7 +130,7 @@ De esta forma, se consigue comprimir todo el contenido. El único cambio que hab
 <!-- el contenido del cuerpo -->
   </body>
 </html>
-[/xhtml]
+{% endhighlight %}
 
 Aquí pasan varias cosas interesantes. Primero llamamos a una aplicación de Yahoo, que es la encargada de resetear todos los valores predeterminados que puedan tener los navegadores. (¿Se acuerdan del artículo sobre [reseteo de CSS](http://blog.unreal4u.com/2010/01/resetear-css/)?). Después de eso, llamamos a nuestro estilo, que en realidad es un script hecho en PHP. Además, le pasamos la cadena v=1.0 y esto tiene una razón bastante específica: Hoy en día, no es extraño encontrar que algunos sitios (como por ejemplo: Yahoo, Google y en general cualquier empresa grande que tenga empleados que algo cachan sobre la Web) tengan habilitada una caché que dura menos que 1 año. El CSS de Yahoo por ejemplo, expira en 10 años más. Sin embargo, no tiene ni una gracia que se tenga que cambiar el nombre del archivo cada vez que hay un pequeño cambio en el CSS. Es por eso, que se le agrega al más puro estilo $_GET de PHP un identificador único con lo cual el navegador sub-entiende que ese nombre de archivo (completo, incluido los parámetros) lo debe guardar en caché. 
 

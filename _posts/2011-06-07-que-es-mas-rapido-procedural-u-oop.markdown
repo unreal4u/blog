@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-06-07 05:02:54+00:00
 layout: post
@@ -26,8 +25,8 @@ En muy breves palabras, y casi como un resumen, les presento las ventajas y desv
 ### Ventajas de Procedural sobre OOP:
 
 
-Es de más rápido desarrollo en proyectos chicos
-Consume menos memoria
+Es de más rápido desarrollo en proyectos chicos  
+Consume menos memoria  
 En general, mejor para proyectos chicos
 
 
@@ -35,9 +34,9 @@ En general, mejor para proyectos chicos
 ### Ventajas de OOP sobre Procedural:
 
 
-Es (mucho) más fácil de mantener
-Es más transportable
-Es encapsulado y por lo tanto, modular
+Es (mucho) más fácil de mantener  
+Es más transportable  
+Es encapsulado y por lo tanto, modular  
 Genial para proyectos grandes o en aquellos casos donde se tenga que reocupar mucho el código
 
 

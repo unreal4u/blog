@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-09-09 18:00:44+00:00
 layout: post
@@ -22,7 +21,9 @@ Antes del resumen de comandos, me gustaría aclarar que personalmente  he testea
 Por último, aunque lo veo difícil, DISCLAIMER: no me hago responsable si su server explota.
 
 Todos los comandos se ejecutan con root:
-[bash]cd /etc/yum.repos.d/
+
+{% highlight bash %}
+cd /etc/yum.repos.d/
 wget http://rpms.famillecollet.com/enterprise/remi.repo
 yum install yum-priorities
 cd /tmp/
@@ -51,27 +52,33 @@ GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY 'una contraseña muy muy se
 FLUSH PRIVILEGES;
 quit
 exit
-[/bash]
+{% endhighlight %}
+
 Un par de observaciones:
-1.- Primero instalé yum-priorities y le di máxima prioridad a remi, para  sobre-escribir el PHP y MySQL predeterminado de base. Esto se hace  editando cada repo y asignándole una prioridad, ejemplo:
+
+* Primero instalé yum-priorities y le di máxima prioridad a remi, para  sobre-escribir el PHP y MySQL predeterminado de base. Esto se hace  editando cada repo y asignándole una prioridad, ejemplo:
+<pre>
 [base]
 priority=5
 [centosplus]
 priority=6
+</pre>
 Donde 1 es el más importante, y 99 el menos importante. A remi.repo le  asigno priority=3, a Base priority=5 y por último a rpmforge le asigno  priority=6.
 
-2.- Después borré mysql, debido a que habían algunos conflictos entre  la versión instalada y la que se quería instalar. Al borrar MySQL y  luego instalándola desde cero se solucionó ese problema.
+* Después borré mysql, debido a que habían algunos conflictos entre  la versión instalada y la que se quería instalar. Al borrar MySQL y  luego instalándola desde cero se solucionó ese problema.
 
-3.- La versión de APC que instalo es la beta. Esto es debido a que la  versión normal de APC está con una pifia desde marzo del 2009 que  solucionaron en la beta, pero nunca en la final. [Más información](http://pecl.php.net/bugs/bug.php?id=16078).
+* La versión de APC que instalo es la beta. Esto es debido a que la  versión normal de APC está con una pifia desde marzo del 2009 que  solucionaron en la beta, pero nunca en la final. [Más información](http://pecl.php.net/bugs/bug.php?id=16078).
 
-4.- En apc.ini y suhosin.ini basta con incluir la siguiente línea:
+* En apc.ini y suhosin.ini basta con incluir la siguiente línea:
+<pre>
 extension=apc.so
 extension=suhosin.so
+</pre>
 
-5.- Sí, hay una extensión de Suhosin y también hay un Patch. Hubiese  sido mejor haber instalado el patch, pero eso implicaba recompilar PHP  y... ehmm... paso. El sitio que se instalará finalmente tampoco es tan  masivo y sólo si ocurre algún problema, se aplicará el parche.
+* Sí, hay una extensión de Suhosin y también hay un Patch. Hubiese  sido mejor haber instalado el patch, pero eso implicaba recompilar PHP  y... ehmm... paso. El sitio que se instalará finalmente tampoco es tan masivo y sólo si ocurre algún problema, se aplicará el parche.
 
-6.- Para las contraseñas de root, mysql y otros recomiendo [este password generator](http://www.thebitmill.com/tools/password.html).
+* Para las contraseñas de root, mysql y otros recomiendo [este password generator](http://www.thebitmill.com/tools/password.html).
 
-7.- Omití los ajustes que normalmente hago en php.ini y en  httpd.conf, estos corren por su cuenta ya que dependen netamente de cómo  quieran configurar su máquina. Recomiendo [echarle un ojo a este post](../2010/08/configuracion-de-php-testing-vs-produccion-vs-hosting/) con respecto a la configuración de PHP.
+* Omití los ajustes que normalmente hago en php.ini y en  httpd.conf, estos corren por su cuenta ya que dependen netamente de cómo  quieran configurar su máquina. Recomiendo [echarle un ojo a este post](../2010/08/configuracion-de-php-testing-vs-produccion-vs-hosting/) con respecto a la configuración de PHP.
 
 Espero que les haya servido.

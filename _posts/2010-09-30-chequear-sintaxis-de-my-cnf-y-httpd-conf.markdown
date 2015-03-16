@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-09-30 15:26:23+00:00
 layout: post
@@ -26,10 +25,13 @@ Apache trae incorporado un comando que permite reiniciar el servicio  realizando
 Con esto podemos comprobar los cambios que hemos hecho en httpd.conf y en php.ini.
 
 Para MySQL es un poco más complicado, porque no existe una  herramienta que compruebe bien la sintaxis. Sin embargo, podemos  ejecutar:
-[bash]mysqld --help
+
+{% highlight bash %}
+mysqld --help
 # opcionalmente
 mysqld --help --verbose
-[/bash]
+{% endhighlight %}
+
 Nótese que si no se encuentra el programa, se debe hacer un `whereis mysqld` y ejecutar la ruta completa en vez de la relativa.
 
 Por mientras seguiré analizando qué es lo que pasa y más importante aún: por qué pasa.

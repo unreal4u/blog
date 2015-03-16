@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2013-01-21 21:12:49+00:00
 layout: post
@@ -26,12 +25,13 @@ Para no perder la costumbre, haré la instalación de la forma más simple posib
 La única dependencia que necesitarán es pcre, que se instala si quieren soporte para el módulo de re-escritura (http_rewrite_module). En mi caso, ya la tenía instalada cuando instalé APC, así que las instrucciones para instalar pcre [están en este post](http://blog.unreal4u.com/2012/09/instalando-las-extensiones-de-php-basicas-en-mountain-lion/). La página oficial de nginx dice que soporta hasta la 8.21 pero yo ya tenía instalada la 8.31 y ahora salió la 8.32 que tampoco debería dar problemas. Si la 8.32 da problemas, instalen la 8.31.
 
 Ya con pcre instalado, podemos proceder a bajar la última versión de nginx desde la página oficial y lo descomprimimos. Una vez hecho eso, invocamos los siguientes comandos, como root:
-[bash]
+
+{% highlight bash %}
 ./configure --conf-path=/etc/nginx.conf --sbin-path=/usr/sbin/nginx --with-http_ssl_module
 make
 make install
 vi /etc/nginx.conf
-[/bash]
+{% endhighlight %}
 
 Lo que hice fue asignar el archivo de configuración en `/etc/nginx.conf` (Simplemente porque es lo estándar), asignar el ejecutable en `/usr/sbin/nginx` y compilarlo con soporte para ssl. No creo que alguna vez lo ocupe pero tampoco tengo ganas de recompilar si alguna vez lo necesitara.
 
@@ -42,7 +42,7 @@ Lo que hice fue asignar el archivo de configuración en `/etc/nginx.conf` (Simpl
 
 El archivo de configuración de nginx lo seteé con los siguientes valores:
 
-[bash]
+{% highlight bash %}
 # usuario(espacio)grupo
 user _www _www;
 daemon off;
@@ -87,20 +87,21 @@ http {
         }
     }
 }
-[/bash]
+{% endhighlight %}
 
 **Punto importante**: Ajusten las rutas a su propia realidad y no se olviden que en mi caso, es una máquina de desarrollo por lo que algunas opciones de seguridad están desactivadas, entregando mucha más información que la de costumbre al visitante en caso de algún error! Si desean usar este setup en un entorno de producción, infórmense antes y seteen los valores apropiadamente. No hay que olvidarse tampoco de instalar algún módulo que transforme las ip como mod_rpaf (para Apache) en sistemas de producción.
 El usuario y grupo de nginx lo dejé en el mismo valor que el de Apache, por una razón bastante simple: si esos permisos funcionan con Apache, tendrá que funcionar también con nginx.
 
 Acto seguido, ajustamos la configuración de `/etc/apache2/httpd.conf`:
-[bash]
+
+{% highlight bash %}
 (...)
 # Dejar apache escuchando sólo en 127.0.0.1 en el puerto 8080
 Listen 127.0.0.1:8080
 (...)
 # Desactivar gzip para Apache (nginx hará ahora ese trabajo)
 #LoadModule deflate_module libexec/apache2/mod_deflate.so
-[/bash]
+{% endhighlight %}
 
 La única otra opción en Apache que modifiqué fue en `/etc/apache2/extra/httpd-default.conf`, donde desactivé KeepAlive, dejándolo como `KeepAlive Off` ya que esto; al igual que la compresión con gzip; lo hará nginx a partir de ahora y en el caso del primero no tiene sentido comprimir algo con Apache para descomprimirlo con nginx y posteriormente comprimirlo nuevamente con nginx antes de enviarlo al cliente.
 
@@ -124,7 +125,8 @@ Sin embargo, después de mucha prueba y error, di finalmente con una manera de i
 
 Para esto, necesitaremos crear dos archivos, el primero ubicado en: 
 `/Library/LaunchDaemons/org.nginx.nginx.plist`
-[xml]
+
+{% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
                        "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -138,10 +140,11 @@ Para esto, necesitaremos crear dos archivos, el primero ubicado en:
     <key>LaunchOnlyOnce</key><true/>
   </dict>
 </plist>
-[/xml]
+{% endhighlight %}
 
 y el segundo ubicado en `/usr/sbin/nginxd`
-[bash]
+
+{% highlight bash %}
 #!/bin/sh
 
 if [ "$1" = "start" ]; then
@@ -154,16 +157,17 @@ elif [ "$1" = "restart" ]; then
 else
         echo "Usage: nginx (start | stop | restart)"
 fi
-[/bash]
+{% endhighlight %}
 
 A este último archivo le damos `chmod +x /usr/sbin/nginxd`
 
 Por último, y sólo porque soy un flojo cómodo, creamos otro archivo, esta vez llamado `/sbin/webservers` con el siguiente contenido: 
-[bash]
+
+{% highlight bash %}
 #!/bin/bash
 
 apachectl $1 && nginxd $1
-[/bash]
+{% endhighlight %}
 
 Le damos permisos de ejecución (chmod +x) y desde ahora en adelante, si ajustamos algo en la configuración de los servidores web no tenemos que hacer nada más que un simple `webservers restart` desde la consola para reiniciar ambos servicios. Si queremos reiniciar sólo nginx, simplemente ingresamos `nginxd restart` o si queremos reiniciar sólo apache, hacemos el ya conocido `apachectl restart`.
 

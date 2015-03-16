@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-09-29 03:07:09+00:00
 layout: post
@@ -24,22 +23,23 @@ Lo primero es lo primero, si no está instalado, en CentOS hacemos un simple `yu
 ## Ignorar archivos
 
 
-Una de las funciones más útiles es sin duda el poder ignorar  archivos. Esto se puede hacer mediante 2 (ó 3, depende del punto de  vista) maneras.
-La primera de ellas, y la más estática por así decirlo, es el archivo de configuración que se puede encontrar en: `~/.subversion/config`
-¡Este archivo de configuración tiene una particularidad! No pueden  quedar espacios en blanco al principio de una línea. Estuve cerca de 10  minutos revisando el por qué me salía el error
-`svn: /.subversion/config:71: Option expected`
-y era porque en esa línea tenía un espacio sobrante al principio.
-Al grano: Existe en este archivo una directiva llamada `global-ignores` que nos permite dejar ciertos archivos ignorados. Sin embargo, la gran  desventaja de este método es que cada cliente tendrá que hacer lo mismo.  ¿Se imaginan el enredo si a uno se le olvida y agrega su configuración  personalizada sobre-escribiendo la de todos sus compañeros?
-Para evitar esto, es que existe un segundo método, que se subdivide en  dos: la primera es directo en la línea de comandos, la segunda es  mediante un archivo y que también se hace en la línea de comandos (y que  parece funcionar mucho mejor).
+Una de las funciones más útiles es sin duda el poder ignorar  archivos. Esto se puede hacer mediante 2 (ó 3, depende del punto de  vista) maneras.  
+La primera de ellas, y la más estática por así decirlo, es el archivo de configuración que se puede encontrar en: `~/.subversion/config`  
+¡Este archivo de configuración tiene una particularidad! No pueden  quedar espacios en blanco al principio de una línea. Estuve cerca de 10  minutos revisando el por qué me salía el error  
+`svn: /.subversion/config:71: Option expected`  
+y era porque en esa línea tenía un espacio sobrante al principio.  
+Al grano: Existe en este archivo una directiva llamada `global-ignores` que nos permite dejar ciertos archivos ignorados. Sin embargo, la gran  desventaja de este método es que cada cliente tendrá que hacer lo mismo.  ¿Se imaginan el enredo si a uno se le olvida y agrega su configuración  personalizada sobre-escribiendo la de todos sus compañeros?  
+Para evitar esto, es que existe un segundo método, que se subdivide en  dos: la primera es directo en la línea de comandos, la segunda es  mediante un archivo y que también se hace en la línea de comandos (y que  parece funcionar mucho mejor).  
 Debido a que el segundo método me funcionó mejor, sólo veré ese.
 
 Ejemplifiquemos:
-`
+<pre>
 .htaccess -> deseamos ignorarlo
 cache/*.log -> deseamos ignorarlo, la carpeta "cache" sí queremos incluirla
 includes/config.php -> deseamos ignorarlo
 test/* -> deseamos ignorarlo, y también queremos excluir la carpeta "test"
-`
+</pre>
+
 Aquí es donde viene lo interesante: tendré que ir carpeta por carpeta  ingresando los distintos ignores de cada una, ya que no puedo  simplemente hacer una lista general. Es bastante incómodo y en el svn  book esto no se explica, pero para eso está este post.
 
 Para esto, voy a crear un archivo llamado .ignore en la raíz del svn, el que también se ignorará, cuyo contenido será:
@@ -58,7 +58,7 @@ Luego, creo también un archivo .ignore en la carpeta cache/ y la carpeta includ
     *.log
     
 
-
+En la carpeta includes/ : 
 
     
     .ignore
@@ -83,7 +83,9 @@ Sin embargo, esto no es todo lo que se puede hacer. Otra de las  propiedades má
 Los keywords no son nada más que pedazos de información que va en  cada archivo. De esta manera, es posible por ejemplo saber cuándo fue la  última modificación de ese archivo, quién lo hizo y bajo qué revisión  se sometió ese cambio.
 
 Básicamente, en cada archivo .php de nuestro sistema tendremos:
-[php]<php
+
+{% highlight php %}
+<php
 /*
 $Rev$
 $Date$
@@ -92,7 +94,8 @@ $Author$
 
 $mi_php = 'hola mundo';
 echo $mi_php;
-[/php]
+{% endhighlight %}
+
 Luego, en la consola, escribimos:
 
     
@@ -103,7 +106,9 @@ Luego, en la consola, escribimos:
 
 
 Ahora, cada vez que se modifica el archivo, el resultado del .php será el siguiente:
-[php]<?php
+
+{% highlight php %}
+<?php
 /*
 $Rev: 40 $
 $Date: 2010-09-23 21:49:40 -0400 (Thu, 23 Sep 2010) $
@@ -112,7 +117,8 @@ $Author: unreal4u $
 
 $mi_php = 'hola mundo';
 echo $mi_php;
-[/php]
+{% endhighlight %}
+
 Y lo mejor de todo es que se va a ir actualizando a medida que se modifique, todo de manera automática.
 Por supuesto que estos no son los únicos keywords, pueden [consultar el libro de svn](http://svnbook.red-bean.com/en/1.1/ch07s02.html) para mayor información.
 

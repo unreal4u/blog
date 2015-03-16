@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-08-24 01:54:44+00:00
 layout: post
@@ -11,8 +10,8 @@ categories:
 ---
 
 Históricamente, siempre he tenido problemas con estas dos funciones. De repente está desactivada la directiva de poder obtener contenido remoto y eso producirá un montón de problemas si dependemos de file_get_contents() para nuestro sitio. Por otro lado, también es bastante inseguro y por lo mismo se le desactiva.
-Las directivas que controlan en php.ini la inclusión de archivos remotos son dos:
-allow_url_fopen = Off
+Las directivas que controlan en php.ini la inclusión de archivos remotos son dos:  
+allow_url_fopen = Off  
 allow_url_include = Off
 
 Que por lo general se encuentran predeterminadamente en Off, especialmente en las últimas versiones de PHP. La diferencia entre ambas es que la primera permite tratar archivos con un protocolo determinado (tal como http:// o ftp://) como un archivo, y la segunda directiva establece si acaso se puede ocupar la función include() o require() con este tipo de archivos.
@@ -23,7 +22,8 @@ Todo lo expuesto arriba es solucionable (fácilmente) con cURL, el programa bast
 Sin embargo, cURL sólo permite la transferencia via protocolos, de esta forma, cargar un archivo local no se puede hacer (a menos que se le invoque como http://localhost/archivo, lo cual no siempre es así). 
 De esta forma, les presento una función que les podrá hacer la vida un poco más fácil: aunque le falte mucho desarrollo todavía, en un principio cumple con lo que promete: si el archivo viene desde afuera, ocupa cURL. De lo contrario, simplemente rescata el archivo mediante file_get_contents().
 
-[php]
+{% highlight php %}
+<?php
 function file_get_contents_curl($url) {
   if (strpos($url,'http://') !== FALSE) {
     $fc = curl_init();
@@ -39,6 +39,6 @@ function file_get_contents_curl($url) {
   else $res = file_get_contents($url);
   return $res;
 }
-[/php]
+{% endhighlight %}
 
 Muchas cosas se pueden hacer para mejorar esta función, como por ejemplo verificar que cURL esté instalado, y si no lo está, verificar que se pueda rescatar el archivo mediante file_get_contents(). Sin embargo, eso ya es tarea del estimado lector. 

@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2012-12-26 15:26:42+00:00
 layout: post
@@ -61,7 +60,7 @@ Cuando fui a la última conferencia de PHP, me sorprendió que cuando se hablaba
 
 Fue en ese momento que consideré la opción de ver el tema un poco más en serio y empezar a investigarlo, aprovechando que teníamos un problema emergente en la oficina. Y es aquí donde me di cuenta de que había perdido demasiado tiempo con SVN y que debí haberme cambiado a Git hace mucho tiempo atrás. En el trabajo teníamos un problema muy similar a la imagen de abajo, y dicen que las imágenes son mil palabras, así que el siguiente esquema clarificará bastante:
 
-[![git-branch-scheme](http://blog.unreal4u.com/wp-content/gallery/miscelaneo/thumbs/thumbs_git-branch-scheme.png)](http://blog.unreal4u.com/wp-content/gallery/miscelaneo/git-branch-scheme.png)
+[![git-branch-scheme](/assets/thumbs_git-branch-scheme.png)](/assets/miscelaneo/git-branch-scheme.png)
 
 
 Click en la imagen para agrandarla
@@ -82,9 +81,9 @@ La instalación en sus propios computadores es bastante simple y hay instruccion
 Lo primero que hay que aprender de Git es que lo más importante es que uno nunca debería trabajar en master, que es por así decirlo el repositorio principal y la que se debería ocupar en producción. (Para los más críticos: sé que no tiene por qué ser así pero asumamos eso por el momento). La forma correcta de trabajar es que uno crea un nuevo branch, haga todo el trabajo en ese branch y posteriormente lo una con master. De esa forma, es posible poder trabajar en varios puntos a la vez y tener los distintos desarrollos totalmente separados uno del otro sin afectar la rama en producción. Sólo en el punto en que vayan a implementar los nuevos desarrollos en producción, hacen un merge de todas aquellas cosas nuevas en master.
 
 Lo segundo que hay que aprender es que ya no existe un solo commit: existen en realidad dos formas de hacer un commit. La primera es el commit que es el que hace uno **en su propia máquina**, y la segunda operación es el push que es el que se hace a uno o todos los servidores centralizados, que es la operación que más se asemeja al de svn.
-Aparte de eso, existen algunos comandos más que son importantes: 
-**git pull [opciones]**: es el famoso "svn update" del mundo svn.
-**git checkout [opciones]**: Nada tiene que ver con el checkout de svn, en el caso de Git, checkout es el comando que sirve para cambiar entre branches.
+Aparte de eso, existen algunos comandos más que son importantes:  
+**git pull [opciones]**: es el famoso "svn update" del mundo svn.  
+**git checkout [opciones]**: Nada tiene que ver con el checkout de svn, en el caso de Git, checkout es el comando que sirve para cambiar entre branches.  
 **git clone [opciones]**: Es el checkout de svn. Mediante este comando estaremos clonando un proyecto. 
 
 Existe casi una infinidad de comandos más (de hecho, hay más de 100), así que si quieren conocer algo más avanzado les recomiendo visitar la [manpage de Git](http://www.kernel.org/pub/software/scm/git/docs/). En ella hay una breve explicación de todos los comandos disponibles y qué hace cada uno.

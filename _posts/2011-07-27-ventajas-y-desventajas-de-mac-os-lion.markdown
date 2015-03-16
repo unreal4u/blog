@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-07-27 04:45:27+00:00
 layout: post
@@ -26,11 +25,11 @@ Una de las cosas que afecta directamente la temática de este blog, es que Lion 
 
 Lo primero que se anuncia con bombos y platillos es que cambió el multitouch, pero este cambio se puede desactivar rápidamente en Preferencias - Trackpad - scroll & zoom - desactivar scroll direction: natural.
 
-![screen-shot-2011-07-27-at-0-01-58-295](http://blog.unreal4u.com/wp-content/gallery/miscelaneo/screen-shot-2011-07-27-at-0-01-58-295.png)
+![screen-shot-2011-07-27-at-0-01-58-295](/assets/screen-shot-2011-07-27-at-0-01-58-295.png)
 
 Con estos nuevos settings del multitouch lamentablemente también se perdió la habilidad de ir al inicio o final del documento con hacer el swap de tres dedos hacia arriba y abajo respectivamente. Sin embargo, buscando en Internet, encontré un programa llamado [BetterTouchTool](http://blog.boastr.net/?page_id=1722) que vino a salvar el día. ¿Lo único malo? Hay que tener iniciado el programa lo cual no es tan terrible ya que queda en la barra del reloj: 
 
-![screen-shot-2011-07-27-at-0-24-39-675](http://blog.unreal4u.com/wp-content/gallery/miscelaneo/screen-shot-2011-07-27-at-0-24-39-675.png)
+![screen-shot-2011-07-27-at-0-24-39-675](/assets/screen-shot-2011-07-27-at-0-24-39-675.png)
 
 Otra desventaja es que Visor, plugin para mejorar la terminal integrada, desapareció por incompatibilidad. Lo bueno es que buscándomelas, di con el sitio original y para mi sorpresa me di cuenta que Visor estaba descontinuado y que apareció [TotalTerminal en su lugar](http://totalterminal.binaryage.com/), que hace lo mismo con una instalación más simple que Visor y que funciona de lo más bien con Lion. El único "detalle" es que no desaparece la ventana cuando pierde el foco como lo hacía con Visor, pero supongo que esa funcionalidad se restablecerá en una versión futura.
 

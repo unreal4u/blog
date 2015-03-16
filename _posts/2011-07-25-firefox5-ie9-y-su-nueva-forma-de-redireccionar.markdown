@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-07-25 03:45:26+00:00
 layout: post
@@ -27,13 +26,15 @@ Eso hasta que un buen día, [POR FIN APARECIÓ UN POST](http://www.inventpartner
 
 El problema está en que la [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616.html) #sección 10 (la que regula los códigos de estatus HTTP) dice que bajo la redirección 302 el resultado se puede o no dejar en caché. Bueno, Firefox ANTES de la versión 5, NO cacheaba la redirección 302 y ahora SÍ lo hace (tratándolo como si fuera una redirección 301), por lo tanto; y después de esta magna explicación; tenemos que la solución a este problema es simplemente enviar **Pragma:no-cache** y **Cache-Control: no-cache** antes de enviar las cabeceras de Location para que estos dos navegadores NO almacenen la redirección: 
 
-[php]
+{% highlight php %}
+<?php 
+
 $donde = 'http://blog.unreal4u.com/';
 $tipo = 302;
 header('Pragma: no-cache');
 header('Cache-Control: no-cache');
 header('Location: '.$donde,TRUE,$tipo);
-[/php]
+{% endhighlight %}
 
 Más información en la fuente: 
 Fuente: [InventPartners](http://www.inventpartners.com/content/firefox-5-redirect-bug-pragma-no-cache-bug)

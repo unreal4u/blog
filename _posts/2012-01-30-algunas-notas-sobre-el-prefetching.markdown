@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2012-01-30 21:29:17+00:00
 layout: post
@@ -36,7 +35,8 @@ Sin embargo, de aquí en adelante todo empieza a irse cuesta abajo. Resulta que 
 
 
 Para poder saber de forma rápida si acaso el prefetching funcionaba, escribí 2 archivos: uno como índice principal y el otro de prefetching, con el siguiente código, primero vemos nuestro índice:
-[html]
+
+{% highlight html %}
 <!DOCTYPE html>
 <html><head>
 	<title>Testing prefetch with HTML5</title>
@@ -59,20 +59,22 @@ $('#buttonContents').click(function(){
 });
 </script>
 </body></html>
-[/html]
+{% endhighlight %}
 
 Es un documento HTML5 estándar, con dos elementos link: uno para firefox (que ocupa rel=prefetch) y la otra para Chrome, que ocupa rel=prerender. Dato rosa: la diferencia entre ambas es que el prerender también renderea la gráfica de la página, mientras que el prefetch sólo realiza este paso cuando la página se hace visible. En un documento complejo podría quizás llegar a notarse este punto, pero para el 99,6% de las páginas restantes no habría ninguna diferencia. De todas formas, ambas directivas son necesarias, ya que uno funciona para Firefox y la otra para Chrome.
 
 Sólo para realizar un test, tenemos dos "links": uno que carga el archivo mediante ajax, y la otra es simplemente un link. Hice esta separación ya que uno es dinámico y la otra es estática, y era probable que los navegadores hicieran una diferenciación entre ambos tipos.
 
 Este será nuestro archivo que vamos a "prefetchear":
-[php]
+
+{% highlight php %}
+<?php
 $fp = fopen('log.txt', 'a');
 fwrite($fp,'['.strftime('%d-%m-%Y %T').'] - '.substr($_SERVER['HTTP_USER_AGENT'],strrpos($_SERVER['HTTP_USER_AGENT'], ' '),strlen($_SERVER['HTTP_USER_AGENT']))."\n");
 fclose($fp);
 sleep(3);
 echo 'hello';
-[/php]
+{% endhighlight %}
 
 Por supuesto que tenemos un archivo llamado log.txt que tiene permisos 777. La principal razón del sleep era para simular la vida real y darle un tiempo de espera de carga de 3 segundos.
 
@@ -125,7 +127,8 @@ El único reparo que tengo con esto es que si tenemos una cabecera de prefetchin
 
 Aunque Firefox soporta desde la versión 3.6 el concepto de prefetch, lo hace bastante mal. Uno pensaría que ya con tanto tiempo "soportando" prefetching, funcionaría bien pero como queda demostrado, lo soporta de forma paupérrima. 
 Chrome en cambio me alegró el día ya que funciona y bastante bien. Incluso funciona si tenemos un javascript como el que sigue:
-[javascript]
+
+{% highlight javascript %}
 var app = {
     prefetchLinks: function(){
         var hrefs = $("a.prefetch").map(function(index, domElement){
@@ -148,7 +151,7 @@ var app = {
 $(document).ready(function(){
     app.addPrefetchTags();
 });
-[/javascript]
+{% endhighlight %}
 
 Sacado (y modificado) [desde esta página](http://www.catswhocode.com/blog/mastering-html5-prefetching). Las modificaciones que tiene son en la llamada final de la función y en agregar el soporte para Chrome.
 

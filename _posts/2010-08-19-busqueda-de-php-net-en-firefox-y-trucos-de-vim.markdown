@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-08-19 14:24:06+00:00
 layout: post
@@ -23,9 +22,10 @@ Lo primero, (y más importante) a mi gusto, es instalar el manual de PHP en vim.
 
 En  CentOS, todo esto se haría como:
 
-[bash]# yum install php-pear man
+{% highlight bash %}
+# yum install php-pear man
 # pear install doc.php.net/pman
-[/bash]
+{% endhighlight %}
 
 Y estaríamos con el 80% de la pega adelantada ya. Lo más importante, sin embargo, viene ahora.
 
@@ -33,7 +33,7 @@ Debemos, primero que nada, abrir el archivo ~/.vimrc. Si no existe, lo creamos. 
 
 Esta es mi configuración actual de vim:
 
-[code]
+<pre>
 set tabstop=2
 set autoindent
 set incsearch
@@ -42,23 +42,27 @@ set keywordprg=pman
 autocmd FileType php let php_folding=1
 au BufWinLeave * mkview
 au BufWinEnter * silent loadview
-[/code]
+</pre>
 
 Explicaré cada línea: 
-_set tabstop=2_: Esto nos permite que, cuando apretemos tab, inserte espacios en vez de un tab. La cantidad de espacios es definida después del signo igual.
-_set autoindent_: Esta muy útil función permite que vim siga las reglas de indentación que tiene el archivo. Muy útil.
-_set incsearch_: permite que, muy al estilo búsqueda rápida de Firefox, se vaya ubicando automáticamente el cursor en cuanto estemos buscando alguna frase. 
-_set number_: le pone número a las líneas.
+
+_set tabstop=2_: Esto nos permite que, cuando apretemos tab, inserte espacios en vez de un tab. La cantidad de espacios es definida después del signo igual.  
+_set autoindent_: Esta muy útil función permite que vim siga las reglas de indentación que tiene el archivo. Muy útil.  
+_set incsearch_: permite que, muy al estilo búsqueda rápida de Firefox, se vaya ubicando automáticamente el cursor en cuanto estemos buscando alguna frase.  
+_set number_: le pone número a las líneas.  
 _set keywordprg=pman_: esta línea hace que integremos pman con vim, para que de esta manera, al apretar "K" (k mayúscula) sobre alguna función en específico aparezca el manual.
+
 El resto: Activa la agrupación de código. La primera línea inicia la característica en sí, mientras que las dos siguientes guardan y cargan automáticamente las agrupaciones respectivamente.
 Se debe utilizar en conjunto con algunos comandos:
 
 
-**:20,40 fo**
-Para agrupar de la línea 20 a la 40.
-**zfa}**
-Para agrupar de aquí a la próxima llave, aunque ojo: se debe estar posicionado sobre la llave que abre!**zd**
-Para eliminar el fold actual**zm**
+**:20,40 fo**  
+Para agrupar de la línea 20 a la 40.  
+**zfa}**  
+Para agrupar de aquí a la próxima llave, aunque ojo: se debe estar posicionado sobre la llave que abre!  
+**zd**  
+Para eliminar el fold actual  
+**zm**  
 Para refoldear todos los folds anteriores.Para más comandos útiles, visitar la tercera fuente.
 
 Hay bastantes más consejos para vim, pero no todos me funcionaron. Una de las más populares que he visto dando vueltas por internet es activar la vista de código HTML o queries dentro de los string, pero no me funcionaron. Tampoco me funcionó desactivar los tags cortos, así que ojo con eso.

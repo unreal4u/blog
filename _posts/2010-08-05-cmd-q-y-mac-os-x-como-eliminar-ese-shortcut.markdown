@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-08-05 18:06:42+00:00
 layout: post
@@ -21,9 +20,9 @@ Para los que no tienen Mac, el CMD+Q viene a reemplazar el famoso ALT+F4 de Wind
 
 Pero eso era hasta hoy: debido a lo mismo, me puse a investigar en Internet cómo hacer que ese shortcut lo pudiera cambiar por otro un poco más "difícil" de teclear. Fue así como llegué al sitio [Mac OS X Hints](http://www.macosxhints.com/) y fue donde pillé la siguiente información: 
 
-[bash]
+{% highlight bash %}
 defaults write NSGlobalDomain NSUserKeyEquivalents '{"Quit Firefox" = "@Q";}'
-[/bash]
+{% endhighlight %}
 
 Sin embargo, esto no funcionó... Suceden dos cosas: 
 
@@ -42,16 +41,16 @@ Sin embargo, esto no funcionó... Suceden dos cosas:
 
 
 Estas dos razones hacen que, en su conjunto, haya cambiado un poco el comando para que terminara siendo el siguiente: 
-[bash]
+{% highlight bash %}
 defaults write NSGlobalDomain NSUserKeyEquivalents '{"Salir de TextEdit" = "@$Q"; "Salir de Firefox" = "@$Q"; "Salir de Terminal" = "@$Q";}'
-[/bash]
+{% endhighlight %}
 
 Ahora se reinicia la aplicación y quedaría todo listo. Ahora la salida del programa sin confirmación se hace con CMD+Shift+Q.
 
 Nota importante: La única gran lata es que tienen que hacerlo programa por programa... Ya que cada vez que ingresamos este comando, borra las anteriores y las crea de nuevo. Pueden echar un vistazo con el siguiente comando: 
 
-[bash]
+{% highlight bash %}
 defaults read NSGlobalDomain NSUserKeyEquivalents
-[/bash]
+{% endhighlight %}
 
 Y ese sería el largo tip de hoy.

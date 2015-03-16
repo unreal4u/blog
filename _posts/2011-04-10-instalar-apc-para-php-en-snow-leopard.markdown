@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-04-10 09:02:45+00:00
 layout: post
@@ -22,14 +21,15 @@ Por si fuera poco, APC permite servirnos como un buen módulo de caché, y aunqu
 
 
 Aparte de xCode, esta extensión en particular necesita de pcre. Afortunadamente, la instalación es bastante sencilla y es como sigue: 
-[bash]
+
+{% highlight bash %}
 tar xzf pcre-8.11.tar.gz
 cd pcre-8.11
 ./configure --prefix=/usr/local
 make
 # y ahora como root:
 make install
-[/bash]
+{% endhighlight %}
 
 Listo, con eso debería estar solucionado la primera parte. 
 
@@ -40,17 +40,19 @@ Listo, con eso debería estar solucionado la primera parte.
 
 La última versión que estaba disponible a la fecha de escribir esta entrada, era la versión 3.1.7, aunque esta guía también debería servir las versiones hacia arriba sin problemas.
 Lo primero que tenemos que hacer es [bajarnos la última versión de APC](http://pecl.php.net/package/APC) y descomprimirla. Luego, en la terminal, ejecutamos:
-[bash]
+
+{% highlight bash %}
 cd APC-[version]/
 phpize
 MACOSX_DEPLOYMENT_TARGET=10.6 CFLAGS="-arch x86_64 -g -Os -pipe -no-cpp-precomp" CCFLAGS="-arch x86_64 -g -Os -pipe" CXXFLAGS="-arch x86_64 -g -Os -pipe" LDFLAGS="-arch x86_64 -bind_at_load" ./configure
 make
 # y como root:
 make install
-[/bash]
+{% endhighlight %}
 
 Por último, agregamos a nuestro `/etc/php.ini`:
-[bash]
+
+{% highlight bash %}
 # en la parte de extensiones:
 extension=apc.so
 
@@ -64,7 +66,7 @@ apc.user_ttl = 7200
 apc.num_files_hint = 1024
 apc.mmap_file_mask = /tmp/apc.XXXXXX
 apc.enable_cli = 1
-[/bash]
+{% endhighlight %}
 
 Reiniciamos apache con `apachectl restart` y podemos proceder a verificar con `phpinfo()` que APC se encuentra instalado.
 

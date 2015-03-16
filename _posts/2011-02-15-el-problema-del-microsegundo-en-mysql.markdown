@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-02-15 16:00:49+00:00
 layout: post
@@ -31,6 +30,7 @@ Para complicar las cosas aún más, esos dos clicks no eran los únicos: tambié
 Lamentablemente, y como una solución "óptima" no mucho. Existen algunas soluciones pero ninguna es efectiva debido a que el origen de ellas no es en MySQL mismo, sino que el origen se genera afuera de la base de datos, lo cual supone unas cuantas complicaciones que ya veremos. Pero veamos primero cómo podemos almacenar microsegundos. 
 
 Llegué a dos potenciales soluciones, de la menos a la más recomendada son:
+
 - Lo primero es tener una tabla donde la fecha que guardaremos se almacene en formato UNIX_TIMESTAMP como un bigint o un numeric (decimal) con la cantidad de dígitos "microsegundianos" que queramos almacenar. Desventajas? Al guardar como un número se pierden todas las ventajas de consultas un poco más complejas, como aquellas que incluyen MONTH(), DAY() y demases. Tampoco se pueden calcular rangos de fechas y otro montón de funciones más. Al menos para mi, se pierde demasiado comparado a la poca ganancia de los microsegundos.
 
 - La segunda solución consiste en guardar la fecha en dos campos por separado: la primera siendo un campo de tipo TIMESTAMP y la segunda siendo un INT del largo que deseemos. Supongamos que queremos guardar 6 dígitos significativos, por lo tanto nuestro rango iría de 0 a 999.999, un número que alcanza a ser guardado en un MEDIUMINT sea UNSIGNED o no. (Por favor tened [esta página como referencia](http://dev.mysql.com/doc/refman/5.0/en/numeric-types.html)). Ahora, si queremos ordenar por microsegundo, en nuestro ORDER tendríamos que colocar: `ORDER BY UNIX_TIMESTAMP(campo_timestamp),campo_microsegundo`. ¿Fácil, cierto?
@@ -41,12 +41,13 @@ Llegué a dos potenciales soluciones, de la menos a la más recomendada son:
 
 
 La segunda solución sería ideal si no fuera por un pequeño detalle: ¿de dónde podemos sacar el dato del microsegundo? Una cosa es segura: NO a través de MySQL. Prueben con las siguientes variantes: 
-[sql]
+
+{% highlight sql %}
 SELECT MICROSECOND(NOW());
 SELECT MICROSECOND(CURRENT_TIMESTAMP);
 SELECT EXTRACT(MICROSECOND FROM NOW()); 
 SELECT DATE_FORMAT(NOW(),'%f'); 
-[/sql]
+{% endhighlight %}
 
 ¿Qué devuelve? Les simplifico la respuesta: 0 (Cero). En todos los casos. Punto. NO HAY forma de sacar el valor del microsegundo exacto en MySQL. Es un dato que siempre provendrá del exterior. 
 Ahora bien, en sí eso no es mucho problema porque siempre nos queda la opción de generarlo con PHP. Con un poco de suerte PHP y MySQL estarán en el mismo servidor así que la hora y el microsegundo siempre estarán coordinados... ¿pero qué pasaría si están en máquinas separadas? O peor aún, ¿si entremedio le metemos un balanceador de carga para el webserver? 

@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-12-04 19:41:16+00:00
 layout: post
@@ -19,7 +18,9 @@ Lo bueno es que estoy trabajando hace cerca de 2 meses ya, encontré trabajo sum
 En sí, consta de 2 archivos: un index.php y un .index (predeterminadamente el "." indica que se trata de un archivo oculto en los UNIX). 
 
 Veamos el primer archivo: 
-[php]<html><head><title>Proyectos en unreal4u</title></head><body>
+
+{% highlight php %}
+<html><head><title>Proyectos en unreal4u</title></head><body>
 <h1>Proyectos</h1>
 <p>Edit .index for index options</p><ul><?php
 $aliasFile = explode("\n",file_get_contents('.index'));
@@ -43,12 +44,14 @@ while (($item = readdir($itemHandler)) !== false) {
 	}
 }
 echo $output;
-?></ul></body></html>[/php]
+?></ul></body></html>
+{% endhighlight %}
 
 En ella primero abrimos nuestro archivo .index y creamos un pequeño arreglo con los datos (válidos) que rescatamos de ella. En seguida, abrimos el directorio actual y empezamos a recorrerlo verificando primero que se trate de un directorio y que no sea un archivo oculto (o el directorio actual). Si estas condiciones se cumplen, se verifica por último en nuestro arreglo si tiene un alias y si debemos esconderlo o no. Si no lo debemos esconder, lo mostramos.
 
 El segundo archivo es bastante simple, es un archivo en texto plano que indica el nombre del directorio y un alias. Opcionalmente, el alias lo podemos nombrar con "." para que de esa forma lo esconda. La estructura sería: 
-[code]
+
+<pre>
 # Hide logs and sessions folder
 logs-sistema|.
 sesiones|.
@@ -59,7 +62,7 @@ RemoteSystemsTempFiles|.
 doc|Technical Documentation
 framework|Framework
 zf|Pr&aacute;ctica Zend Framework
-[/code]
+</pre>
 
 De esta forma, cuando visitamos localhost, tendremos la siguiente vista (a la izquierda navegador, a la derecha explorador de archivos): 
 

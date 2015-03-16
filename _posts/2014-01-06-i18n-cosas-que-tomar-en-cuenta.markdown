@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2014-01-06 11:00:46+00:00
 layout: post
@@ -105,13 +104,13 @@ Por último, un buen punto de partida es ocupar mi class `unreal4u\Localization`
 
 Recomiendo sin embargo la versión disponible en Packagist, de esta forma, lo único que tendrán que poner en su composer.json es lo siguiente:
 
-[javascript]
+{% highlight javascript %}
 {
     "require": {
         "unreal4u/localization": "0.3.*@dev"
     }
 }
-[/javascript]
+{% endhighlight %}
 
 Recomiendo también echar un pequeño vistazo a las demás classes. 
 

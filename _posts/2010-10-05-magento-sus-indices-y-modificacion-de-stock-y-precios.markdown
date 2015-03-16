@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-10-05 22:31:14+00:00
 layout: post
@@ -24,17 +23,21 @@ Por lo mismo, en esta entrada compartiré con ustedes cómo hacer una  modificac
 
 
 Para actualizar el stock y el precio de forma externa, primero  debemos actualizar la base de datos. Esto se hace con las siguientes  consultas:
-[sql]-- Precio:
+{% highlight sql %}
+-- Precio:
 UPDATE catalog_product_entity_decimal SET value = '43000.00' WHERE attribute_id = 64 AND entity_id = $a['entity_id']
 -- Stock:
 UPDATE cataloginventory_stock_item SET qty = '23',is_in_stock = '.$is_in_stock.' WHERE product_id = $a['entity_id']
-[/sql]
+{% endhighlight %}
+
 Dos notas:
-1.- $a['entity_id'] se refiere a la id interna que Magento le asigna al  producto en sí. No es difícil de sacar, involucra estas tablas:
-`catalog_product_entity
-catalog_product_entity_decimal
+
+* $a['entity_id'] se refiere a la id interna que Magento le asigna al  producto en sí. No es difícil de sacar, involucra estas tablas:  
+`catalog_product_entity  
+catalog_product_entity_decimal  
 cataloginventory_stock_item`
-2.- $is_in_stock puede tener dos valores: 0 si el stock es igual o menor a 0, ó 1 si es mayor que este valor. En breve:
+
+* $is_in_stock puede tener dos valores: 0 si el stock es igual o menor a 0, ó 1 si es mayor que este valor. En breve:
 
     
     if ($b['qty'] > 0) $is_in_stock = 1;
@@ -46,24 +49,27 @@ Hasta ahí todo bien: en el administrador podemos darnos cuenta de que  los prod
 Afortunadamente, [leí en un blog](http://www.mrnordstrom.com/2010/06/09/day-9-magento-rebuild-the-search-index-automatically/) que se puede reconstruir el índice de forma automática y que (mejor aún) existe un programa para hacer esto: shell/indexer.php.
 
 En breve:
-[bash]crontab -e
+
+{% highlight bash %}
+crontab -e
 # una vez dentro
 */30 * * * * /usr/bin/php /home/[usuario]/erp/actualiza.php &amp;&amp; /usr/bin/php /home/[usuario]/public_html/shell/indexer.php reindexall >/dev/null 2>&1
-[/bash]
+{% endhighlight %}
+
 La última parte (`>/dev/null 2>&1`) es para que  no se mande un mail al usuario cada vez que se ejecute un cron. En este  mail irá toda la salida que se produzca así que puede ser bueno eliminar  ese código por motivos de depuración.
 
 Y aquí es donde entra la curiosidad: indexer.php, al pasarle el  parámetro reindexall reindexa absolutamente todos los índices... no  sería mejor reconstruir sólo el del stock? Me puse a investigar y me  encontré con el comando `indexer.php --info`, que retorna la siguiente salida:
 
     
-    catalog_product_attribute     Product Attributes
-    catalog_product_price         Product Prices
-    catalog_url                   Catalog URL Rewrites
-    catalog_product_flat          Product Flat Data
-    catalog_category_flat         Category Flat Data
-    catalog_category_product      Category Products
-    catalogsearch_fulltext        Catalog Search Index
-    tag_summary                   Tag Aggregation Data
-    cataloginventory_stock        Stock Status
+    catalog_product_attribute     Product Attributes  
+    catalog_product_price         Product Prices  
+    catalog_url                   Catalog URL Rewrites  
+    catalog_product_flat          Product Flat Data  
+    catalog_category_flat         Category Flat Data  
+    catalog_category_product      Category Products  
+    catalogsearch_fulltext        Catalog Search Index  
+    tag_summary                   Tag Aggregation Data  
+    cataloginventory_stock        Stock Status  
     
 
 

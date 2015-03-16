@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-02-03 19:52:22+00:00
 layout: post
@@ -20,7 +19,8 @@ Y es justamente en este último paso donde está la parte más crítica: toda la
 Fue en este punto donde me pregunté si acaso existiría alguna forma un poco más óptima de ingresar un registro nuevo sin tener que rescatar los datos y posteriormente almacenarlos en una variable temporal para luego volver a insertarlos como un nuevo registro... y la buena noticia es que, tal como [actualizamos en el caso de ya existir con una sola consulta](http://blog.unreal4u.com/2011/01/fallback-en-mysql-actualizar-en-caso-de-ya-existir/), insertar un registro a partir de un select es posible y bastante fácil.
 
 Supongamos la siguiente tabla (simple): 
-[sql]
+
+{% highlight sql %}
 CREATE TABLE despachos (
   id_despacho INT AUTO_INCREMENT NOT NULL,
   from_bodega INT NOT NULL DEFAULT '3',
@@ -34,14 +34,15 @@ CREATE TABLE despachos (
 
 -- Insertando datos de forma normal: 
 INSERT INTO despachos (recibe,direccion) VALUES ('Camilo','en su casa');
-[/sql]
+{% endhighlight %}
 
 Ese registro recibirá la ID Nº 1. Pero, supongamos que Camilo NO estaba en su casa y haya que generar nuevamente una orden: 
-[sql]
+
+{% highlight sql %}
 UPDATE despachos SET rechazado = 'no estaba' WHERE id_despacho = 1;
 INSERT INTO despachos (from_bodega,recibe,direccion,rechazado,recibido) 
   SELECT from_bodega,recibe,direccion,NULL,0 FROM despachos WHERE id_despacho = 1;
-[/sql]
+{% endhighlight %}
 
 Si se fijan en la consulta, aquellos valores que deban ir distinto, simplemente se cambian por ese valor que ustedes quieran. 
 

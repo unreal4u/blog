@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2012-08-04 23:59:30+00:00
 layout: post
@@ -33,12 +32,13 @@ Una de las primeras cosas que se deben saber es el cómo un CHARSET u otro guard
 
 Aunque ninguno de los dos campos es obligatorio al crear una tabla, se recomienda que sí se haga no por ustedes, sino que si algún día cambian la configuración, tendrán una mezcla de charsets en sus bases de datos, el cual puede ser un parto detectar y cambiar.
 Con respecto a esto mismo, si colocan un CHARSET, MySQL le asignará de forma automática un COLLATION que está asociado al CHARSET. La lista de estos dos la pueden averiguar con el siguiente SQL: 
-[sql]
+
+{% highlight sql %}
 -- Mostrar los CHARSETs instalados:
 SHOW CHARACTER SET;
 -- Mostrar COLLATIONS instalados:
 SHOW COLLATION;
-[/sql]
+{% endhighlight %}
 
 El primero debería entregarles un listado de todos los CHARSET instalados y también debería mostrarles el COLLATION asociado. También les muestra el número de bytes máximo que ocupa cada CHARSET.
 El segundo comando muestra todos los COLLATIONs instalados.
@@ -69,7 +69,8 @@ Eso significa que si se asigna un CHARSET y COLLATION a nivel de MySQL, todas la
 
 
 En palabras muy breves, una de las principales diferencias es que CHARSET hace referencia a cómo MySQL guarda internamente el dato y COLLATION es una manera de decirle cómo debe comparar el texto y/o ordenarlo. Para explicar bien este punto apliquemos algunos ejemplos: 
-[sql]
+
+{% highlight sql %}
 -- Creamos la tabla:
 CREATE TABLE IF NOT EXISTS collationTests (
     name01 CHAR(5) CHARSET utf8 COLLATE utf8_unicode_ci,
@@ -82,41 +83,42 @@ CREATE TABLE IF NOT EXISTS collationTests (
 
 -- Insertamos algunos datos:
 INSERT INTO collationTests VALUES ('Ñandú','Ñandú','Nandu','Ñandú','Ñandú','Nandu');
-[/sql]
+{% endhighlight %}
 
 Lo que hicimos arriba fue crear una tabla con diversos CHARSETs y luego insertamos una columna con el mismo dato, a método de comparación. Enseguida, aplicamos algunos SELECTs que es donde empieza la diversión total. 
 
 Lo primero que cabe destacar es que el CHARSET ASCII no permite ingresar otra cosa que no esté en la tabla ASCII predeterminada, así que la letra "Ñ" y aquellas letras con tilde quedan absolutamente descartadas.
 
-[sql]
+{% highlight sql %}
 SELECT LENGTH(name01) AS bL01, CHAR_LENGTH(name01) AS cL01 FROM collationTests;
 SELECT LENGTH(name02) AS bL02, CHAR_LENGTH(name02) AS cL02 FROM collationTests;
 SELECT LENGTH(name03) AS bL03, CHAR_LENGTH(name03) AS cL03 FROM collationTests;
-[/sql]
+{% endhighlight %}
 
 La primera serie de consultas que vamos a realizar tiene que ver con el tamaño (en bytes) de cada campo relevante y su tamaño en número de caracteres. Hago esta aclaración ya que ambas funciones tienen esa distinción.
 
 El resultado de esto es: 
-[code]
+<pre>
 bL01	cL01
 7	    5
 bL02	cL02
 5	    5
 bL03	cL03
 5	    5
-[/code]
+</pre>
 
 Como vemos, en UTF-8 se guardaron 7 bytes de información (un byte extra en la letra "Ñ", otro byte extra en la letra "ú") pero el largo de cada cadena en cada caso es de 5 caracteres.
 
 Aplicamos algunas consultas para ver las diferencias entre COLLATIONs:
-[sql]
+
+{% highlight sql %}
 SELECT * FROM collationTests WHERE name01 LIKE 'N%';
 SELECT * FROM collationTests WHERE name01 LIKE 'ñ%';
 SELECT * FROM collationTests WHERE name01 LIKE 'Ñ%';
 SELECT * FROM collationTests WHERE name04 LIKE 'N%';
 SELECT * FROM collationTests WHERE name04 LIKE 'ñ%';
 SELECT * FROM collationTests WHERE name04 LIKE 'Ñ%';
-[/sql]
+{% endhighlight %}
 
 Las primeras 3 (`CHARSET utf8 COLLATE utf8_general_ci`) devolverán un registro cada uno, mientras que de las últimas 3 (`CHARSET utf8 COLLATE utf8_bin`) sólo el último devolverá un resultado positivo. 
 Esto se debe a que la columna "name01" tiene COLLATION utf8-general-ci, que, entre otras cosas, considera como sinónimo la letra "N" y "Ñ", y además es case-insensitive (`utf8-general**-ci**`). Esto también se aplica a los tildes, de forma que si buscamos por ñandu (sin tilde) el resultado entregado será el mismo que si buscamos por "Ñandú". De igual forma, "ÑaÑdU" igual entregará un resultado positivo para "Ñandú". 
@@ -131,24 +133,28 @@ Al principio del punto anterior dije que los COLLATION también servían para ca
 
 La diferencia entre ambos es que la primera se ocupa para español moderno mientras que la segunda se aplica a español tradicional.
 De esta forma, podemos ver que ambos incorporan el uso de la "Ñ" como una letra entre la "N" y la "O", de forma que si tenemos los siguientes registros:
-[code]
+
+<pre>
 Nicolás
 Ñandú
 Operación
-[/code]
+</pre>
+
 Ambos COLLATION ordenarán esos 2 registros de esa forma. Sin embargo, si tenemos los siguientes registros: 
-[code]
+
+<pre>
 Cruzada
 Baño
 Carlos
 Dedo
 Chile
-[/code]
+</pre>
 
 Una COLLATION utf8_spanish_ci ordenará los registros de una forma mientras que utf8_spanish2_ci la ordenará de otra, debido a que el español tradicional considera "ch" como una letra entre la "C" y la "D". Asimismo, considera el uso de la letra "LL" como una letra entre la "L" y "M". 
 
 Si quieren una prueba de concepto, ejecuten lo siguiente: 
-[sql]
+
+{% highlight sql %}
 CREATE TABLE IF NOT EXISTS spanishCollation (
     name01 VARCHAR(15) CHARSET utf8 COLLATE utf8_spanish_ci,
     name02 VARCHAR(15) CHARSET utf8 COLLATE utf8_spanish2_ci
@@ -158,7 +164,7 @@ INSERT INTO spanishCollation VALUES ('Baño', 'Baño'),('Carlos', 'Carlos'),('Cr
 
 SELECT * FROM spanishCollation ORDER BY name01;
 SELECT * FROM spanishCollation ORDER BY name02;
-[/sql]
+{% endhighlight %}
 
 Al ejecutar las consultas se podrá ver claramente la diferencia entre ambas formas de ordenar los resultados.
 

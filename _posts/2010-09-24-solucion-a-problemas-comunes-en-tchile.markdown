@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-09-24 17:59:22+00:00
 layout: post
@@ -27,12 +26,15 @@ Sin embargo, tchile -como cualquier otro hosting en Chile- comparte una misma re
 Me ocurrió una vez que quise instalar osCommerce que subía el  index... lo visitaba una vez, actualizaba y veía el index de hace 1 mes,  lo mismo con las demás páginas estáticas. Bueno, básicamente lo que  pasaba era que Apache al ver que el documento no se había modificado de  la última vez que se visitaba la página, resolvía entregar la que tenía  en caché... el único problema es que no había actualizado la caché con  lo cual entregaba la antigua. Grave problema.
 
 Para resolver esto, apliqué un pequeño y sucio hack, que es mandar la  cabecera con modificación en el pasado. De esta forma, le estoy  diciendo a Apache que cualquier request me la tiene que procesar y no  devolver desde la caché. Cómo se hace esto? De la siguiente forma:
-[php]header('Expires: Tue, 03 Jul 2001 06:00:00 GMT');
+{% highlight php %}
+<?php
+header('Expires: Tue, 03 Jul 2001 06:00:00 GMT');
 header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-Control: post-check=0, pre-check=0');
 header('Pragma: no-cache');
-[/php]
+{% endhighlight %}
+
 Queda bastante claro no?
 
 
@@ -40,7 +42,9 @@ Queda bastante claro no?
 
 
 Esta me costó bastante ya que fue difícil de detectar y sobretodo de  reproducir. Sucede que tchile carga predeterminadamente un archivo .php  que no sé qué hace pero tengo entendido que filtra un poco el spam. Este  archivo se carga mediante la directiva `auto_prepend_file` de PHP y afortunadamente se puede sobre-escribir mediante .htaccess (Por  lo menos en los servidores que me han tocado se puede).
-Para sobre-escribir este filtro de spam, basta colocar en su .htaccess:
-[bash]php_value auto_prepend_file none
-[/bash]
+Para sobre-escribir este filtro de spam, basta colocar en su `.htaccess`:
+{% highlight bash %}
+php_value auto_prepend_file none
+{% endhighlight %}
+
 Con esas dos cosas (por mientras) estarán más que bien en tchile. Si tienen otros tips, no olviden compartirlas en los comentarios!

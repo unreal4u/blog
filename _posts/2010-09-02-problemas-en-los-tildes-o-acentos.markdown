@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-09-02 16:25:53+00:00
 layout: post
@@ -58,12 +57,19 @@ Pero qué se puede hacer con estas funciones? Básicamente, convertir de un form
 Aunque claramente están explicadas en el manual, haré un pequeño resumen acerca de qué es lo que hacen estas funciones:
 
 **iconv**: Convierte de un charset a otro arbitrariamente. Ejemplo de uso:
-[php]$cadena = iconv('ISO-8859-1','UTF-8//TRANSLIT','cádéñá cón tíldés');[/php]
+{% highlight php%}
+<?php
+$cadena = iconv('ISO-8859-1','UTF-8//TRANSLIT','cádéñá cón tíldés');
+{% endhighlight %}
+
 El primer parámetro es origen, segundo destino y le agregué TRANSLIT para que de esta manera, se "traduzca" la letra que no se conoce lo  mejor posible. Esto podría llegar a pasar con algunos caracteres extraños.
 
 **utf8_encode** y **utf8_decode**: Respectivamente, son sinónimos para:
-[php]iconv('ISO-8859-1','UTF-8//TRANSLIT','cádéñá cón tíldés');
-iconv('UTF-8','ISO-8859-1//TRANSLIT','cádéñá cón tíldés');[/php]
+{% highlight php%}
+<?php
+iconv('ISO-8859-1','UTF-8//TRANSLIT','cádéñá cón tíldés');
+iconv('UTF-8','ISO-8859-1//TRANSLIT','cádéñá cón tíldés');
+{% endhighlight %}
 
 **htmlentities**: Convierte todos los caracteres que  tienen alguna equivalencia en entidad a su respectiva entidad. Sugiero  leer la documentación oficial ya que es bien powa esta función.
 
@@ -77,8 +83,11 @@ iconv('UTF-8','ISO-8859-1//TRANSLIT','cádéñá cón tíldés');[/php]
 > => &gt;
 
 **header**: Permite mandar cabeceras al navegador. Lo  más genial de esta función es que nos permite enviar el charset de la  siguiente forma:
-[php]define('CHARSET','UTF-8');
-header('Content-type: text/html; charset='.CHARSET);[/php]
+{% highlight php%}
+<?php
+define('CHARSET','UTF-8');
+header('Content-type: text/html; charset='.CHARSET);
+{% endhighlight %}
 
 
 

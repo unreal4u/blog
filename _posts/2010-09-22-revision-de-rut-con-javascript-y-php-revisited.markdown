@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-09-22 03:24:42+00:00
 layout: post
@@ -38,7 +37,8 @@ Para esto, nació obviamente el último dígito de la secuencia,  separada por u
 
 
 Sin mayores secretos, la que más modificaciones sufrió fue la versión  de Javascript, ya que se quitaron muchas partes que estaban redundantes  y se resolvió que sólo iba a devolver un verdadero o falso. Si desean  en cambio que retorne un número de error, pues con el código de PHP  podrán modificar el de Javascript.
-[javascript]function verifica_rut(c){
+{% highlight javascript %}
+function verifica_rut(c){
   var r=false,d=c.value,t=d.replace(/\b[^0-9kK]+\b/g,'');
   if(t.length==8){t=0+t;};
   if(t.length==9){
@@ -62,7 +62,8 @@ Sin mayores secretos, la que más modificaciones sufrió fue la versión  de Jav
   }
   return r;
 }
-[/javascript]
+{% endhighlight %}
+
 y minificado:
 `function verifica_rut(c){var  r=false,d=c.value,t=d.replace(/\b[^0-9kK]+\b/g,'');if(t.length==8){t=0+t;};if(t.length==9){var   a=t.substring(t.length-1,-1),b=t.charAt(t.length-1);if(b=='k'){b='K'};if(!isNaN(a)){var  s=0,m=2,x='0',e=0;for(var  i=a.length-1;i>=0;i--){s=s+a.charAt(i)*m;if(m==7){m=2;}else{m++;};}var   y=s%11;if(y==1){x='K';}else{if(y==0){x='0';}else{e=11-y;x=e+'';};};if(x==b){r=true;c.value=a.substring(0,2)+'.'+a.substring(2,5)+'.'+a.substring(5,8)+'-'+b};}}return  r;};`
 
@@ -71,7 +72,10 @@ y minificado:
 
 
 Aunque sufrió menos cambios que su simil en Javascript, tuvo una modificación bastante grande que fue el empleo de expresiones regulares  para eliminar cualquier caracter que no deba ir en un RUT o RUN: de esa  forma, se elimina cualquier caracter que no sea del 0 al 9, o la letra k  (mayúscula o minúscula).
-[php]function verifica_RUT($rut='') {
+{% highlight php %}
+<?php
+
+function verifica_RUT($rut='') {
   $sep = array();
   $multi = 2;
   $suma = 0;
@@ -98,14 +102,15 @@ Aunque sufrió menos cambios que su simil en Javascript, tuvo una modificación 
   if ($sep['dvt'] != $sep['dv']) return 5;
   return 0;
 }
-[/php]
+{% endhighlight %}
 
 
 ## Uniendo todos los cabos sueltos
 
 
-Por supuesto que el ejemplo completo que incluye revisión (y formateo  de RUT) en Javascript como en PHP es algo que no podía faltar:
-[php]&lt;?php
+Por supuesto que el ejemplo completo que incluye revisión (y formateo de RUT) en Javascript como en PHP es algo que no podía faltar:
+{% highlight php %}
+<?php
 function verifica_RUT($rut='') {
   $sep = array();  $multi = 2;  $suma = 0;
   if (empty($rut)) return 1;
@@ -139,7 +144,7 @@ function verifica_rut(c){var r=false,d=c.value,t=d.replace(/\b[^0-9kK]+\b/g,'');
 &lt;/head&gt;
 &lt;body&gt;
 
-&lt;?php
+<?php
 if (isset($_GET['rut'])) {
   $error = verifica_RUT($_GET['rut']);
   switch($error) {
@@ -171,5 +176,6 @@ $(&quot;#verificar_rut&quot;).click(function(){
 &lt;/script&gt;
 
 &lt;/body&gt;&lt;/html&gt;
-[/php]
+{% endhighlight %}
+
 Y eso sería todo amigos :)

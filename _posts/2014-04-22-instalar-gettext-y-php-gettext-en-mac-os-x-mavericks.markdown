@@ -1,5 +1,4 @@
 ---
-comments: true
 date: 2014-04-22 13:18:39+00:00
 layout: post
 slug: instalar-gettext-y-php-gettext-en-mac-os-x-mavericks

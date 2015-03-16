@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-04-03 20:21:54+00:00
 layout: post
@@ -34,7 +33,8 @@ Los archivos que hay que respaldar son /etc/group, /etc/passwd, /etc/shadow y /e
 De los primeros archivos a respaldar, la idea es no machacar aquellas cuentas del sistema, así que ahí está la complejidad: para esto, filtramos con awk los resultados de ese backup.
 
 Todos los comandos se ejecutan como root:
-[bash]
+
+{% highlight bash %}
 mkdir /root/migracion
 cd /root/migracion/
 export UGIDLIMIT=500
@@ -50,7 +50,7 @@ tar cvpf homes.tar /home
 mysqldump -uroot -p --all-databases --flush-privileges --comments --disable-keys --lock-all-tables --lock-tables --result-file=respaldo_dbs.sql
 # Debemos crear la carpeta /root/migracion/ en la nueva máquina y hacemos:
 scp * root@ip-nueva-maquina:/root/migracion/
-[/bash]
+{% endhighlight %}
 
 Nótese que cuando creamos el home no estamos comprimiendo (opción z), sino sólo creando un archivo. De esta forma, es mucho más rápido.
 Hasta el momento hemos creado un snapshot completo y estamos transfiriendo todo a la segunda máquina. Lo único que falta es parar los servicios como Apache, mailing y bases de datos para que mientras montemos el segundo sistema no hayan diferencias con el primer respaldo.
@@ -62,7 +62,7 @@ Hasta el momento hemos creado un snapshot completo y estamos transfiriendo todo 
 
 El único trabajo que queda es instalar la nueva máquina. Ya en la máquina anterior vimos cómo se traspasó todo pero falta descomprimir todo e instalar. Todo se debe ejecutar como root.
 
-[bash]
+{% highlight bash %}
 cd /root/migracion/
 mkdir respaldo-nuevo
 cp /etc/group /etc/passwd /etc/shadow /etc/gshadow /etc/httpd/conf/httpd.conf /etc/php.ini /etc/my.cnf respaldo-nuevo/
@@ -78,7 +78,7 @@ cp php.ini.mig /etc/php.ini
 cp my.cnf.mig /etc/my.cnf
 /etc/init.d/mysqld restart
 /etc/init.d/httpd restart
-[/bash]
+{% endhighlight %}
 
 Y eso sería todo amigos! Ahora sólo nos quedará probar si todo está bien: prueben metiéndose con algún usuario en específico (del que se conoce la contraseña), revisen si Apache y MySQL está realmente andando, cambien IP o renueven sus DNS y estaría todo listo para realizarle un format C: (irony lvl: 200%) a la primera máquina y seguir todas las operaciones en la segunda.
 

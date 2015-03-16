@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-09-06 20:22:51+00:00
 layout: post
@@ -22,7 +21,7 @@ Maneras de poder establecer la configuración propia del teclado existen varias,
 
 
 Lo más importante: el layout en sí. Lo pueden bajar desde aquí:
-[Bajar layout](http://blog.unreal4u.com/wp-content/uploads/layout.tar.gz)
+[Bajar layout](/assets/layout.tar.gz)
 
 Lo descomprimen y eso.
 
@@ -35,22 +34,23 @@ En mi caso, preferí copiarlo a mi carpeta local, es decir, luego de  descompimi
 Luego, hay que **reiniciar** (Cerrar sesión creo que  sirve, pero creo que me funcionó recién cuando reinicié) y a la vuelta,  podemos seleccionar en Preferencias del Sistema / Idioma y Texto /  Fuentes de Entrada el idioma Latinoamericano que aparece en el listado.
 
 O sea, en breve:
-[bash]$ cd /tmp/
-$ wget http://blog.unreal4u.com/wp-content/uploads/layout.tar.gz
+{% highlight bash %}
+$ cd /tmp/
+$ wget {{ site.url }}/assets/layout.tar.gz
 $ tar xvzf layout.tar.gz
 $ mv Latinoamericano.* ~/Library/Keyboard\ Layouts/
 $ rm layout.tar.gz
 # reboot
-[/bash]
+{% endhighlight %}
 
 Con esto, casi todas las teclas quedan iguales al teclado mexicano al  cual estamos acostumbrados, excepto por el signo mayor y menor, que  quedan arriba del tab. De todas formas, no es algo a lo que cueste  acostumbrarse como sí lo podría ser el caso de llaves, corchetes, signos  y otros símbolos que ocupamos frecuentemente.
 
-Por si están medios perdidos, así es como quedan algunas teclas que sólo algunas veces ocupamos en la nueva distribución:
-~ = alt + (signo más)
-^ = alt + ñ
-¬ = alt + l (L minúscula)
-| = (entre shift y z)
-º = shift + (entre shift y z)
+Por si están medios perdidos, así es como quedan algunas teclas que sólo algunas veces ocupamos en la nueva distribución:  
+~ = alt + (signo más)  
+^ = alt + ñ  
+¬ = alt + l (L minúscula)  
+| = (entre shift y z)  
+º = shift + (entre shift y z)  
 @ = alt + q
 
 Espero que les haya servido.

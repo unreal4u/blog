@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2014-01-15 12:57:14+00:00
 layout: post
@@ -45,10 +44,10 @@ Esta manera de asignar cosas da para un mundo totalmente nuevo, pero para su con
 
 En el caso de la locale, PHP ya lo tiene cubierto con la función `\Locale::acceptFromHttp()`, cuya forma de usarlo es la siguiente:
 
-[php]
+{% highlight php %}
 $locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 echo $locale;
-[/php]
+{% endhighlight %}
 
 Hasta acá todo bonito, pero hay que tener ojo con esa función, ya que devolverá NULL en el caso que dicha cadena no se haya podido parsear. Es en este punto cuando deberemos cambiar a algo un poco más generalizado, que es detectando la IP del cual el usuario proviene. De lo contrario, lo único que falta es escribir en la sesión del usuario cuál ha sido la locale elegida.
 
@@ -79,7 +78,8 @@ Tal como mencioné, desde Maxmind pueden bajar una base de datos gratuita. Una v
 El primer paso es relevante debido a que PHP_SAPI nos indicará si el request viene desde CLI (línea de comandos) o desde la Web: si viene desde la línea de comandos $_SERVER no estará seteado y la ip deberemos setearla manualmente (típicamente a localhost). 
 
 Nuestro código entonces será:
-[php]
+
+{% highlight php %}
 function getIpFromClient() {
     $ip = '127.0.0.1';
     if (PHP_SAPI != 'cli') {
@@ -93,7 +93,7 @@ function getIpFromClient() {
     }
     return $ip;
 }
-[/php]
+{% endhighlight %}
 
 El segundo paso consistirá en consultar a la base de datos si la IP corresponde a algún país conocido. Como existen muchos segmentos que no están en la base de datos (piensen en subredes tipo A, B y C o la misma máquina local), tendrán que tener en mente que siempre deberá existir un valor predeterminado. La consulta es bastante simple y fácil de hacer.
 

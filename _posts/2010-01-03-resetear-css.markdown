@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-01-03 07:11:49+00:00
 layout: post
@@ -34,7 +33,8 @@ El problema se origina debido a que los navegadores pueden aplicar ciertos valor
 Un ejemplo práctico lo tiene por ejemplo la diferencia en el rendereo del elemento `h1` y `p` en Chrome y Firefox vs Opera e Internet Explorer:
 
 El código:
-[xhtml]<html><head><title>Probando...</title>
+{% highlight html %}
+<html><head><title>Probando...</title>
 <style>
 html{background:#333}
 h1{background:#555;color:#FFF;width:300px}
@@ -43,7 +43,8 @@ p{background:#777;color:#CCC;width:300px}
 </head><body>
 <h1>Hola mundo!!!</h1>
 <p>Chao mundo!!</p>
-</body></html>[/xhtml]
+</body></html>
+{% endhighlight %}
 
 La vista previa: 
 [![2010-01-03-u4u-023](http://blog.unreal4u.com/wp-content/gallery/reseteo-css/thumbs/thumbs_2010-01-03-u4u-023.png)](http://blog.unreal4u.com/wp-content/gallery/reseteo-css/2010-01-03-u4u-023.png)
@@ -59,20 +60,23 @@ Cabe destacar eso sí, que en estilos más complicados, incluso hay diferencias 
 Y ha llegado el momento de la salvación y la principal razón de existir de este post: podemos solucionar estas pequeñas problemáticas en un 99% simplemente borrando cualquier estilo predeterminado que tome el navegador y estableciendo expresamente la nuestra de forma posterior al reseteo. 
 Aunque creo haberlo mencionado antes, nunca está demás: CSS funciona de una manera bastante simple: cuando existe algún conflicto entre dos clases, simplemente se aplicará el último estilo declarado. De esta forma, si tenemos: 
 
-[xhtml]<html>
+{% highlight html %}
+<html>
 <style>
 p{color:#454;background:#9AF}
 </style>
 <body>
 <p style="color:#29E">hola mundo!</p>
-</body></html>[/xhtml]
+</body></html>
+{% endhighlight %}
 
 Existe un claro conflicto entre el estilo declarado en la cabecera y el estilo declarado de forma inline con la propiedad `style`. Mientras que el primero establece un color `#445544`, el segundo establece un color de fuente `#2299EE`. En este caso, se aplicará el último estilo declarado, es decir, el que se declara de forma inline. 
 Exactamente lo mismo pasa con esta solución: mediante un pequeño cambio en nuestro código de arriba, podemos primero resetear todos los estilos y después llamar a nuestro CSS de forma segura. 
 
 Para facilitar aún más las cosas, y de paso no demorar más la carga de nuestra página, podemos externalizar el servicio. Es por lo mismo, que Yahoo nos ofrece el reseteo del CSS de forma totalmente gratuita, contando con el respaldo de ellos. ¿Cómo se hace? 
 
-[xhtml]<html><head><title>Probando...</title>
+{% highlight html %}
+<html><head><title>Probando...</title>
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.0.0/build/cssreset/reset-min.css"/>
 <style>
 html{background:#333}
@@ -82,7 +86,8 @@ p{background:#777;color:#CCC;width:300px}
 </head><body>
 <h1>Hola mundo!!!</h1>
 <p>Chao mundo!!</p>
-</body></html>[/xhtml]
+</body></html>
+{% endhighlight %}
 
 Con este pequeño cambio, nuestro script quedaría rendereado de la siguiente forma en los distintos navegadores seleccionados: 
 

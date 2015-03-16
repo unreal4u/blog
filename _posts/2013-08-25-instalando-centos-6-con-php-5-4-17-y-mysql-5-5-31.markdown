@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2013-08-25 11:57:21+00:00
 layout: post
@@ -18,7 +17,8 @@ Lo que haremos con esta máquina es instalar Apache y la última versión establ
 <!-- more -->
 
 Una vez que la instalación mínima está terminada, ejecutamos los siguientes comandos, todos como root:
-[bash]
+
+{% highlight bash %}
 yum install httpd php php-mysqli php-pdo git mysql-server php-pear wget lynx vim-enhanced logwatch bind-utils
 ## Si vamos a instalar Gitolite, también: ##
 yum install git-daemon perl perl-Time-HiRes
@@ -70,7 +70,7 @@ vi /etc/php.ini
 vi /etc/php.d/opcache.ini
 ## Editar a gusto ##
 /etc/init.d/httpd restart
-[/bash]
+{% endhighlight %}
 
 Con esto tendremos una máquina ya casi funcional. No se olviden de darle acceso a Apache mediante `chcon`, ya que de otra forma SELinux no les dará acceso. Recomiendo revisar [este artículo al respecto](http://wiki.centos.org/HowTos/SELinux) y tener en cuenta la salida de `/var/log/audit/audit.log`. No recomiendo desactivar SELinux ya que sirve como capa adicional de seguridad **una vez que se configura bien**, haciendo totalmente innecesario la instalación de herramientas tales como rkhunter u otros.
 La configuración de SELinux eso si se las dejo como tema de investigación, en realidad es bastante simple y hay algunos tutoriales increíblemente buenos dando vueltas en la red.

@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-08-27 04:02:34+00:00
 layout: post
@@ -22,7 +21,7 @@ A continuación mostraré un archivo php.ini con toda su configuración recomend
 ## El archivo en resumen
 
 
-[bash]
+{% highlight bash %}
 # ------------------ GENERAL -------------------------- #
 engine = On
 # DESCRIPCIÓN: Habla por si solo... sin esto no hay PHP xD Siempre on.
@@ -104,7 +103,7 @@ allow_url_include = Off
 # PRODUCCIÓN: Ya que es la forma más fácil de hacer ataques XSS (en conjunto con register_globals), fuertemente lo recomiendo en Off.
 # HOSTING: En un 99,9% de los casos se encuentra desactivado.
 
-[/bash]
+{% endhighlight %}
 
 
 

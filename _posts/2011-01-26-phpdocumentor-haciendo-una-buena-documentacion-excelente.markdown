@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-01-26 01:32:54+00:00
 layout: post
@@ -16,7 +15,10 @@ No fue sino hasta el otro día que le encontré un propósito y una utilidad a l
 Todo surgió debido a que andaba buscando un método determinado que había escrito una vez hace 5 meses atrás y que podría haber estado dentro de un par de classes o bien dentro de un par de archivos de distintas funciones: en resumen, no tenía idea de cómo se llamaba ni menos cómo se ocupaba. Incluso ni siquiera estaba seguro de si efectivamente podría hacer lo que tenía pensado ya que la función que había escrito hacía algo muy parecido, pero podría ser que no hiciera lo mismo. Traté de ubicarla mediante diversos términos [con este script](http://blog.unreal4u.com/2011/01/buscando-en-linux-hecho-facil/) pero no hubo caso. Ya casi dándome por vencido se me ocurrió la idea de que en realidad la documentación del programa estaba mal hecha y con múltiples formatos distintos: había que unificar todo.
 <!-- more -->
 Fue entonces que me puse a buscar estándares de documentación donde, al parecer, Java es definitivamente la número 1 con su JavaDoc, esquema que fue copiado por PHPDocumentor (y que convenientemente pasó a llamarse PHPDoc). Básicamente hay que seguir algunas reglas, las cuales son: 
-[php]
+
+{% highlight php %}
+<?php 
+
 /**
  * Un comentario PHPDoc siempre empieza con 2 asteriscos. Comentarios adicionales tendrán 1 asterisco
  * 
@@ -32,7 +34,7 @@ Fue entonces que me puse a buscar estándares de documentación donde, al parece
  * @package Y una de las más importantes: agrupar contenido por packages
  * @subpackage Y por supuesto por sub-packages.
  */
-[/php]
+{% endhighlight %}
 
 Existen bastantes variantes más de etiquetas que podemos poner, [que están listados aquí](http://en.wikipedia.org/wiki/PHPDoc#Tags), página en la que además se explica mucho mejor el uso básico de PHPDoc.
 

@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-01-16 01:37:57+00:00
 layout: post
@@ -16,7 +15,9 @@ Cuántas veces no les ha pasado que saben que una cierta cadena empieza con "hol
 Bueno, si eso les ha pasado y ocupan Linux, ha llegado su día de suerte: creé un script (para la terminal) que busca en diversos lados por una cadena determinada e imprime la salida. Pero qué sucede en aquellos casos donde tenemos que omitir ciertas carpetas temporales como por ejemplo las que crea subversion? Bueno, este script también considera eso. Haz click en leer más para conocer el script.
 <!-- more -->
 Lo prometido es deuda, a continuación, el script: 
-[bash]#!/bin/bash
+
+{% highlight bash %}
+#!/bin/bash
 if test -z "$1"; then
   echo "Uso: ./b termino [carpeta]"
 else
@@ -31,7 +32,7 @@ else
   echo ""
   find $CARPETA \! -regex ".*/\.svn/.*" \! -regex ".*respaldo.*" \! -regex ".*/cache/.*" | xargs grep "$1"
 fi
-[/bash]
+{% endhighlight %}
 
 Si van a buscar por palabras con espacios o símbolos extraños, el uso es el siguiente: 
 `./b "el término"`

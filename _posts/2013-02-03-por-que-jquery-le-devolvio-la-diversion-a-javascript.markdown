@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2013-02-03 15:26:52+00:00
 layout: post
@@ -56,7 +55,7 @@ Finalmente, vienen nuestras acciones, que en este caso será imprimir un alert()
 
 Ahora que ya sabemos lo básico, vámonos a un ejemplo con algo más de código.
 
-[javascript]
+{% highlight javascript %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -93,9 +92,9 @@ $(document).ready(function(){
         </script>
     </body>
 </html>
-[/javascript]
+{% endhighlight %}
 
-En un principio, parece muchísimo código, pero la verdad es que es todo bastante simple. 
+En un principio, parece muchísimo código, pero la verdad es que es todo bastante simple.  
 Lo primero que hacemos es incluir la librería de jQuery que [pueden bajar desde esta página](http://jquery.com/), la última versión cuando escribí esta entrada era la 1.8.2 así que esa usé.
 De ahí continúo con un poco de código para rellenar y creo tres párrafos de texto. Dos con el class "hola" y uno con el tag "chao". También creo un div oculto con el contenido "Este es el div interno".
 
@@ -106,9 +105,9 @@ Pude haber ocupado el método onclick de HTML, pero la verdad prefiero esta form
 
 Sin embargo, ahora viene lo entretenido: las acciones dentro de nuestras funciones son otras llamadas a jQuery. Y aquí viene el gran poder de jQuery: las funciones de jQuery funcionarán en casi cualquier navegador, aunque esto cambiará a partir de la(s) próxima(s) versión(es) de jQuery, que se separará en dos corrientes: jQuery 1.9 para seguir soportando navegadores antiguos, y otro jQuery 2.0 que desecha mucho código para estos navegadores antiguos, para que de esa forma pueda seguir creciendo en otra corriente separada y mantener un codebase/footprint más chico.
 
-En fin, las funciones que llamamos son dos: 
-`$('p').css('background','#EEE');`: Este cambiará el CSS de todos los elementos de tipo "p" (párrafos) y les cambiará el fondo al color #EEE.
-`$('#myDiv').toggle();`: Esta es sin duda una de las funciones más interesantes de jQuery, ya que toggle() es una función que esconderá o mostrará lo que seleccionemos. La gracia radica en que lo hace automático, de forma que si el elemento está escondido, lo mostrará, y si el elemento es visible, lo ocultará. 
+En fin, las funciones que llamamos son dos:  
+`$('p').css('background','#EEE');`: Este cambiará el CSS de todos los elementos de tipo "p" (párrafos) y les cambiará el fondo al color #EEE.  
+`$('#myDiv').toggle();`: Esta es sin duda una de las funciones más interesantes de jQuery, ya que toggle() es una función que esconderá o mostrará lo que seleccionemos. La gracia radica en que lo hace automático, de forma que si el elemento está escondido, lo mostrará, y si el elemento es visible, lo ocultará.   
 `$('.hola').css('color','#999');`: Tal como el primero, esta función cambiará el CSS de todos aquellos elementos que tienen como class ".hola", y cambiará el color de la letra a #999.
 
 

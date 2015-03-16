@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2013-01-14 12:25:42+00:00
 layout: post
@@ -61,14 +60,15 @@ Después del paso de autentificación, es donde entra en juego nuestro querido G
 Antes de empezar, consíganse una máquina con Linux o Mac OS X, ya que trabajar en Windows es un parto enorme y tendrán que instalar varias cosas (que igual cubriré) pero la primera parte es la más importante y será un alivio tremendo avanzar de forma rápida. Como siempre, recomiendo que si ya llegan a este punto en sus vidas y todavía "trabajan" en Windows, se cambien a Linux y verán como todo es bastante más fácil y rápido. En un principio les costará acostumbrarse, pero en un par de meses verán que los esfuerzos invertidos valdrán la pena... mucho!
 
 Para el servidor, supondré que será una máquina CentOS en su última versión instalada de forma limpia y minimalista. Para el (primer) cliente, supondré una máquina también en Linux o Mac OS X. Partamos para la primera patita, a modo de aclaración, el dominio de esta máquina será `ejemplo-git.com`:
-[bash]
+
+{% highlight bash %}
 yum install git git-daemon perl-Time-HiRes
 adduser git
 su - git
 git clone git://github.com/sitaramc/gitolite.git
 mkdir -p $HOME/bin
 gitolite/install -to $HOME/bin
-[/bash]
+{% endhighlight %}
 
 Update 2013-07-11: Ahora gitolite también requiere de perl-Time-HiRes. De forma contrario, no podrán correr el instalador. Puede ser que sea algún bug temporal, así que prueben sin el paquete, pero si el equipo reclama en el último paso que: 
 "Can't locate Time/HiRes.pm in @INC" entonces deberán instalar perl-Time-HiRes también.
@@ -83,7 +83,8 @@ Con estos comandos, hemos terminado la instalación de Gitolite, así que ahora 
 Hasta aquí, todo bien. Tenemos Gitolite instalado y corriendo. Sin embargo, tenemos que definir ahora el administrador e inicializar nuestro primer repositorio que será el que controle todos los demás repositorios. (Tal como MySQL se ocupa a si mismo para autentificar y establecer opciones, Gitolite ocupa Git para administrar los repositorios y usuarios).
 
 Así que, en cualquier máquina Linux o Mac OS X, correremos:
-[bash]
+
+{% highlight bash %}
 ssh-keygen -t rsa -C "tu@corr.eo"
 # Esto les preguntará dónde desean almacenarlo
 # y además les preguntará por una passphrase,
@@ -93,27 +94,29 @@ ssh-keygen -t rsa -C "tu@corr.eo"
 #
 # Yo supongo todos los valores predeterminados
 scp ~/.ssh/id_rsa.pub root@ejemplo-git.com:/root/[su nombre].pub
-[/bash]
+{% endhighlight %}
 
 Lo que hicimos acá fue generar una llave pública y privada. La gracia de esto es que su llave privada asegurará que ustedes son quienes dicen ser. De esta forma, es sumamente importante que nunca la compartan con nadie, ya que si alguien obtiene su clave privada, podrá suplantar su identidad. Por este hecho, puede ser importante que le coloquen una passphrase, para que de esta manera, sea necesario también ingresar una contraseña, lo que será otro pasito en pro a la seguridad. Lo único malo es que IDEs como <del>Zend Studio en Mac OS X no trabajan bien con llaves que contengan passphrases</del>, más que nada porque el Java sobre el cual corre es muy complicado de actualizar y se necesita de Java 1.7 como mínimo para que puedan autentificarse en Zend Studio mediante keys con passphrases.
 Update 2013-07-11: Zend Studio 10 corre sobre Java 1.7 y ahora no hay problema alguno con passphrases en llaves privadas.
 
 Ahora nos vamos de vuelta al servidor donde tenemos Git instalado, e ingresamos **como root**: 
-[bash]
+
+{% highlight bash %}
 mv ~/[su nombre].pub /home/git/
 su - git
 gitolite setup -pk [su nombre].pub
 # Si esto no funciona, prueben poniendo directo la ruta
 # al binario en la carpeta bin/
-[/bash]
+{% endhighlight %}
 
 Por ahora terminamos en nuestro server y todo lo demás corre por cuenta ahora del cliente. Vamos nuevamente a la consola y ejecutamos:
-[bash]
+
+{% highlight bash %}
 cd /tmp/
 mkdir –p gitolite-admin
 cd gitolite-admin
 git clone git@ejemplo-git.com:gitolite-admin .
-[/bash]
+{% endhighlight %}
 
 A partir de este punto, ya podemos empezar a agregar usuarios agregando su llave pública en el directorio `keydir` y estableciendo permisos y otros en el archivo de configuración `conf/gitolite.conf`
 
@@ -125,10 +128,10 @@ A partir de este punto, ya podemos empezar a agregar usuarios agregando su llave
 
 La configuración en Gitolite es bastante simple, si queremos nada más que las opciones más básicas, sólo tenemos que ingresar la siguiente información: 
 
-[bash]
+{% highlight bash %}
 repo repo-de-unreal4u
     RW+ = unreal4u
-[/bash]
+{% endhighlight %}
 
 Esto creará un repositorio llamado `repo-de-unreal4u` y le dará a la llave pública llamada `unreal4u.pub` (guardada en el directorio `keydir`) acceso a escritura, lectura y borrado. Para una lista más exhaustiva con las opciones de Gitolite, [sírvanse revisar la documentación oficial](http://sitaramc.github.com/gitolite/g2/conf.html). Existen un montón de pequeños trucos que pueden aplicarse en este archivo de configuración, como por ejemplo que nadie pueda hacer push a master (excepto cierto _grupo de usuarios_) o definir quiénes serán los que tengan acceso a ciertos repositorios. Gitolite es bastante flexible en este archivo y permite definir bastante bien quiénes serán los que puedan (o no) tener accesos a ciertos repositorios. 
 
@@ -175,7 +178,7 @@ Después de eso, haremos un archivo que contenga línea a línea cada committer.
 Finalmente, la importación en sí, dentro de una carpeta temporal. Después de eso, un poco de limpieza y conversión: los tags se convertirán a tags, los branches se mantendrán como branches. 
 Cuando estemos listos con eso, borraremos el branch "trunk" de SVN (ya que tendremos master ahora). Invocaremos el garbage collector para un poco de limpieza antes de subirlo a Gitolite y finalmente configuraremos un repositorio limpio hacia la cual exportamos nuestro nuevo repositorio recién creado y lo subiremos a Gitolite. Para proyectos grandes, les aconsejo lo hagan en la misma máquina donde está alojado Git.
 
-[bash]
+{% highlight bash %}
 git config --global pack.threads 4
 git config --global pack.windowMemory 512m
 mkdir ~/tmp/repo-tmp/ && cd ~/tmp/
@@ -200,6 +203,6 @@ git remote rm origin
 git remote add origin git@ejemplo-git.com:repo-de-unreal4u
 git push origin --all
 git push origin --tags
-[/bash]
+{% endhighlight %}
 
 Ya con eso listo, termina el tutorial para montar Gitolite. Espero les pueda servir!

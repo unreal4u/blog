@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2013-08-15 22:04:30+00:00
 layout: post
@@ -48,18 +47,18 @@ Sin embargo, la información más interesante para el tuneo, viene un poco más 
 
 
 Lo que representan cada uno de estos números, lo podemos encontrar en el commit [1fe43d07 de Dmitry Stogov](https://github.com/php/php-src/commit/1fe43d07989316d308e4dfd6989038fa09a51ff1), específicamente en el archivo `ext/opcache/ZendAccelerator.h`:
-[c]
+{% highlight c %}
 unsigned long   oom_restarts;     /* number of restarts because of out of memory */
 unsigned long   wasted_restarts;  /* number of restarts because of wasted memory */
 unsigned long   hash_restarts;    /* number of restarts because of hash overflow */
 unsigned long   manual_restarts;  /* number of restarts sheduled by opcache_reset() */ 
-[/c]
+{% endhighlight %}
 
 `oom_restart` apunta directamente a la directiva `opcache.memory_consumption`. Si este es muy bajo, tendremos reinicios frecuentes. 
 `wasted_restarts` no aparece (al menos directamente) en el listado del script, pero se tendrán que fijar con un poco más de atención a "Current Wasted Percentage" y otros parecidos: el treshold se define bajo la directiva `opcache.max_wasted_percentage`. Predeterminadamente, se fija en un 5%. Una vez que este límite se alcanza, se producirá un restart por memoria "obsoleta". Si cambian frecuentemente archivos, es muy probable que este valor se incremente de forma regular. De lo contrario, tal como demuestra la imagen, casi nunca será necesario un restart.
-`hash_restarts` tiene que ver directamente con la directiva `opcache.max_accelerated_files` o; tal como se ve en la imagen; en el segundo gráfico de barra vertical. Si este límite se alcanza se producirá un restart. Tiene que ver un poco con la cantidad de archivos que tendrán que dejar bajo cache. Con poco me refiero a que tendrán que revisar cuál es el mejor valor, en mi caso tengo los siguientes valores: 
-Num Cached Scripts: 488
-Num Cached Keys: 625
+`hash_restarts` tiene que ver directamente con la directiva `opcache.max_accelerated_files` o; tal como se ve en la imagen; en el segundo gráfico de barra vertical. Si este límite se alcanza se producirá un restart. Tiene que ver un poco con la cantidad de archivos que tendrán que dejar bajo cache. Con poco me refiero a que tendrán que revisar cuál es el mejor valor, en mi caso tengo los siguientes valores:  
+Num Cached Scripts: 488  
+Num Cached Keys: 625  
 Max Cached Keys: 1979
 
 Si revisamos nuevamente el gráfico, podemos ver que cierta parte de los keys ha sido marcada como obsoleta: a qué se debe no tengo idea pero siempre ocurre. Sacando cuentas podemos darnos cuenta que la diferencia del número de scripts obsoletos junto con la cantidad de scripts efectivamente guardados equivalen al número total de keys. Jugando con el valor ya mencionado deberían poder solucionar el problema si es que radica en que el número de archivos resulta demasiado alto. (Como podría ocurrir con por ejemplo Magento).
@@ -71,12 +70,12 @@ Finalmente, tenemos `manual_restarts`, que vendría siendo ni más ni menos las 
 ## Otras directivas interesantes
 
 
-En una máquina en producción, queremos la experiencia más rápida posible. Por lo tanto, se puede ahondar un poco más descartando ciertas partes que pueden resultar necesarias para cuando estamos desarrollando pero que no tiene relevancia alguna en el servidor de producción. Tales directivas son: 
-`opcache.enable_cli`: Si queremos habilitar opcache para uso en línea de comando debemos habilitar esta opción.
-`opcache.save_comments`: Salva los PHPDoc en la cache. Total y absolutamente innecesario en un servidor en producción. Además por lo general tienden a ser bastante grandes.
-`opcache.load_comments`: Carga los PHPDoc desde la cache. Ver la explicación de arriba.
-`opcache.enable_file_override`: Si ocupan y/o abusan de funciones como is_file(), file_exists() o is_readable(), esta directiva les ayudará bastante ya que en vez de ir a pegar el pinchazo al disco duro, revisará en la misma memoria de opcache si el archivo existe. Sin embargo, hay que tener cuidado con la siguiente opción.
-`opcache.validate_timestamps`: Podemos señalarle a opcache si no queremos que verifique si el archivo ha sido actualizado. En sí, es una excelente optimización, sobretodo si el código casi no cambia, pero además puede tener otras consecuencias bastante difíciles de detectar y diagnosticar, por lo que mi recomendación es que si se está 100% seguro de que esta directiva no tiene consecuencias en su código, la habiliten. De otra forma, mejor dejarla desactivada. 
+En una máquina en producción, queremos la experiencia más rápida posible. Por lo tanto, se puede ahondar un poco más descartando ciertas partes que pueden resultar necesarias para cuando estamos desarrollando pero que no tiene relevancia alguna en el servidor de producción. Tales directivas son:  
+`opcache.enable_cli`: Si queremos habilitar opcache para uso en línea de comando debemos habilitar esta opción.  
+`opcache.save_comments`: Salva los PHPDoc en la cache. Total y absolutamente innecesario en un servidor en producción. Además por lo general tienden a ser bastante grandes.  
+`opcache.load_comments`: Carga los PHPDoc desde la cache. Ver la explicación de arriba.  
+`opcache.enable_file_override`: Si ocupan y/o abusan de funciones como is_file(), file_exists() o is_readable(), esta directiva les ayudará bastante ya que en vez de ir a pegar el pinchazo al disco duro, revisará en la misma memoria de opcache si el archivo existe. Sin embargo, hay que tener cuidado con la siguiente opción.  
+`opcache.validate_timestamps`: Podemos señalarle a opcache si no queremos que verifique si el archivo ha sido actualizado. En sí, es una excelente optimización, sobretodo si el código casi no cambia, pero además puede tener otras consecuencias bastante difíciles de detectar y diagnosticar, por lo que mi recomendación es que si se está 100% seguro de que esta directiva no tiene consecuencias en su código, la habiliten. De otra forma, mejor dejarla desactivada.  
 
 
 

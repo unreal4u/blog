@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-07-17 06:26:47+00:00
 layout: post
@@ -37,10 +36,16 @@ La verdad, pensé que incorporar estos botones iba a ser un poco más complicado
 
 
 En header.php de nuestro theme, justo antes del cierre de la cabecera, agregamos el siguiente código:
-[html]<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>[/html]
+
+{% highlight html %}
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+{% endhighlight %}
 
 Luego, para cuando queramos agregar el botón en algún lado, digamos single.php o index.php, sólo basta con: 
-[html]<g:plusone size="medium" href="<?php the_permalink(); ?>"></g:plusone>[/html]
+
+{% highlight html %}
+<g:plusone size="medium" href="<?php the_permalink(); ?>"></g:plusone>
+{% endhighlight %}
 
 size y href son obviamente configurables. Revisen también la página de Google, porque al incluir el primer javascript, es posible setear algunas configuraciones de inmediato, como por ejemplo el idioma.
 
@@ -50,7 +55,10 @@ size y href son obviamente configurables. Revisen también la página de Google,
 
 
 Este botón es quizás el más difícil de estilar debido a que trabaja directamente con HTML en vez de CSS para eso. De todas formas, es bastante fácil, basta con agregar este código:
-[html]<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=148806621860058&amp;xfbml=1"></script><fb:like href="<?php the_permalink(); ?>" send="false" layout="button_count" width="80" show_faces="false" font=""></fb:like>[/html]
+
+{% highlight html %}
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=148806621860058&amp;xfbml=1"></script><fb:like href="<?php the_permalink(); ?>" send="false" layout="button_count" width="80" show_faces="false" font=""></fb:like>
+{% endhighlight %}
 
 Pueden revisar las opciones que ofrece el botón en el mismo link que cité arriba, de las 3 opciones, es la mejor documentada.
 
@@ -61,10 +69,16 @@ Pueden revisar las opciones que ofrece el botón en el mismo link que cité arri
 
 De las tres, es la que peor documentación tiene, sin embargo, su inclusión sigue siendo, tal como los demás botones, casi un chiste de lo fácil que es.
 Lo primero que tenemos que hacer es incluir el siguiente código en nuestra cabecera:
-[html]<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>[/html]
+
+{% highlight html %}
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+{% endhighlight %}
 
 Y después, cuando queramos imprimir el botón:
-[html]<a href="http://twitter.com/share" class="twitter-share-button" count="horizontal" lang="es" text="<?php the_title(); ?>" url="<?php the_permalink(); ?>">Tweet</a>[/html]
+
+{% highlight html %}
+<a href="http://twitter.com/share" class="twitter-share-button" count="horizontal" lang="es" text="<?php the_title(); ?>" url="<?php the_permalink(); ?>">Tweet</a>
+{% endhighlight %}
 
 Y con eso, quedará inmediatamente insertado en nuestro blog.
 

@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2011-03-15 04:25:32+00:00
 layout: post
@@ -54,9 +53,9 @@ El inventor de esta notación ([Charles Simonyi](http://es.wikipedia.org/wiki/Ch
 En fin, volviendo al tema, la notación húngara está basada en parte en CamelCase, específicamente la lowerCamelCase. En su versión más básica, tenemos varios tipos de datos los que reciben una letra. De esa forma, un string recibirá la letra s, un int la letra i, un decimal la letra d. Un arreglo recibirá por supuesto la letra a. 
 Teniendo eso en cuenta, y combinándola con la CamelCase no resulta difícil pensar en qué sigue: Un nombre cualquiera para nuestra variable siguiendo las reglas del CamelCase.
 
-De esta forma, podemos tener: 
-aIndicadorResultados
-iContador
+De esta forma, podemos tener:   
+aIndicadorResultados  
+iContador  
 sPrimerNombre
 
 Y así se continúa. De esta forma, con sólo un miro podemos saber de qué tipo es nuestra variable, y mediante CamelCase (asignándole un nombre significativo) podremos saber cuál es su función, lo cual encuentro ideal en un lenguaje como PHP donde una misma variable puede ser un float o un bit al momento siguiente.

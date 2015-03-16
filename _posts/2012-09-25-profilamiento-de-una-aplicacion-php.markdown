@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2012-09-25 19:00:01+00:00
 layout: post
@@ -27,12 +26,14 @@ El perfilamiento es, en esencia, nada más que medir en términos de tiempo y me
 Lo primero a lo que deberemos prestar atención es a la configuración de xDebug ya que ella nos permitirá generar los archivos de perfilamiento para que de esta forma podamos estudiarla con mayor profundidad. Ahora bien, le coloco bastante énfasis a lo tedioso que es estudiar un archivo de perfilamiento porque de verdad lo es. Requiere de mucha concentración para no equivocarse y además van a terminar con un Excel del tamaño de una base de datos chica porque lamentablemente una sola medición no es ni objetiva ni representativa. Cuando empiecen con sus primeros tests verán que de cada 10 pasadas, en al menos uno PHP tiene un pequeño hipo que hace que cierta función demore el triple o más en devolver una respuesta, así que para obtener resultados que sean útiles y representativas, recomiendo al menos 10 pasadas y de ellas, sacar un promedio. Además servirá bastante si se conocen el framework o sistema que ocupen de memoria.
 
 Pero bueno, empecemos por lo primordial que es la configuración de xdebug. Abrimos nuestro php.ini y creamos (o descomentamos si seguiste los pasos del post previo) las siguientes líneas bajo el apartado [xdebug]:
-[bash]
+
+{% highlight bash %}
 xdebug.profiler_enable = On
 xdebug.profiler_output_dir = "/tmp/cachegrind"
 xdebug.profiler_output_name = callgrind.out.%p
 xdebug.profiler_enable_trigger = 0
-[/bash]
+{% endhighlight %}
+
 Ahora bien, esta configuración quiere decir en palabras muy breves lo siguiente: Habilitamos el profiler (con `xdebug.profiler_enable`), decimos que escriba a /tmp/cachegrind/ (con `xdebug.profiler_output_dir`, este mapa **deberemos crearlo manualmente** y asignarle permisos 777), también le decimos que el archivo de salida tenga como nombre "callgrind.out.%p" (con `xdebug.profiler_output_name`, donde %p representa la pid del proceso, [click acá para más modificadores](http://xdebug.org/docs/all_settings#trace_output_name)) y además deshabilitamos expresamente el trigger (mediante `xdebug.profiler_enable_trigger`) el cual significa en muy breves términos que no necesitamos tener establecida una cookie o pasar un parámetro GET o POST para poder obtener nuestro archivo de perfilamiento. Si desean mayor información con respecto a todos los parámetros con los cuales se puede configurar xdebug, [visiten esta página](http://xdebug.org/docs/all_settings) (del desarrollador oficial que entre paréntesis [vi en una conferencia hace poco](http://www.pfcongres.nl/programma) el fin de semana pasado y donde habló justamente del mismo tema xD) que las lista todas.
 
 
@@ -40,7 +41,7 @@ Ahora bien, esta configuración quiere decir en palabras muy breves lo siguiente
 ## Creando un escenario de pruebas
 
 
-El siguiente paso es reiniciar apache (doh) y ejecutar nuestra primera prueba. Para facilitar la explicación, me di el gusto de crear [una pequeña aplicación](http://blog.unreal4u.com/wp-content/uploads/profiling-example.zip) que recorre una carpeta con algunas imágenes. También, a modo de dar a entender el cómo podemos comparar nuestro resultado final con el inicial (acelerar la aplicación) entregaré otra versión que hace exactamente lo mismo pero que emplea cache para almacenar los resultados temporales.
+El siguiente paso es reiniciar apache (doh) y ejecutar nuestra primera prueba. Para facilitar la explicación, me di el gusto de crear [una pequeña aplicación](/assets/profiling-example.zip) que recorre una carpeta con algunas imágenes. También, a modo de dar a entender el cómo podemos comparar nuestro resultado final con el inicial (acelerar la aplicación) entregaré otra versión que hace exactamente lo mismo pero que emplea cache para almacenar los resultados temporales.
 Esta aplicación la pueden bajar desde este link y poner en sus máquinas para probar que efectivamente todo funciona como debe ser. Acepto de regalo cualquier cosa que venga en la carpeta de imágenes por cierto, no se preocupen si es muy humilde, igual acepto.
 
 Lo primero que tienen que hacer después de bajar este archivo, es descomprimirlo en la máquina donde van a hacer el perfilamiento y dar permisos 777 a la carpeta llamada "cache". Enseguida ejecutan el primer ejemplo `check-files.php`. Es importante que desde que activen el perfilamiento a la ejecución de este script no ejecuten nada más de lo contrario se van a llenar de archivos de perfilamiento y frente a eso es difícil seguir la pista.
@@ -51,7 +52,8 @@ Lo siguiente que haremos será ir a la carpeta `/tmp/cachegrind/`, donde, si tod
 ## Estudiando la salida
 
 
-Una vez que tengamos hartos ejemplos, viene la parte más interesante: el estudio del archivo de perfilamiento. Para esto puedo recomendar: 
+Una vez que tengamos hartos ejemplos, viene la parte más interesante: el estudio del archivo de perfilamiento. Para esto puedo recomendar:
+
 [**WebGrind**](http://code.google.com/p/webgrind/): Es el menos recomendado del grupo ya que es el más simple pero también el más enredado para presentar la información. Además, presenta muy poca de ella.
 
 [**MacCallgrind**](http://www.maccallgrind.com/): Es el mejor programa para Mac que pude encontrar. Lo único malo es que sólo permite abrir archivos de máximo 3MiB lo cual parece algo bastante exagerado, pero si tomamos en cuenta que el perfilamiento de un simple listado de directorio generó un archivo de 28KiB y la versión más avanzada uno de 108KiB (que sólo hace algunas cosas más no más) nos podremos dar cuenta que 3MiB no es nada. Una página medianamente grande generará fácilmente un archivo de 5MiB. Una vez ejecuté un cron más o menos largo y el archivo generado fue de 1.5GiB, así que ojo que crecen bastante.
@@ -61,11 +63,11 @@ Acá me gustaría detenerme un poco y recomendarle a todos los que ocupan Window
 
 En fin, siguiendo con el tópico en cuestión, tendrán una pantalla muy parecida a la siguiente en Mac (donde tengo abierto 2 instancias): 
 
-[![maccallgrind](http://blog.unreal4u.com/wp-content/gallery/profiling/thumbs/thumbs_maccallgrind.png)](http://blog.unreal4u.com/wp-content/gallery/profiling/maccallgrind.png)
+[![maccallgrind](/assets/thumbs_maccallgrind.png)](/assets/profiling/maccallgrind.png)
 
 O en Windows/Linux:
 
-[![kcachegrind](http://blog.unreal4u.com/wp-content/gallery/profiling/thumbs/thumbs_kcachegrind.png)](http://blog.unreal4u.com/wp-content/gallery/profiling/kcachegrind.png)
+[![kcachegrind](/assets/thumbs_kcachegrind.png)](/assets/profiling/kcachegrind.png)
 
 Lo único que les queda por hacer llegado este punto es agarrar una planilla de Excel y empezar a sacar porcentajes, promedios, sumas y todo eso siguiendo el método científico para que de esta forma puedan identificar los cuellos de botella.
 
@@ -77,7 +79,7 @@ Lo único que les queda por hacer llegado este punto es agarrar una planilla de 
 Por supuesto que hasta el momento ha sido todo muy bonito pero no hemos tomado ninguna acción. 
 Parto por aclarar que elegí el tema de recorrer un directorio de imágenes por una razón bastante simple: es fácil de optimizar ya que basta crear un archivo caché y consultar este archivo que andar recorriendo una carpeta con posibles miles de imágenes. Con eso se nota instantáneamente cualquier mejora al sistema. Sin embargo, en la vida real detectar un cuello de botella es bastante complejo y es acá donde el gráfico de KCacheGrind viene a ser definitivamente LA herramienta más útil del planeta, ya que en un solo vistazo se puede apreciar qué función(es) es/son las que están haciendo el cuello de botella. Nuevamente, en este caso es bastante fácil de detectar, pero así se ve un screenshot del sistema en producción en la empresa donde trabajo: 
 
-[![production_example](http://blog.unreal4u.com/wp-content/gallery/profiling/thumbs/thumbs_production_example.png)](http://blog.unreal4u.com/wp-content/gallery/profiling/production_example.png)
+[![production_example](/assets/thumbs_production_example.png)](/assets/profiling/production_example.png)
 
 En el ejemplo, aparte del más obvio que es la query a la base de datos, hay literalmente miles de includes, funciones y classes que se cargan en el sistema base y que, en su conjunto, arman el sistema. Ese es el tipo de informes que hay que revisar y entender para que de esta forma, se pueda llegar a optimizar lo que es importante y no lo que **creemos** que pueda ser importante. 
 

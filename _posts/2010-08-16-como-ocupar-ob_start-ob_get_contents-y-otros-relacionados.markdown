@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2010-08-16 15:01:04+00:00
 layout: post
@@ -38,7 +37,8 @@ Existen específicamente 3 funciones que yo diría son las más importantes:
 
 Dicho eso, podemos proceder a nuestro primer ejemplo:
 
-[php]
+{% highlight php %}
+<?php
 ob_start();
 echo 'hola mundo';
 if (!file_exists('chao.txt')) header('Location: http://www.google.com/');
@@ -48,12 +48,13 @@ ob_end_clean();
 include('cabecera.php');
 echo $contenido;
 include('pie-pagina.php');
-[/php]
+{% endhighlight %}
 
 Este archivo hace lo siguiente: Imprime "hola mundo", revisa si existe el archivo chao.txt y si no existe, redirige a Google. Si existe el archivo entonces sigue la carga normal. ¿Se entendió? Veamos un último ejemplo un poco más completo entonces:
 
 _**index.php**_ 
-[php]
+{% highlight php %}
+<?php 
 include('carga-previa.php');
 ob_start();
 echo '<h1>Hola mundo</h1>';
@@ -66,10 +67,12 @@ ob_end_clean();
 include('cabecera.php');
 echo $contenido;
 include('pie-pagina.php');
-[/php]
+{% endhighlight %}
 
 _**carga-previa.php**_
-[php]
+{% highlight php %}
+<?php
+
 class messages() {
   private $aMsgs = array();
 
@@ -89,29 +92,32 @@ class messages() {
 }
 
 $msgStack = new messages();
-[/php]
+{% endhighlight %}
 
 _**cabecera.php**_
-[php]
+{% highlight php %}
+<?php
 echo '<html><head><title>';
 if (!empty($titulo)) echo $titulo;
 else echo 'sin titulo';
 echo '</title></head><body>';
 $msgStack->print();
-[/php]
+{% endhighlight %}
 
 Ahora bien, no tiene ninguna gracia tener que escribir 20 líneas de código cuando nos podríamos ahorrar todo eso en un solo paso. Veamos nuevamente cómo podemos ahorrar bastante código y a la vez tener control absoluto sobre la aplicación:
 
 _**index.php**_
-[php]
+{% highlight php %}
+<?php
 include('carga-previa.php');
 include('cabecera.php');
 echo $contenido;
 include('pie-pagina.php');
-[/php]
+{% endhighlight %}
 
 _**carga-previa.php**_
-[php]
+{% highlight php %}
+<?php
 class messages() {
   // etc
 }
@@ -128,7 +134,7 @@ if (is_readable('includes/paginas/'.$_GET['a'].'.php')) include('includes/pagina
 else include('includes/paginas/not-found.php');
 $contenido = ob_get_contents();
 ob_end_clean();
-[/php]
+{% endhighlight %}
 
 Las demás páginas siguen tal cual como venían originalmente. Ahora lo único que debemos hacer para cargar por ejemplo las noticias es poner en nuestro navegador 
 **www.ejemplo.com/?a=noticias** o bien 

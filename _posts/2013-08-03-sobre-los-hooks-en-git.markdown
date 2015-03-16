@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: true
 date: 2013-08-03 16:49:25+00:00
 layout: post
@@ -36,7 +35,7 @@ También he de comunicarles que ya que dejé de trabajar con Windows hace mucho 
 
 Supongamos que tenemos un check increíblemente simple en nuestro pre-commit (el que se ejecuta justo ANTES de hacer el commit, que es la etapa donde uno debería revisar por errores lógicos, este archivo lo debemos guardar en `.git/hooks/pre-commit`: 
 
-[php]
+{% highlight php %}
 #!/usr/bin/php
 <?php
 
@@ -47,7 +46,7 @@ if (empty($output) || strpos($output, '.php') === false) {
 }
 
 exit(0);
-[/php]
+{% endhighlight %}
 
 Este check revisa si existe algún archivo con extensión .php y si no hay ninguno, muere entregando un simple "2" como respuesta. De lo contrario, muere entregando un "0" como respuesta. 
 Aunque ustedes no lo crean, el hecho de morir con un "2" o un "0" marca la gran diferencia: si el script muere con cualquier cosa distinta de "0", se cancela la acción, es decir, no se realiza el commit. El número con el cual muere el script es totalmente de su elección.
@@ -97,7 +96,7 @@ Todas esas verificaciones no son tan triviales como verificar que venga un archi
 
 Lo mejor que se puede hacer es crear un directorio `.hooks` (o cualquier otro que ustedes escogan y que no sea dentro de `.git`) donde tendremos al menos dos archivos base: uno para crear el symlink hacia nuestro hook y el otro es el hook propiamente tal. Se elije por esta estructura debido a que todo lo que está dentro de la carpeta `.git` no se comparte con los demás y sólo es de ustedes, por lo tanto, para que todos puedan usar el mismo hook, se debe elegir una ubicación distinta para que de esta forma, se incluya en el repositorio de todas formas. Aunque no hay ninguna regla que diga que la carpeta tiene que tener uno u otro nombre, por convención generalizada se ocupa el nombre `.hooks`.
 
-[bash]
+{% highlight bash %}
 #!/bin/bash
 
 # Do not work as root, but as a normal user
@@ -129,7 +128,7 @@ fi
 ln -s -f $CWD/pre-commit.hook.php $HOOK_DIR/pre-commit
 echo "Symlink(s) and options set, enjoy the programming!"
 exit 0
-[/bash]
+{% endhighlight %}
 
 Parece bastante código, pero en sí es bastante simple: este script verifica primero que no estén trabajando como root, luego averigua dónde está parado, para que de esta forma se pueda ir a la raíz del repositorio, hacia la carpeta `.git` y una vez ahí, crea el symlink respaldando el symlink/archivo previo si lo hubiere. Una vez hecho eso, establece algunas opciones y con eso estaremos listos para poder ejecutar nuestro hook.
 
