@@ -17,4 +17,6 @@ Lo único que tenemos que hacer:
 5. ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
 6. reboot
 
+Fuente: https://www.centos.org/forums/viewtopic.php?f=47&t=47088
+
 WIP!
