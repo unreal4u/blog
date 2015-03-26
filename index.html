@@ -3,20 +3,33 @@ layout: default
 ---
 
 <div class="home">
+    <ul class="post-list">
+        {% for post in paginator.posts %}
+        <li>
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <h2>
+                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </h2>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-          <p>{{ post.excerpt }}</p>
-      </li>
-    {% endfor %}
-  </ul>
+            <p>{{ post.excerpt }}</p>
+        </li>
+        {% endfor %}
+    </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+    <div class="pagination">
+        {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}" class="previous ">Posts más recientes</a>
+        {% else %}
+        <span class="previous">Posts más recientes</span>
+        {% endif %}
+        <span class="page_number ">&lt; {{ paginator.page }} de {{ paginator.total_pages }} &gt;</span>
+        {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}" class="next">Posts más antiguos</a>
+        {% else %}
+        <span class="next ">Posts más antiguos</span>
+        {% endif %}
+    </div>
+    <p class="rss-subscribe">Subscríbete <a href="{{ "feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
 </div>

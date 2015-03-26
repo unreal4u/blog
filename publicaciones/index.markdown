@@ -1,5 +1,4 @@
 ---
-author: admin
 comments: false
 date: 2009-12-12 06:37:44+00:00
 layout: page
@@ -16,6 +15,18 @@ A través de mi vida en Internet, he publicado una serie de scripts, manuales, n
 
 
 Últimamente he estado bastante más activo en la comunidad Open-Source y como tal una de las cosas que más me gusta es dar charlas en conferencias. Publicaré aquí por lo tanto todas las charlas que he atendido y el link a las mismas.
+
+
+
+#### PHPugle 2015
+
+
+* Locación: Venlo, Holanda
+* Idioma: Inglés
+* Fecha: 02 Marzo 2015
+* Tema: Coding standards and code quality
+* Diapositivas: [https://speakerdeck.com/unreal4u/coding-quality-and-coding-standards](https://speakerdeck.com/unreal4u/coding-quality-and-coding-standards)
+* joind.in: [https://joind.in/talk/view/13713](https://joind.in/talk/view/13713)
 
 
 
