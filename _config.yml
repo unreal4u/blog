@@ -19,6 +19,8 @@ excerpt_separator: "<!-- more -->"
 permalink: /:year/:month/:title/
 paginate: 10
 paginate_path: "/page/:num/"
+gems:
+  - jekyll-sitemap
 
 # SASS settings
 sass:
