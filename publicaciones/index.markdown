@@ -5,6 +5,7 @@ layout: page
 slug: publicaciones
 title: Publicaciones
 wordpress_id: 148
+is_topmenu: true
 ---
 
 A través de mi vida en Internet, he publicado una serie de scripts, manuales, noticias, artículos, reviews y guías disponibles para el público en general. Esta es una recolección de todos, de modo de que el público general pueda disponer de ellas.

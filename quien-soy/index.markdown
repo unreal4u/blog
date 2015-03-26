@@ -5,6 +5,7 @@ layout: page
 slug: quien-soy
 title: ¿Quién soy yo?
 wordpress_id: 2
+is_topmenu: true
 ---
 
 ![](http://www.gravatar.com/avatar.php?gravatar_id=7d2c673e648e3df2db252989da891cd7&default=http%3A%2F%2Funreal4u.com%2Fnuevo%2Fi%2Fngl.jpg&size=68&rating=G&border=FF0000)![](http://www.zend.com/img/yellowpages/zce_php5-3_logo.gif)Camilo Sperberg es Ingeniero Informático especializado en Linux y tecnologías Web en general, ya sea CSS, PHP o bases de datos.

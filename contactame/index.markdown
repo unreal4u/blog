@@ -6,6 +6,7 @@ layout: page
 slug: contactame
 title: Contáctame
 wordpress_id: 778
+is_topmenu: true
 ---
 
 A diferencia de muchas otras páginas, no tendré un formulario de contacto el cual rellenas y que nadie revisa, así que para ahorrarme ese trabajo y la larga tortura esperando alguna reacción a la misma, mejor dejo una página funcional donde sí podrán encontrar alguna forma efectiva de contactarme. Sin embargo, no esperen encontrar un número de teléfono o dirección, no quiero despertar por los gritos del club de fans afuera de mi casa (dijo el humilde xD).
