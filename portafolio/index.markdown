@@ -4,6 +4,7 @@ date: 2009-11-23 06:47:07+00:00
 layout: page
 slug: portafolio
 wordpress_id: 40
+sitemap: false
 ---
 
 <h1>Portafolio</h1>

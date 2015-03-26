@@ -5,6 +5,7 @@ date: 2012-11-29 23:07:00+00:00
 layout: page
 slug: tecnocracia-un-mundo-gobernado-por-la-ciencia
 wordpress_id: 732
+sitemap: false
 ---
 
 # Tecnocracia: un mundo gobernado por la ciencia
