@@ -21,11 +21,11 @@ layout: default
 
     <div class="pagination">
         {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="previous ">Posts más recientes</a>
+        <a href="{{ paginator.previous_page_path }}" class="previous btn btn-default">Posts más recientes</a>
         {% endif %}
         <!-- <span class="page_number ">&lt; {{ paginator.page }} de {{ paginator.total_pages }} &gt;</span> -->
         {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path }}" class="next">Posts más antiguos</a>
+        <a href="{{ paginator.next_page_path }}" class="next btn btn-default">Posts más antiguos</a>
         {% endif %}
     </div>
     <p class="rss-subscribe">Subscríbete <a href="{{ "feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
