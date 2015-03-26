@@ -12,7 +12,7 @@ github_username:  unreal4u
 markdown: kramdown
 excerpt_separator: "<!-- more -->"
 permalink: /:year/:month/:title/
-paginate: 15
+paginate: 10
 paginate_path: "/page/:num/"
 
 # SASS settings
