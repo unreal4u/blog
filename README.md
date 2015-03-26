@@ -3,8 +3,6 @@ Blog
 
 This is my own blog. For now, it's only in Spanish, but the future may have other things in its mind. 
 
-For now, it is just a collection of files which will be published some day. No date is set yet.
-
 Setup dev environment
 =======
 
