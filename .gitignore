@@ -4,3 +4,4 @@ css/main.css
 
 # IDE generated files
 .idea
+.DS_Store
