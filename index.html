@@ -23,7 +23,7 @@ layout: default
         {% else %}
         <span class="previous">Posts más recientes</span>
         {% endif %}
-        <span class="page_number ">&gt; {{ paginator.page }} de {{ paginator.total_pages }} &lt;</span>
+        <span class="page_number ">&lt; {{ paginator.page }} de {{ paginator.total_pages }} &gt;</span>
         {% if paginator.next_page %}
         <a href="{{ paginator.next_page_path }}" class="next">Posts más antiguos</a>
         {% else %}
