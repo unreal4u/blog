@@ -2,32 +2,30 @@
 layout: default
 ---
 
-<div class="home">
-    <ul class="post-list">
-        {% for post in paginator.posts %}
-        <li>
-            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+{% for post in paginator.posts %}
+<div class="blog-post">
+    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-            <h2>
-                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </h2>
+    <h2>
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </h2>
 
-            <article class="post-excerpt">
-                {{ post.excerpt }}
-            </article>
-        </li>
-        {% endfor %}
-    </ul>
-
-    <div class="pagination">
-        {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="previous btn btn-default">Posts más recientes</a>
-        {% endif %}
-        <!-- <span class="page_number ">&lt; {{ paginator.page }} de {{ paginator.total_pages }} &gt;</span> -->
-        {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path }}" class="next btn btn-default">Posts más antiguos</a>
-        {% endif %}
-    </div>
-    <p class="rss-subscribe">Subscríbete <a href="{{ "feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+    <article class="post-excerpt">
+        {{ post.excerpt }}
+    </article>
 </div>
+{% endfor %}
+
+<ul class="pager">
+    {% if paginator.previous_page %}
+    <li>
+        <a href="{{ paginator.previous_page_path }}">Posts más recientes</a>
+    </li>
+    {% endif %}
+    <!-- <span class="page_number ">&lt; {{ paginator.page }} de {{ paginator.total_pages }} &gt;</span> -->
+    {% if paginator.next_page %}
+    <li class="pull-right">
+        <a href="{{ paginator.next_page_path }}">Posts más antiguos</a>
+    </li>
+    {% endif %}
+</ul>

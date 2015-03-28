@@ -7,13 +7,7 @@ url: "http://blog.unreal4u.com" # the base hostname & protocol for your site
 twitter_username: unreal4u
 github_username:  unreal4u
 analytics :
-  provider : google
-  google :
-    tracking_id : 'UA-7167806-2'
-  getclicky :
-    site_id :
-
-# Build settings
+  tracking_id : 'UA-7167806-2'
 markdown: kramdown
 excerpt_separator: "<!-- more -->"
 permalink: /:year/:month/:title/
@@ -21,6 +15,10 @@ paginate: 10
 paginate_path: "/page/:num/"
 gems:
   - jekyll-sitemap
+bootstrap:
+  version : "3.3.4"
+jquery:
+  version : "2.1.3"
 
 # SASS settings
 sass:
