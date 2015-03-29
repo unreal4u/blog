@@ -10,3 +10,11 @@ body {
 .post-content h3 {
     font-size:18px;
 }
+
+pre {
+    overflow-x: scroll;
+}
+
+pre code {
+    white-space: pre;
+}
