@@ -3,24 +3,20 @@ layout: default
 ---
 
 {% for post in paginator.posts %}
-<div class="blog-post">
-    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+<article class="blog-post">
+    {% include post-header.html thePost=post %}
 
-    <h2>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </h2>
-
-    <article class="post-excerpt">
+    <div class="post-excerpt">
         {{ post.excerpt }}
-    </article>
+    </div>
 
-    <div class="">
+    <footer class="entry-category-listing">
         Categoría(s):
         {% for category in post.categories%}
             <a href="/category/{{ category | slugify }}">{{ category }}</a>{% if forloop.last == false %}, {% endif %}
         {% endfor %}
-    </div>
-</div>
+    </footer>
+</article>
 {% endfor %}
 
 <ul class="pager">

@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="blog-nav">
+        <a class="blog-nav-item" href="{{ site.baseurl }}/">Inicio</a>
+        {% for page in site.pages %}
+            {% if page.is_topmenu %}
+                <a class="blog-nav-item" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

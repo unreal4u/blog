@@ -1,11 +1,11 @@
-/*
- * Globals
- */
-
 body {
     font-family: Helvetica, "Times New Roman", Times, serif;
     color: #555;
+    background: #f6f5f0;
 }
+
+a:link,a:visited,a:hover,a:active{color:#BD020B;text-decoration:none}
+a:hover{color:#FF960B}
 
 h1, .h1,
 h2, .h2,
@@ -19,6 +19,23 @@ h6, .h6 {
     color: #333;
 }
 
+.icon > svg {
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+    width: 32px;
+    color:#FFF;
+}
+
+.blog-sidebar img {
+    display:block;
+    margin:auto;
+}
+
+.sidebar-logo {
+    height: 135px;
+    width: 175px;
+}
 
 /*
  * Override Bootstrap's default container.
@@ -31,12 +48,8 @@ h6, .h6 {
 }
 
 
-/*
- * Masthead for nav
- */
-
 .blog-masthead {
-    background-color: #428bca;
+    background-color: #dcecd3;
     -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
     box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
 }
@@ -47,7 +60,7 @@ h6, .h6 {
     display: inline-block;
     padding: 10px;
     font-weight: 500;
-    color: #cdddeb;
+    color: #FFF;
 }
 .blog-nav-item:hover,
 .blog-nav-item:focus {
@@ -140,6 +153,58 @@ h6, .h6 {
     color: #999;
 }
 
+.the-date {
+    background: #FE9900;
+    float: right;
+    padding: 4px 0;
+    text-align: center;
+    margin: 3px 4px;
+    color: #FFF;
+    border-radius: 10px;
+    width: 65px;
+}
+
+.the-date div {
+    background: #FFF;
+    font-size: 25px;
+    color: #000;
+    width: 65px;
+}
+
+.the-date small {
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.entry-header {
+    background: #326401;
+    overflow: hidden;
+    padding: 2px 0;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 25px;
+    line-height: 1;
+}
+
+.blog-post h1 {
+    width: 540px;
+    font-size: 25px;
+    float: left;
+    padding-top: 6px;
+}
+
+.blog-post h1 a {
+    color: #FFF;
+}
+
+.blog-post h1 {
+    padding-left: 15px;
+}
+
+.entry-category-listing {
+    background: #e7e7e7;
+    padding:5px 10px;
+}
 
 /*
  * Footer
