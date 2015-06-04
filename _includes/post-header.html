@@ -1,13 +1,17 @@
 <header class="entry-header">
-    <h1 class="entry-title">
-        <a href="{{ include.thePost.url | prepend: site.baseurl }}" rel="bookmark">{{ include.thePost.title }}</a>
-    </h1>
+	<div class="row">
+		<div class="col-sm-10">
+		<h1 class="entry-title">
+            <a href="{{ include.thePost.url | prepend: site.baseurl }}" rel="bookmark">{{ include.thePost.title }}</a>
+        </h1>
+        </div>
 
-    <div class="entry-meta">
-        <div class="the-date">
-            <small>{{ include.thePost.date | date: "%b"}}</small>
-            <div>{{ include.thePost.date | date: "%d" }}</div>
-            <small>{{ include.thePost.date | date: "%Y" }}</small>
+        <div class="entry-meta col-sm-2">
+            <div class="the-date">
+                <small>{{ include.thePost.date | date: "%b"}}</small>
+                <div>{{ include.thePost.date | date: "%d" }}</div>
+                <small>{{ include.thePost.date | date: "%Y" }}</small>
+            </div>
         </div>
     </div>
 </header>

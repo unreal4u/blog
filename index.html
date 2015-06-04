@@ -10,12 +10,12 @@ layout: default
         {{ post.excerpt }}
     </div>
 
-    <footer class="entry-category-listing">
+    <!--<footer class="entry-category-listing">
         Categoría(s):
-        {% for category in post.categories%}
-            <a href="/category/{{ category | slugify }}">{{ category }}</a>{% if forloop.last == false %}, {% endif %}
+        {% for category in post.tags %}
+            <a href="/category/{{ category | slugify }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}
         {% endfor %}
-    </footer>
+    </footer>-->
 </article>
 {% endfor %}
 

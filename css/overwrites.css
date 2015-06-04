@@ -1,6 +1,11 @@
 body {
     font-size:14px;
-    line-height:1.8;
+    line-height:1.6;
+}
+
+.navbar-nav > li > a.little-padding {
+	padding-bottom:8px;
+    padding-top:8px;
 }
 
 .post-content h1 {
