@@ -8,3 +8,4 @@ css/main.css
 .buildpath
 .project
 .settings/
+*.swp
