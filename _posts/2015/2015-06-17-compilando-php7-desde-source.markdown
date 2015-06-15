@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2015-06-10 00:00:00+00:00
+date: 2015-06-17 00:00:00+00:00
 layout: post
 slug: compilando-php7-desde-source
 title: Compilando PHP7 desde source
