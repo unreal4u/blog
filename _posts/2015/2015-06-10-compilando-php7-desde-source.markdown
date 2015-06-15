@@ -8,9 +8,9 @@ categories:
 - PHP
 ---
 
-Que quede una cosa clara desde el principio! *Yo no soy un fan de compilar software*! Encuentro que hoy en día, compilar ya es cosa del pasado, a menos que quieras probar software que todavía no está listo para funcionar en producción. Como tal, quise probar qué tal andaba PHP7 con el código de la empresa, a raíz de las tantas maravillas que se ha dejado entrever de esta nueva versión.
+Que quede una cosa clara desde el principio! **Yo no soy un fan de compilar software**! Encuentro que hoy en día, compilar ya es cosa del pasado, a menos que quieras probar software que todavía no está listo para funcionar en producción. Como tal, quise probar qué tal andaba PHP7 con el código de la empresa, a raíz de las tantas maravillas que se ha dejado entrever de esta nueva versión.
 
-Algunas de estas maravillas son que incluyeron PHPNG (PHP Next Generation), que mejora el uso de recursos (ocuparía MUCHO menos RAM), y ahora también se activó un JIT Engine (que aceleraría las llamadas recurrentes a funciones y métodos). Entre esas dos mejoras, deberían ver un incremento de velocidad del orden de 25% a 150% comparado con PHP 5.6, dependiendo del caso obviamente.
+Algunas de estas maravillas son que incluyeron PHPNG (PHP Next Generation), que mejora el uso de recursos (ocuparía MUCHO menos RAM), y ahora también se activó un JIT Engine (que aceleraría las llamadas recurrentes a funciones y métodos). Entre esas dos mejoras, deberían ver un incremento de velocidad del orden de **25% a 150% comparado con PHP 5.6**, dependiendo del caso obviamente.
 
 Esto quiere decir básicamente que en una instalación default de WordPress, la cantidad de instrucciones de CPU se redujeron de 9.413.106.833 a 2.483.106.468 y que el tiempo que ocupa generar 1000 veces el homepage se redujo de 26.756 segundos a 11.081 segundos (Como pueden [verificar acá](https://docs.google.com/spreadsheets/d/1qW0avj2eRvPVxj_5V4BBNrOP1ULK7AaXTFsxcffFxT8/edit?pli=1#gid=1334306309)). En ambos casos, es un incremento de velocidad importante y está casi a la par (y actualmente en muchos casos aún más rápido) que HHVM de Facebook.
 
@@ -19,7 +19,7 @@ Lo primero que necesitamos para empezar a trabajar es una instalación limpia y 
 yum install git autoconf gcc bison epel-release
 {% endhighlight %}
 
-En principio, no necesitaremos nada más para una instalación *básica* de PHP. Sin embargo, como también quiero un PHP que sea medianamente usable, necesitaremos de algunas dependencias. ¿Cuáles? Pues, después del salto.
+En principio, no necesitaremos nada más para una instalación **básica** de PHP. Sin embargo, como también quiero un PHP que sea medianamente usable, necesitaremos de algunas dependencias. ¿Cuáles? Pues, después del salto.
 
 <!-- more -->
 
