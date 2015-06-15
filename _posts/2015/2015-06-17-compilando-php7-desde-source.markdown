@@ -21,6 +21,8 @@ Esto quiere decir básicamente que en una instalación default de WordPress, la 
 [verificar acá](https://docs.google.com/spreadsheets/d/1qW0avj2eRvPVxj_5V4BBNrOP1ULK7AaXTFsxcffFxT8/edit?pli=1#gid=1334306309)). En ambos casos,
 es un incremento de velocidad importante y está casi a la par (y actualmente en muchos casos aún más rápido) que HHVM de Facebook.
 
+<!-- more -->
+
 Lo primero que necesitamos para empezar a trabajar es una instalación limpia y minimalista de CentOS 7. Activen ethernet (Predeterminadamente
 viene desactivado, esto se hace en <code>/etc/sysconfig/network-scripts/ifcfg-enp0s3</code>, cambiando la opción <code>ONBOOT=no</code> por
 <code>ONBOOT=yes</code> al final de este archivo), y una vez hecho eso, necesitaremos algunos paquetes para empezar:  
@@ -33,9 +35,7 @@ yum install git autoconf gcc bison epel-release
 {% endhighlight %}
 
 En principio, no necesitaremos nada más para una instalación **básica** de PHP. Sin embargo, como también quiero un PHP que sea medianamente
-usable, necesitaremos de algunas dependencias. ¿Cuáles? Pues, después del salto.
-
-<!-- more -->
+usable, necesitaremos de algunas dependencias.
 
 ## Las dependencias
 
