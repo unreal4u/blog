@@ -122,6 +122,19 @@ El comando definitivo para compilar PHP7:
  --with-readline
 {% endhighlight %}
 
+Sé que cuando compilan, les gusta saber qué compilan, así que aquí un pequeño listado de las opciones más desconocidas y/o emblemáticas/nuevas:
+
+* enable-bcmath: La librería de matemáticas extendida de PHP. [Más información](http://php.net/manual/en/book.bc.php).
+* enable-pcntl / sysvmsg / sysvsem / sysvshm: Process Control y asociados. Fundamental para procesos CLI. [Más información](http://php.net/manual/en/book.pcntl.php).
+* enable-calendar: Las funciones de calendario. [Más información](http://php.net/manual/en/book.calendar.php).
+* with-gmp: GNU Multiple Precision: Otra librería de matemáticas, suelo ocupar algunas funciones de repente. [Más información](http://php.net/manual/en/book.gmp.php).
+* with-pspell: Librería de ortografía! [Más información](http://php.net/manual/en/book.pspell.php).
+* enable-maintainer-zts: Para soporte de pthreads (más adelante). [Más información](http://php.net/manual/en/book.pthreads.php).
+* enable-intl: i18n, fundamental para el mundo globalizado de hoy!
+* enable-opcache-file: Opción nueva y experimental, aceleraría procesos CLI. Sin link de más información ya que es una opción nueva con PHP 7 y no hay documentación todavía. Sé de esta opción por la lista de correos.
+* enable-fpm: Para crear un módulo fast-cgi en vez de php_module (que es viejo y lento). [Más información](http://php.net/manual/en/book.fpm.php). **Prometo que haré una guía que integra PHP con nginx y fast_cgi más adelante**.
+* with-readline: Para phpdbg (Debugger de PHP interactivo). [Más información](http://phpdbg.com/).
+
 Una vez compilado, podemos proceder a crear el build y la instalación propiamente tal, a tomar café!
 
 {% highlight bash %}
@@ -129,30 +142,32 @@ make
 make install
 {% endhighlight %}
 
-Si desean experimentar con el setting <code>--enable-opcache-file</code>, deberán incluir algunas opciones en su <code>php.ini</code>: 
+Al finalizar, tendremos un binario que se habrá copiado a alguna ruta donde hayan binarios (/usr/bin/ en este caso), y que si lo ejecutamos nos dará la siguiente salida:
+
+{% highlight bash %}
+[root@localhost ~]# php -v
+PHP 7.0.0-dev (cli) (built: Jun 15 2015 14:34:33) 
+Copyright (c) 1997-2015 The PHP Group
+Zend Engine v3.0.0-dev, Copyright (c) 1998-2015 Zend Technologies
+{% endhighlight %}
+
+Si desean experimentar con el setting <code>--enable-opcache-file</code>, deberán crear un nuevo <code>/etc/php.ini</code>, y en ella incluir las siguientes opciones: 
 
 {% highlight ini %}
+[opcache]
+opcache.enable = 1
 opcache.enable_cli=1
 opcache.file_cache=/tmp
 opcache.file_cache_only=1
 {% endhighlight %}
 
-Esto debería hacer opcache persistente, ideal para varias sesiones de CLI.
+Esto debería activar opcache y además hacerlo persistente para procesos CLI, ideal para varias sesiones.
 
 ## Verificaciones
 
-Ahora nos toca verificar que todo haya ido bien y que todo funciona. Lo primero que tenemos que hacer es crear un <code>php.ini</code>
-dentro de <code>/etc/</code>. El contenido? Pues simple: 
+Ahora nos toca verificar que todo haya ido bien y que todo funciona. 
 
-{% highlight ini %}
-[opcache]
-opcache.enable = 1
-opcache.enable_cli = 1
-opcache.file_cache = /tmp
-opcache.file_cache_only = 1
-{% endhighlight %}
-
-También aprovechamos de instalar composer, [tal como es descrito en este post](/2015/06/entendiendo-e-implementando-composer-en-tu-codigo-php/).
+Primero aprovechamos de instalar composer, [tal como es descrito en este post](/2015/06/entendiendo-e-implementando-composer-en-tu-codigo-php/).
 
 Enseguida copiamos un repositorio y ejecutamos algunas pruebas: 
 
