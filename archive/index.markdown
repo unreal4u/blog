@@ -1,10 +1,19 @@
 ---
 layout: page
-title: Archive
+title: Archivo
 ---
 
 <p>Este es un listado visual de todos los posts que han habido, en orden cronológico descendente:</p>
 
+{% assign year = 0 %}
+<dl class="dl-horizontal">
 {% for post in site.posts %}
-  * {{ post.date | date_to_string }} &raquo; [ {{ post.title }} ]({{ post.url }})
+    {% assign newYear = post.date | date: '%Y - %B' %}
+    {% if year != newYear %}
+        {% assign year = post.date | date: '%Y - %B' %}
+        <dt>{{ post.date | date: '%B %Y' }}</dt>
+    {% endif %}
+    <dd>&raquo; <a href="{{ post.url }}">{{ post.title }}</a></dd>
 {% endfor %}
+</dl>
+
