@@ -107,7 +107,6 @@ Esta class verifica la existencia de un archivo PID tanto en Unix (con Posix) co
 
 ## Manuales, guías, artículos y reviews
 
-  
 
 La gran mayoría de los artículos, reviews, manuales y guías fueron realizados para ser utilizados en CHW, mucho antes de la existencia de mi blog y donde fui administrador del foro por un espacio de cerca de dos años, y colaborador desde hace cinco. A continuación el listado de artículos escritos para este portal en orden histórico. 
 
@@ -165,3 +164,12 @@ Una breve introducción al tema de los conectores en los discos duros.
 
 
 Un artículo escrito para CHW que habla sobre el Fusion-IO: mucho más rápido que el SSD y además mucho más fiable. 
+
+#### [Entendiendo e implementando composer en tu código PHP](http://www.capa9.net/portada/entendiendo-e-implementando-composer-en-tu-codigo-php/)
+
+Capa9 es el nuevo hogar donde se aloja toda la gente que otrora formó parte de Chilehardware. Esta guía es una copia [de la misma](/2015/06/entendiendo-e-implementando-composer-en-tu-codigo-php/) que está publicada en este blog.
+
+#### [Compilando PHP 7 en CentOS 7](http://www.capa9.net/portada/compilando-php-7-en-centos-7/)
+
+Esta guía es una copia [de la misma](/2015/06/compilando-php7-desde-source/) que está publicada en este blog.
+
