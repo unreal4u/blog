@@ -23,6 +23,11 @@ div.container {
     padding: 10px 10px 10px 15px;
 }
 
+img.img-responsive, img.img-thumbnail {
+    margin: 0 auto;
+    display: block;
+}
+
 .navbar-nav > li > a.little-padding {
     padding-bottom: 8px;
     padding-top: 8px;
@@ -95,6 +100,11 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .entry-category-listing {
     background: #e7e7e7;
     padding: 5px 10px;
+}
+
+.thumbnail img {
+    width: 150px;
+    height: 150px;
 }
 
 @import 'syntax';
