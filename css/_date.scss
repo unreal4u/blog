@@ -1,0 +1,24 @@
+.the-date {
+    background: #FE9900;
+    float: right;
+    padding: 4px 0;
+    text-align: center;
+    margin: 3px 4px;
+    color: #FFF;
+    border-radius: 10px;
+    width: 65px;
+
+    div {
+        background: #FFF;
+        font-size: 25px;
+        color: #000;
+        width: 65px;
+    }   
+
+    small {
+        font-size: 13px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }   
+}
+
