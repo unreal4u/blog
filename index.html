@@ -3,19 +3,12 @@ layout: default
 ---
 
 {% for post in paginator.posts %}
-<article class="blog-post">
+<article class="article-content">
     {% include post-header.html thePost=post %}
 
     <div class="post-excerpt">
         {{ post.excerpt }}
     </div>
-
-    <!--<footer class="entry-category-listing">
-        Categoría(s):
-        {% for category in post.tags %}
-            <a href="/category/{{ category | slugify }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}
-        {% endfor %}
-    </footer>-->
 </article>
 {% endfor %}
 

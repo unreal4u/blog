@@ -6,6 +6,7 @@
         </h1>
         </div>
 
+        {% if include.hideDate == null %}
         <div class="entry-meta col-sm-2">
             <div class="the-date">
                 <small>{{ include.thePost.date | date: "%b"}}</small>
@@ -13,5 +14,6 @@
                 <small>{{ include.thePost.date | date: "%Y" }}</small>
             </div>
         </div>
+        {% endif %}
     </div>
 </header>

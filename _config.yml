@@ -23,4 +23,4 @@ jquery:
 # SASS settings
 sass:
   style: :compressed
-  sass_dir: _sass
+  sass_dir: css

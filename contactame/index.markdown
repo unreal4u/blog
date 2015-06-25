@@ -1,6 +1,5 @@
 ---
 author: admin
-comments: true
 date: 2013-06-01 22:45:44+00:00
 layout: page
 slug: contactame
