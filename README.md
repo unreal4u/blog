@@ -1,11 +1,11 @@
-{% comment %}
+<!--
 If you are viewing this, it means that you came in visiting this file directly
-through my blog. If so, you are welcome to review the code on my Github:  
+through my blog. If so, you are welcome to review the code on my Github:
 https://github.com/unreal4u/blog/
 
-You can ignore the rest of this file as this is documentation exclusively 
+You can ignore the rest of this file as this is documentation exclusively
 intended for it's use on/through github.
-{% endcomment %}
+-->
 
 Blog
 ========
