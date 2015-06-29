@@ -16,18 +16,37 @@ Uno de estos estándares es el tema de este post y tiene que ver con Semantic Ve
 bastante simple: nos permite saber rápidamente si cuando nos toca actualizar alguna parte de un package podemos hacerlo de forma segura o no,
 sin tener que preocuparnos de posibles problemas de retrocompatibilidad que pudieran surgir.
 
-<!-- more -->
-
 La idea detrás de suena bastante bien y la verdad es que después de haberlo probado en algunos sistemas de producción; funciona. En muy resumidas
 cuentas, podemos ver que una versión tiene 3 componentes:  
-X.Y.Z
+<code>X.Y.Z</code>
 
-Donde:  
+El signicado de cada una de ellas? Pues la siguiente:
+
+<!-- more -->
+
 <code>X</code> representa la <strong>versión mayor</strong>.  
 <code>Y</code> representa la <strong>versión menor</strong>.  
 <code>Z</code> representa la <strong>versión de parches</strong>.
 
+Ahora bien, ¿qué quiere decir esto? ¡Simple! Supongamos que tenemos una class simple que haga lo siguiente:
 
+{% highlight php %}
+<?php
+
+class HelloWorld
+{
+    public $name;
+    public $age = 0;
+    public function returnString($name, $age = 0)
+    {
+        $this->name = $name;
+        if ($age > 0) {
+            $this->age = $age;
+        }
+        return sprintf('Hello %s, your age is %d', $this->name, $this->age);
+    }
+}
+{% endhighlight %}
 
 Fuentes:  
 [semver](http://semver.org/)  
