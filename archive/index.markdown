@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Archivo
+is_topmenu: true
 ---
 
 <p>Este es un listado visual de todos los posts que han habido, en orden cronológico descendente:</p>

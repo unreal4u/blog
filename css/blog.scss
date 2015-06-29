@@ -29,6 +29,15 @@ div.container {
     padding-top: 8px;
 }
 
+.navbar-brand > img {
+    height:50px;
+    width:50px;
+}
+
+.navbar-header a.navbar-brand {
+    padding:0;
+}
+
 pre {
     overflow-x: scroll;
 
@@ -66,8 +75,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 .sidebar-logo {
-    height: 135px;
-    width: 175px;
+    height: 150px;
+    width: 150px;
 }
 
 .sidebar-title {
