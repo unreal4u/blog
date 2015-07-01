@@ -1,0 +1,21 @@
+---
+title: Buscar
+layout: page
+slug: buscar
+is_topmenu: true
+---
+
+<script>
+  (function() {
+    var cx = '017517422658593813890:w0rqyw_f_ra';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+
