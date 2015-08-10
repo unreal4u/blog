@@ -28,22 +28,24 @@ Y qué significan cada uno de ellos? Pues eso también es bastante simple:
 
 <!-- more -->
 
-Ahora bien, ¿qué quiere decir esto? ¡Simple! Existen algunas reglas básicas para el incremento de las versiones, que me gusta llamarlas "reglas de convivencia": 
+## Las reglas
 
-* Cada versión siempre se incrementará de 1 a 1.
-* Si se incrementa la versión menor, la versión de paches deberá volver a cero.
-* De la misma forma, si se incrementa la versión mayor, tanto la versión menor como la versión de parches deberán volver a cero.
-* Una vez que se ha sacado al público una versión, ésta NO debe alterarse por NINGÚN motivo! Si les faltó un parche, se debe crear un nuevo incremento en la versión.
+Ahora bien, ¿qué quiere decir esto? ¡Simple! Existen algunas reglas básicas para el incremento de las versiones, que me gusta llamarlas "*reglas de convivencia*": 
 
-Adicionalmente, hay otro set de reglas que a mi me gusta llamarlas "las leyes", que son:
+* Cada versión siempre se incrementará **de 1 a 1**.
+* Si se incrementa la versión menor, la _versión de parches_ deberá **volver a cero**.
+* De la misma forma, si se incrementa la versión mayor, tanto la _versión menor_ como la _versión de parches_ deberán **volver a cero**.
+* Una vez que se ha sacado al público una versión, ésta **NO debe alterarse por NINGÚN motivo**! Si les faltó un parche, se debe crear un nuevo incremento en la versión.
 
-* Se debe incrementar la versión mayor cuando haces cambios que causen problemas en la compatibilidad retroactiva.
-* Se debe incrementar la versión menor sólo si se **agrega** código que no afecte la compatibilidad retroactiva.
-* Se debe incrementar la versión de parches si son arreglos que son retroactivamente compatible.
+Adicionalmente, hay otro set de reglas que a mi me gusta llamarlas "**las leyes**", que son:
 
-###Versión 1.2.3
+* Se debe incrementar la versión mayor cuando haces cambios que **causen problemas en la compatibilidad retroactiva**.
+* Se debe incrementar la versión menor sólo si se **agrega** código que _no afecte la compatibilidad retroactiva_.
+* Se debe incrementar la versión de parches si son arreglos que son _retroactivamente compatible_.
 
-Supongamos la versión **1.2.3** de la siguiente función:
+### Versión 1.2.3
+
+Supongamos la versión **1.2.3** de la siguiente función, la función original y a partir de la cual haremos todo el desarrollo:
 
 {% highlight php %}
 <?php
@@ -65,7 +67,7 @@ class HelloWorld
 }
 {% endhighlight %}
 
-###Versión 1.2.4
+### Versión 1.2.4
 
 Una idea para solucionar un bug que sea retroactivamente compatible, es darle un valor predeterminado (string vacío) a <code>$name</code>,
 de esa forma no alteramos la funcionalidad base de nuestro script, por lo tanto, la *nueva* versión de nuestro software pasará a ser la 
@@ -91,7 +93,7 @@ class HelloWorld
 }
 {% endhighlight %}
 
-###Versión 1.3.0
+### Versión 1.3.0
 
 Ahora supongamos que queramos agregar una nueva función que devuelva un muy simple hola mundo: como estamos agregando nueva funcionalidad,
 deberemos incrementar la versión menor de nuestro software, haciendo que la *nueva* versión de nuestro software pasará a ser la versión
@@ -122,7 +124,7 @@ class HelloWorld
 }
 {% endhighlight %}
 
-###Versión 2.0.0
+### Versión 2.0.0
 
 Llegados a esta etapa nos dimos cuenta que en realidad hemos estado haciendo mal el cálculo de la edad, y que en realidad debería
 haber sido siempre mayor a 0 en vez de 2. Adaptamos nuestro código y enseguida incrementamos el número de versión a **2.0.0** ya que
@@ -151,7 +153,16 @@ class HelloWorld
 }
 {% endhighlight %}
 
-##Conclusiones
+## Ejemplos prácticos
+
+Por supuesto que la web está lleno de ejemplos prácticos. De partida, todo composer funciona bajo este principio, así que cuando ocupen
+composer, también podrán estar seguros de que se ocupa este sistema (de ahí su importancia). Si quieren ver ejemplos un poco más chicos, 
+pueden revisar mi Github, para mencionarles sólo algunos: 
+
+[PID class](https://github.com/unreal4u/pid/releases)  
+[Rutverifier class](https://github.com/unreal4u/rutverifier/releases)
+
+## Conclusiones
 
 Tal como podemos apreciar, con sólo algunas reglas básicas sabemos precisamente qué esperar de un nuevo software cuando se ha sacado
 una nueva versión del mismo. Sabemos cuándo deberemos poner especial atención a updates cuando haya una nueva versión mayor y sabremos
@@ -167,6 +178,6 @@ Eso es de inmediato un incremento mayor, ya que nuestro software en determinadas
 
 Por supuesto que no he cubierto todos los casos acá, pero para eso se pueden referir a las fuentes que cito a continuación. ¡Que tengan buen día!
 
-##Fuentes:  
+## Fuentes:  
 [semver](http://semver.org/)  
 
