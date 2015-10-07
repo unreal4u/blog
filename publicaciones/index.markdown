@@ -12,14 +12,25 @@ A través de mi vida en Internet, he publicado una serie de scripts, manuales, n
 
 
 
-## Conferencias
+## Conferencias y user groups
 
 
-Últimamente he estado bastante más activo en la comunidad Open-Source y como tal una de las cosas que más me gusta es dar charlas en conferencias. Publicaré aquí por lo tanto todas las charlas que he atendido y el link a las mismas.
+Últimamente he estado bastante más activo en la comunidad Open-Source y como tal una de las cosas que más me gusta es dar charlas en conferencias y user groups. Publicaré aquí por lo tanto todas las charlas en los que he hablado y el link a las mismas.
 
 
 
-#### PHPugle 2015
+#### NijmegenPHP (2015)
+
+* Locación: Nijmegen, Holanda
+* Idioma: Inglés / Holandés
+* Fecha: 16 Septiembre 2015
+* Tema: Internationalization and Localization: The basics
+* Diapositivas: [https://speakerdeck.com/unreal4u/internationalization-and-localization](https://speakerdeck.com/unreal4u/internationalization-and-localization)
+* joind.in: [https://joind.in/talk/view/15219](https://joind.in/talk/view/15219)
+
+
+
+#### PHPugle (2015)
 
 
 * Locación: Venlo, Holanda
