@@ -1,6 +1,6 @@
 _site
 .sass-cache
-css/main.css
+css/blog.css*
 
 # IDE generated files
 .idea

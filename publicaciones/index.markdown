@@ -8,14 +8,18 @@ wordpress_id: 148
 is_topmenu: true
 ---
 
-A través de mi vida en Internet, he publicado una serie de scripts, manuales, noticias, artículos, reviews y guías disponibles para el público en general. Esta es una recolección de todos, de modo de que el público general pueda disponer de ellas.
+A través de mi vida en Internet, he publicado una serie de scripts, manuales, noticias, artículos, reviews y guías 
+disponibles para el público en general. Esta es una recolección de todos, de modo de que el público general pueda 
+disponer de ellas.
 
 
 
 ## Conferencias y user groups
 
 
-Últimamente he estado bastante más activo en la comunidad Open-Source y como tal una de las cosas que más me gusta es dar charlas en conferencias y user groups. Publicaré aquí por lo tanto todas las charlas en los que he hablado y el link a las mismas.
+Últimamente he estado bastante más activo en la comunidad Open-Source y como tal una de las cosas que más me gusta es 
+dar charlas en conferencias y user groups. Publicaré aquí por lo tanto todas las charlas en los que he hablado y el link 
+a las mismas.
 
 
 
@@ -69,7 +73,8 @@ A través de mi vida en Internet, he publicado una serie de scripts, manuales, n
 ## Repositorio Personal
 
 
-Mi repositorio personal en Github está abierto al público general y en ella pueden encontrar las últimas versiones de las classes escritas por mi. Adicionalmente, pueden mejorarlos y de esa forma aportarán su propio grano de arena.
+Mi repositorio personal en Github está abierto al público general y en ella pueden encontrar las últimas versiones de 
+las classes escritas por mi. Adicionalmente, pueden mejorarlos y de esa forma aportarán su propio grano de arena.  
 Pueden visitarlo haciendo click [en este enlace](https://github.com/unreal4u/).
 
 
@@ -84,48 +89,57 @@ Todos los scripts publicados abajo ya están fuera de uso, para ellos (y más) r
 #### [Extended MySQLi](http://www.phpclasses.org/package/5812-PHP-MySQL-database-access-wrapper-using-MySQLi.html)
 
 
-Este es un class hecho en PHP ocupando el conector MySQLi, orientado a objetos y que permite muchas cosas más. La última versión estable lanzada es la versión 3.0.1, que incluyó soporte para transacciones y otros cambios menores adicionales.
+Este es un class hecho en PHP ocupando el conector MySQLi, orientado a objetos y que permite muchas cosas más. La última 
+versión estable lanzada es la versión 3.0.1, que incluyó soporte para transacciones y otros cambios menores adicionales.
 
 
 
 #### [CSS Stacker and Compressor](http://www.phpclasses.org/package/5950-PHP-Compact-several-CSS-files-into-a-single-file.html)
 
 
-Este es un class hecho en PHP que es capaz de tomar varios CSS y optimizarlos para entregar sólo **un** CSS final, reduciendo de esta manera los HTTP requests. También implementa un módulo de caché interna y hace uso de los headers de HTTP para entregar distintos códigos de manera que no es necesario bajar siempre el mismo CSS.
+Este es un class hecho en PHP que es capaz de tomar varios CSS y optimizarlos para entregar sólo **un** CSS final, 
+reduciendo de esta manera los HTTP requests. También implementa un módulo de caché interna y hace uso de los headers de 
+HTTP para entregar distintos códigos de manera que no es necesario bajar siempre el mismo CSS.
 
 
 
 #### [HTML Utilities](http://www.phpclasses.org/package/6313-PHP-Create-HTML-documents-programmatically.html)
 
 
-Un conjunto de funciones que permiten construir HTML válido por la W3C, desde las cabeceras, scripts hasta objetos flash, visibles en todos los navegadores y perfectamente válido en la W3C. 
+Un conjunto de funciones que permiten construir HTML válido por la W3C, desde las cabeceras, scripts hasta objetos 
+flash, visibles en todos los navegadores y perfectamente válido en la W3C. 
 
 
 
 #### [Extended PGSQL](http://www.phpclasses.org/package/7052-PHP-Access-PostGreSQL-databases-using-PDO.html)
 
 
-Esta class ocupa PDO para conectarse a la base de datos y de esta forma implementa consultas, transacciones y otros con el popular y potente motor PostGreSQL.
+Esta class ocupa PDO para conectarse a la base de datos y de esta forma implementa consultas, transacciones y otros con 
+el popular y potente motor PostGreSQL.
 
 
 
 #### [PID Process Check](http://www.phpclasses.org/package/6895-PHP-Check-if-a-PHP-script-is-running-using-PID-files.html)
 
 
-Esta class verifica la existencia de un archivo PID tanto en Unix (con Posix) como en Windows (Ocupando un objeto COM) para verificar si un cierto proceso está corriendo en el sistema o no.
+Esta class verifica la existencia de un archivo PID tanto en Unix (con Posix) como en Windows (Ocupando un objeto COM) 
+para verificar si un cierto proceso está corriendo en el sistema o no.
 
 
 
 ## Manuales, guías, artículos y reviews
 
 
-La gran mayoría de los artículos, reviews, manuales y guías fueron realizados para ser utilizados en CHW, mucho antes de la existencia de mi blog y donde fui administrador del foro por un espacio de cerca de dos años, y colaborador desde hace cinco. A continuación el listado de artículos escritos para este portal en orden histórico. 
+La gran mayoría de los artículos, reviews, manuales y guías fueron realizados para ser utilizados en CHW.net, mucho 
+antes de la existencia de mi blog y donde fui administrador del foro por un espacio de cerca de dos años, y colaborador 
+desde hace cinco. A continuación el listado de artículos escritos para este portal en orden histórico. 
 
 
 #### [Discos Duros: Conceptos, Configuraciones e Historia](http://www.chw.net/2006/08/discos-duros-conceptos-configuraciones-e-historia/)
 
 
-Una de las primeras guías escritas en CHW que trata acerca de los discos duros. En el enlace, un poco de historia y conceptos básicos y avanzados. 
+Una de las primeras guías escritas en CHW que trata acerca de los discos duros. En el enlace, un poco de historia y 
+conceptos básicos y avanzados. 
 
 
 
@@ -153,14 +167,16 @@ Review comparativo entre ambos cases.
 #### [Todos los navegadores vs Internet Explorer](http://www.chw.net/2008/12/todos-los-navegadores-vs-internet-explorer/)
 
 
-Intento de artículo que pretende analizar las aristas y tendencias que están tomando los demás navegadores vs Internet Explorer.
+Intento de artículo que pretende analizar las aristas y tendencias que están tomando los demás navegadores vs Internet 
+Explorer.
 
 
 
 #### [La ética en la informática](http://www.chw.net/2008/09/la-etica-en-la-informatica/)
 
 
-Reflexión personal acerca de la ética en la informática. ¿Dónde prima la privacidad y dónde se definen los límites de la ética?
+Reflexión personal acerca de la ética en la informática. ¿Dónde prima la privacidad y dónde se definen los límites de la 
+ética?
 
 
 
@@ -178,7 +194,8 @@ Un artículo escrito para CHW que habla sobre el Fusion-IO: mucho más rápido q
 
 #### [Entendiendo e implementando composer en tu código PHP](http://www.capa9.net/portada/entendiendo-e-implementando-composer-en-tu-codigo-php/)
 
-Capa9 es el nuevo hogar donde se aloja toda la gente que otrora formó parte de Chilehardware. Esta guía es una copia [de la misma](/2015/06/entendiendo-e-implementando-composer-en-tu-codigo-php/) que está publicada en este blog.
+Capa9 es el nuevo hogar donde se aloja toda la gente que otrora formó parte de Chilehardware. Esta guía es una copia 
+[de la misma](/2015/06/entendiendo-e-implementando-composer-en-tu-codigo-php/) que está publicada en este blog.
 
 #### [Compilando PHP 7 en CentOS 7](http://www.capa9.net/portada/compilando-php-7-en-centos-7/)
 
