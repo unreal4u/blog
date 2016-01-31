@@ -15,6 +15,7 @@ paginate: 10
 paginate_path: "/page/:num/"
 gems:
   - jekyll-sitemap
+  - jekyll-paginate
 bootstrap:
   version : "3.3.4"
 jquery:
