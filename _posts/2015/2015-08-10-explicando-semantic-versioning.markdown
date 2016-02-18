@@ -2,7 +2,7 @@
 comments: true
 date: 2015-08-10 00:00:00+00:00
 layout: post
-slug: explicando-semantic-versioning
+slug: semver
 title: Explicando Semantic Versioning
 categories:
 - PHP
