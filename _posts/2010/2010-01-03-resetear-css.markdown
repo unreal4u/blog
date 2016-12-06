@@ -47,7 +47,7 @@ p{background:#777;color:#CCC;width:300px}
 {% endhighlight %}
 
 La vista previa: 
-[![2010-01-03-u4u-023](http://blog.unreal4u.com/wp-content/gallery/reseteo-css/thumbs/thumbs_2010-01-03-u4u-023.png)](http://blog.unreal4u.com/wp-content/gallery/reseteo-css/2010-01-03-u4u-023.png)
+[![2010-01-03-u4u-023](http://blog.unreal4u.com/assets/reseteo-css/thumbs/thumbs_2010-01-03-u4u-023.png)](http://blog.unreal4u.com/assets/reseteo-css/2010-01-03-u4u-023.png)
 
 Si se fijan bien en la imagen, tanto Chrome como Firefox mantienen un estilo bastante parecido, pero definitivamente Internet Explorer tiene otra manera totalmente distinta de renderear la página, lo cual redunda en mayores espacios y finalmente en pixeles corridos. También Opera corre el espaciado con un par de pixeles de diferencia, sólo apreciable para el que tiene muy buen ojo. 
 Cabe destacar eso sí, que en estilos más complicados, incluso hay diferencias entre Chrome y Firefox. 
@@ -91,11 +91,11 @@ p{background:#777;color:#CCC;width:300px}
 
 Con este pequeño cambio, nuestro script quedaría rendereado de la siguiente forma en los distintos navegadores seleccionados: 
 
-[![2010-01-03-u4u-024](http://blog.unreal4u.com/wp-content/gallery/reseteo-css/thumbs/thumbs_2010-01-03-u4u-024.png)](http://blog.unreal4u.com/wp-content/gallery/reseteo-css/2010-01-03-u4u-024.png)
+[![2010-01-03-u4u-024](http://blog.unreal4u.com/assets/reseteo-css/thumbs/thumbs_2010-01-03-u4u-024.png)](http://blog.unreal4u.com/assets/reseteo-css/2010-01-03-u4u-024.png)
 
 Aunque existen todavía algunos pixeles corridos, ya no son tantos como antes, lo cual alivia bastante la pega extra a realizarse. 
 
-Eso si que ahora será responsabilidad nuestra establecer los tamaños de las fuentes, pero mediante esta técnica se permitirá facilitar bastante el desarrollo cross-browser. Algunos consejos: la etiqueta `<strong>` también se resetea, al igual que la etiqueta `<em>` y varios más. Sugiero [echar un vistazo en Yahoo Developer Network](http://developer.yahoo.com/yui/3/cssreset/) para informarse de más cambios y otras posibilidades más avanzadas que jamás he ocupado. 
+Eso si que ahora será responsabilidad nuestra establecer los tamaños de las fuentes, pero mediante esta técnica se permitirá facilitar bastante el desarrollo cross-browser. Algunos consejos: la etiqueta `<strong>` también se resetea, al igual que la etiqueta `<em>` y varios más. Sugiero [echar un vistazo en Yahoo Developer Network](http://www.whoishostingthis.com/resources/yui/) para informarse de más cambios y otras posibilidades más avanzadas que jamás he ocupado. 
 
 
 
