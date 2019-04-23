@@ -19,6 +19,8 @@ hacer.
 * **Seguro**. No me gusta filtrar nada hacia el exterior de qué aparatos tengo ni cuáles son las capacidades del mismo.
 * **No destruir la casa en el intento**.
 
+Haz click en el título de esta entrada para leer la entrada completa.
+
 <!-- more -->
 
 ## Los 4 puntos en detalle
@@ -43,31 +45,25 @@ que pueda seguir trabajando bajo distintas condiciones: si se corta la electrici
 pero con este punto no me hago mayor problema ya que un dispositivo "tonto" tampoco funciona sin electricidad. Lo que sí
 es importante es que no hayan más factores externos que puedan influir:
 
-#### Sin internet
+* **Sin internet**: Uno de mis principales problemas con muchos dispositivos IoT es que éstos tengan que depender del
+funcionamiento de Internet. Yo he hecho una cantidad increíble de mejoras en mi red casera de forma de reducir al máximo
+posible cualquier corte de Internet, pero aún así me veo a veces reiniciando el servidor (más adelante haré un artículo
+detallando la topología y otros dispositivos de mi instalación) ya que voy a instalar por ejemplo un nuevo disco duro.
 
-Uno de mis principales problemas con muchos dispositivos IoT es que éstos tengan que depender del funcionamiento de
-Internet. Yo he hecho una cantidad increíble de mejoras en mi red casera de forma de reducir al máximo posible cualquier
-corte de Internet, pero aún así me veo a veces reiniciando el servidor (más adelante haré un artículo detallando la
-topología y otros dispositivos de mi instalación) ya que voy a instalar por ejemplo un nuevo disco duro.
-
-#### Red cableada
-
-Otro factor muy importante es cablear donde sea posible: el Wi-Fi es un protocolo que todavía está en activo desarrollo,
-y nada indica que en el futuro salga un nuevo estándar de seguridad que no sea compatible con algún dispositivo
-escondido en una pared cualquiera: la red cableada en cambio sigue funcionando con dispositivos que salieron hace 20
-años atrás y es mucho más simple de controlar ya que no tiene una capa de autentificación por encima.
+* **Red cableada**: Otro factor muy importante es cablear donde sea posible: el Wi-Fi es un protocolo que todavía está
+en activo desarrollo, y nada indica que en el futuro salga un nuevo estándar de seguridad que no sea compatible con
+algún dispositivo escondido en una pared cualquiera: la red cableada en cambio sigue funcionando con dispositivos que
+salieron hace 20 años atrás y es mucho más simple de controlar ya que no tiene una capa de autentificación por encima.
 
 Otras desventajas del Wi-Fi es que es más lento, el rango y la seguridad.
 
-#### Sin red interna
-
-Otro caso bastante común, es la falta de conectividad interna: puede ser que el servidor principal esté abajo, que el
-broker (más información sobre esto más adelante) o alguna otra dependencia esté caído, que el cable se haya roto o
-simplemente esté mal enchufado, pero el aparato tiene que seguir manteniendo sus funciones normales; o bajo ciertas
-condiciones; seguir funcionando a un nivel o con funcionalidades más básicas. Un ejemplo de este último punto puede ser
-una ampolleta que se prenda automáticamente cuando la casa detecte que llego a la casa y esté oscuro, pero si el
-dispositivo no tiene red alguna, no va a saber que llegué a la casa. El botón de prendido y apagado de la ampolleta debe
-seguir funcionando normalmente sin problemas.
+* **Sin red interna**: Otro caso bastante común, es la falta de conectividad interna: puede ser que el servidor
+principal esté abajo, que el broker (más información sobre esto más adelante) o alguna otra dependencia esté caído, que
+el cable se haya roto o simplemente esté mal enchufado, pero el aparato tiene que seguir manteniendo sus funciones
+normales; o bajo ciertas condiciones; seguir funcionando a un nivel o con funcionalidades más básicas. Un ejemplo de
+este último punto puede ser una ampolleta que se prenda automáticamente cuando la casa detecte que llego a la casa y
+esté oscuro, pero si el dispositivo no tiene red alguna, no va a saber que llegué a la casa. El botón de prendido y
+apagado de la ampolleta debe seguir funcionando normalmente sin problemas.
 
 ### Seguro
 
