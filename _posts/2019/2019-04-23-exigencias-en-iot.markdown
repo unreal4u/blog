@@ -53,9 +53,8 @@ detallando la topología y otros dispositivos de mi instalación) ya que voy a i
 * **Red cableada**: Otro factor muy importante es cablear donde sea posible: el Wi-Fi es un protocolo que todavía está
 en activo desarrollo, y nada indica que en el futuro salga un nuevo estándar de seguridad que no sea compatible con
 algún dispositivo escondido en una pared cualquiera: la red cableada en cambio sigue funcionando con dispositivos que
-salieron hace 20 años atrás y es mucho más simple de controlar ya que no tiene una capa de autentificación por encima.
-
-Otras desventajas del Wi-Fi es que es más lento, el rango y la seguridad.
+salieron hace 20 años atrás y es mucho más simple de controlar ya que no tiene una capa de autentificación por encima.  
+Otras desventajas de la Wi-Fi es que es más lento, tiene menor rango y la seguridad (más de eso más adelante).
 
 * **Sin red interna**: Otro caso bastante común, es la falta de conectividad interna: puede ser que el servidor
 principal esté abajo, que el broker (más información sobre esto más adelante) o alguna otra dependencia esté caído, que
