@@ -71,8 +71,10 @@ seguir funcionando normalmente sin problemas.
 
 ### Seguro
 
-Corría el año 2016 cuando el botnet Mirai se hizo público: servicios como Twitter, Netflix, Spotify y Reddit sufrieron
-downtime debido a... millones de dispositivos IoT mal protegidos abiertos a Internet.
+Corría el año 2016 cuando el [botnet Mirai se hizo público](https://www.theverge.com/2016/10/21/13362354/dyn-dns-ddos-attack-cause-outage-status-explained): 
+servicios como Twitter, Netflix, Spotify y Reddit sufrieron downtime debido a... [millones de dispositivos IoT mal
+protegidos](https://st.drweb.com/static/new-www/news/2016/september/Investigation_of_Linux.Mirai_Trojan_family_en.pdf)
+abiertos a Internet.  
 Cualquier dispositivo que sea capaz de recibir órdenes desde el exterior es susceptible a este tipo de ataque y como
 tal, no quisiera que mi casa estuviera involucrado en cualquier incidente que pueda ocurrir.  
 Aunque no lo he hecho, lo mejor que uno puede hacer para prevenir este tipo de ataques es dejar todo lo que tenga que
