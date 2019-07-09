@@ -43,7 +43,7 @@ entrada) también forma parte de esta VLAN, pero untagged.
 - Finalmente, procedemos a la siguiente pantalla, iremos al menú izquierdo 802.1Q PVID Setting y configuramos la
 pantalla de la siguiente forma:
 
-![Asociación](/assets/switch-vlans/01-association.png)
+![Asociación](/assets/switch-vlans/02-association.png)
 
 Con esto hecho, podremos disfrutar (en mi caso) del puerto 2 al 6 de la VLAN 50.
 
