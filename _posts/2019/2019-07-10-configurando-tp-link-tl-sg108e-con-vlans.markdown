@@ -21,7 +21,7 @@ Las que me llegaron fue la v4 y el último firmware disponible para estas unidad
 <!-- more -->
 
 Se trata en detalle de la siguiente unidad:  
-![TL-SG108E](/assets/tplink-tl-sg108e.jpg)
+[![TL-SG108E](/assets/switch-vlans/thumb_tplink-tl-sg108e.jpg)](/assets/switch-vlans/tplink-tl-sg108e.jpg)
 
 Ésta unidad con el firmware actual presenta 3 modos para configurar los VLANs que funcionan de manera exclusiva una de
 otra: MTU VLAN, VLAN basado en puerto y 802.1Q VLAN. Yo ocupé este último ya que era el mejor se ajustaba a mi caso de
@@ -30,7 +30,7 @@ uso.
 Para poder configurar este switch es necesaria la siguiente configuración (suponiendo que puerto 1 es la entrada de
 todos los VLAN):
 
-![Configuración](/assets/switch-vlans/01-configuration.png)
+[![Configuración](/assets/switch-vlans/thumb_01-configuration.png)](/assets/switch-vlans/01-configuration.png)
 
 La interfaz gráfica deja bastante que desear, así que los pasos para conseguir esto son varios:
 
@@ -43,7 +43,7 @@ entrada) también forma parte de esta VLAN, pero untagged.
 - Finalmente, procedemos a la siguiente pantalla, iremos al menú izquierdo 802.1Q PVID Setting y configuramos la
 pantalla de la siguiente forma:
 
-![Asociación](/assets/switch-vlans/02-association.png)
+[![Asociación](/assets/switch-vlans/thumb_02-association.png)](/assets/switch-vlans/02-association.png)
 
 Con esto hecho, podremos disfrutar (en mi caso) del puerto 2 al 6 de la VLAN 50.
 
